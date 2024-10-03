@@ -39,10 +39,10 @@ export default function RootLayout({
         >
           <div className="flex flex-col justify-start items-start">
             <Header />
-            <main className="w-full min-h-screen pt-16 flex flex-col justify-between">
+            <div className="w-full min-h-screen pt-16 flex flex-col justify-between">
               {children}
               <Footer />
-            </main>
+            </div>
           </div>
         </ThemeProvider>
       </body>

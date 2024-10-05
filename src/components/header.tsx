@@ -15,7 +15,7 @@ const Header = () => {
   const loggedin = true;
 
   return (
-    <header className="w-full h-16 px-4 grid grid-cols-4 items-center border-b fixed">
+    <header className="w-full h-16 px-4 bg-background grid grid-cols-4 items-center fixed">
       <span className="col-span-1">
         <h1>Atiyas Fresh Farm</h1>
       </span>

@@ -8,7 +8,7 @@ const Product = () => {
 
         <div className="w-full flex flex-row justify-center md:space-x-4 items-start">
           <div className="w-[550px] h-full aspect-square bg-neutral-300 rounded-md"></div>
-          <div className="flex flex-col justify-start items-start">
+          <div className="w-[550px] h-full aspect-square flex flex-col justify-start items-start">
             <span>bread crumbs...</span>
             <H2>Swaroski Necklace</H2>
             <H3>$25.00</H3>
@@ -31,13 +31,11 @@ const Product = () => {
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
+          
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>

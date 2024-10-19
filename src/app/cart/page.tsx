@@ -1,5 +1,5 @@
 import { Trash } from "lucide-react";
-import { H2, Large, Small } from "@/components/ui/typography";
+import { H2, P, Large, Small } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge"
 
@@ -81,7 +81,7 @@ const Cart = () => {
         </div>
 
         <div className="w-full flex flex-row justify-between items-center">
-          <Large>Clear Cart</Large>
+          <P>Clear Cart</P>
           <Button>Checkout</Button>
         </div>
 

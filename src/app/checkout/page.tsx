@@ -62,8 +62,6 @@ const Checkout = () => {
               PICKUP
             </TabsContent>
           </Tabs>
-
-          
         </section>
 
         <section className="w-full flex flex-col justify-start items-start space-y-4 mb-10">

@@ -20,7 +20,7 @@ const Category = () => {
         </div>
         <div className="w-full flex flex-row flex-wrap justify-center items-start">
           <ProductCard name="Dempster White Bread" count="1 pack" price="$3.29" />
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
+          <ProductCard name="Dempster White Bread" count="1 pack" price="$3.29" />
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
           <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>

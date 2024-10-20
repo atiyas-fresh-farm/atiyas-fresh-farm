@@ -30,14 +30,14 @@ const P = ({ children }: {children: ReactNode}) => (
   </p>
 );
 
-const Large = ({ children }: {children: ReactNode}) => (
-  <div className="text-lg font-semibold">
+const Large = ({ children, className }: {children: ReactNode, className?: string}) => (
+  <div className={`text-lg font-semibold ${className}`}>
     { children }
   </div>
 );
 
-const Small = ({ children }: {children: ReactNode}) => (
-  <small className="text-sm font-medium leading-none">
+const Small = ({ children, className }: {children: ReactNode, className?: string}) => (
+  <small className={`text-sm font-medium leading-none ${className}`}>
     { children }
   </small>
 );

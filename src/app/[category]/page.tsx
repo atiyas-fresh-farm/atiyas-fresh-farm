@@ -39,7 +39,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
    *  - if not, show a 404 page
    * x query the category details
    * x query list of products in the category
-   * - query list of subcategories
+   * x query list of subcategories
    * - show a generic image if product image is not available
    */
 

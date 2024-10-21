@@ -16,15 +16,17 @@ const ProductCard = ({ image="#", category, handle, name="Image of a product", c
   return (
     <div className="w-48 mx-3 mb-6 rounded-md">
       <Link href={`/${category}/${handle}`}>
-      <div className="w-full aspect-square border rounded-t-md relative">
-        <Image src={image} fill={true} alt={name} />
-      </div>
+        <div className="w-full aspect-square border rounded-t-md relative">
+          <Image src={image} fill={true} alt={name} />
+        </div>
       </Link>
-      <div className="py-2">
-        <p className="font-semibold truncate">{name}</p>
-        <Muted>{count}</Muted>
-        <P>${price}</P>
-      </div>
+      <Link href={`/${category}/${handle}`}>
+        <div className="py-2">
+          <p className="font-semibold truncate">{name}</p>
+          <Muted>{count}</Muted>
+          <P>${price}</P>
+        </div>
+      </Link>
       <div>
         <Button className="w-full p-2 bg-primary text-primary-foreground rounded-t-none rounded-b-md">Add to Cart</Button>
         {/*<div className="grid grid-cols-4 w-full h-10">

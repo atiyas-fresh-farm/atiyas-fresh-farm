@@ -1,9 +1,127 @@
 import { ProductCard } from "@/components/product-card";
+import { shopifyClient } from "@/lib/shopify/client";
 
-const Category = () => {
+interface CategoryProps {
+  params: {
+    category: string;
+  }
+  searchParams?: {
+    filter: string;
+  }
+  category: string;
+};
+
+interface ProductType {
+  id: string
+  handle: string
+  title: string
+  priceRange: {
+    maxVariantPrice: {
+      amount: string
+    }
+  }
+  images: {
+    nodes: [
+      {
+        url: string
+      }
+    ]
+  }
+}
+
+const Category = async ({ params, searchParams }: CategoryProps) => {
+
+  /**
+   * TODO:
+   * x get the category from the URL
+   * x check if the category is valid
+   *  - if not, show a 404 page
+   * x query the category details
+   * x query list of products in the category
+   * - query list of subcategories
+   * - show a generic image if product image is not available
+   */
+
+
+  /*
+  const categoryCount = `
+    query collectionCount($category: String) {
+      collectionsCount(query: $category) {
+        count
+      }
+    }
+  `;*/
+
+  if (searchParams) console.log(searchParams)
+
+  // If the category is valid, query the category details
+  //TODO: use 'featuredImage' instead of 'image' for the category image
+  //TODO: use collectionByHandle instead of collections
+  const categoryQuery = `
+    query categoryQuery($category: String) {
+      collections(query: $category, first: 1) {
+        edges {
+          node {
+            title
+            id
+            image {
+              url
+              altText
+            }
+            handle
+            products(first: 20) {
+              nodes {
+                id
+                handle
+                title
+                priceRange {
+                  maxVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 1) {
+                  nodes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const { data, errors } = await shopifyClient.request(categoryQuery, {
+    variables: {
+      category: params.category
+    }
+  });
+
+  console.error(errors);
+
+  //TODO: change this to check that it is a valid category, not just that a collection exists with this name.
+  // for example, 'home' is a collection, but not a category
+  const isCategoryValid = data.collections.edges.length === 1;
+
+  if (!isCategoryValid) {
+    // redirect to 404 page
+    return (
+      <div>
+        <h1>404</h1>
+        <p>Category not found</p>
+      </div>
+    );
+  }
+
+  const productList = data.collections.edges[0].node.products.nodes;
+
+
+
   return (
     <div className="w-full flex justify-center">
       <main className="container flex flex-row justify-start items-start pt-10">
+
         <div className="min-w-96 ">
           <div className="w-64 h-20 flex flex-row justify-start items-center p-8 bg-neutral-300">
             All
@@ -18,25 +136,21 @@ const Category = () => {
             Pendant
           </div>
         </div>
+
         <div className="w-full flex flex-row flex-wrap justify-center items-start">
-          <ProductCard name="Dempster White Bread" count="1 pack" price="$3.29" />
-          <ProductCard name="Dempster White Bread" count="1 pack" price="$3.29" />
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
-          <div className="w-48 h-72 bg-neutral-300 mx-3 mb-6 rounded-md"></div>
+          {
+            productList.map((product: ProductType) => (
+              <ProductCard
+                key={product.handle}
+                name={product.title}
+                count="1 pack"
+                image={product.images.nodes.length ? product.images.nodes[0].url : "/bread.png"}
+                price={product.priceRange.maxVariantPrice.amount}
+              />
+            ))
+          }
         </div>
+
       </main>
     </div>
   );

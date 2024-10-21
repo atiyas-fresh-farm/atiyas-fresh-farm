@@ -12,8 +12,8 @@ const ProductCard = ({ image="#", name="Image of a product", count, price }:
 ) => {
   return (
     <div className="w-48 mx-3 mb-6 rounded-md">
-      <div className="w-full aspect-square border rounded-t-md">
-        <Image src="/bread.png" width={192} height={192} alt={name} />
+      <div className="w-full aspect-square border rounded-t-md relative">
+        <Image src={image} fill={true} alt={name} />
       </div>
       <div className="py-2">
         <p className="font-semibold truncate">{name}</p>

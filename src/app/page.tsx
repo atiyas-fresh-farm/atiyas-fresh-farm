@@ -10,6 +10,7 @@ const Home = async () => {
    * - query list of banners
    */
 
+  /*
   const productQuery = `
     query ProductQuery {
       products(first: 1) {
@@ -20,7 +21,8 @@ const Home = async () => {
         }
       }
     }
-  `;
+  `;*/
+
   const collectionQuery = `
     query {
       collections(first: 10) {

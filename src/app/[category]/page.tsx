@@ -114,6 +114,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
     );
   }
 
+  const categoryHandle = data.collections.edges[0].node.handle;
   const productList = data.collections.edges[0].node.products.nodes;
 
 
@@ -142,6 +143,8 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
             productList.map((product: ProductType) => (
               <ProductCard
                 key={product.handle}
+                category={categoryHandle}
+                handle={product.handle}
                 name={product.title}
                 count="1 pack"
                 image={product.images.nodes.length ? product.images.nodes[0].url : "/bread.png"}

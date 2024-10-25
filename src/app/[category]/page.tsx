@@ -70,7 +70,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
               altText
             }
             handle
-            products(first: 20) {
+            products(first: 50) {
               nodes {
                 id
                 handle
@@ -92,42 +92,11 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
       }
     }
   `;
-  const subcategoryQuery = `
-    query subcategoryQuery($category: String!) {
-      metaobject(handle: {handle: $category, type: "categories"}) {
-        fields {
-          references(first: 10) {
-            nodes {
-              ... on Collection {
-                title
-                handle
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const { data: subcategoryData, errors: subcategoryErrors } = await shopifyClient.request(subcategoryQuery, {
-    variables: {
-      category: params.category
-    }
-  });
-
-  const subcategories = subcategoryData.metaobject.fields[0].references.nodes;
-  const isFilterValid = () => {
-    return subcategories.find((e: {title:string, handle:string}) => e.handle===searchParams?.filter);
-  }
-
-  let queryCategory: string|undefined = params.category;
-  if (isFilterValid() !== undefined) {
-    queryCategory = searchParams?.filter;
-  }
+  
 
   const { data, errors } = await shopifyClient.request(categoryProductQuery, {
     variables: {
-      category: queryCategory
+      category: params.category
     }
   });
 
@@ -135,7 +104,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
 
 
   console.log(data.collections.edges[0]);
-  console.error(subcategoryErrors);
+  console.error(errors);
   //TODO: change this to check that it is a valid category, not just that a collection exists with this name.
   // for example, 'home' is a collection, but not a category
   const isCategoryValid = data.collections.edges.length === 1;
@@ -165,17 +134,6 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
               All
             </div>
           </Link>
-          {
-            subcategories.map((subcategory: { title: string, handle: string }) => {
-              if (params.category!==subcategory.handle) return (
-                <Link key={subcategory.handle} href={`/${params.category}?filter=${subcategory.handle}`}>
-                  <div className="w-64 h-20 flex flex-row justify-start items-center p-8 bg-white">
-                    { subcategory.title }
-                  </div>
-                </Link>
-              )
-            })
-          }
         </div>
 
         <div className="w-full flex flex-row flex-wrap justify-center items-start">

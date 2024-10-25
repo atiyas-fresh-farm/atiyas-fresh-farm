@@ -1,10 +1,44 @@
 import { Trash } from "lucide-react";
 import { H2, P, Large, Small } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
+//import { ProductCard } from "@/components/product-card";
 
 
 const Cart = () => {
+  
+  /**
+   * TODO:
+   * - check to see if a cart exists for the current user
+   * - if not, show a message to add items to the cart
+   * - if a cart exists, show the items in the cart
+   *  - query the cart items
+   */
+
+  /*
+  const subcategoryQuery = `
+    query subcategoryQuery($category: String!) {
+      metaobject(handle: {handle: $category, type: "categories"}) {
+        fields {
+          references(first: 10) {
+            nodes {
+              ... on Collection {
+                title
+                handle
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const { data, errors } = await shopifyClient.request(subcategoryQuery, {
+    variables: {
+      category: params.category
+    }
+  });*/
+
   return (
     <div className="w-full flex justify-center">
       <main className="container flex flex-col justify-start items-start pt-10">

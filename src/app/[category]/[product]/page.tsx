@@ -129,7 +129,7 @@ const Product = async ({ params }: { params: ParamsType }) => {
             <H4>${data.productByHandle.priceRange.maxVariantPrice.amount}</H4>
 
             <br /><br /><br />
-            <Button>Add to Cart</Button>
+            <Button className="px-8 bg-lime-700">Add to Cart</Button>
             <div className="mt-4">
               <Large>Product Description</Large>
               <P>{data.productByHandle.description}</P>
@@ -137,7 +137,7 @@ const Product = async ({ params }: { params: ParamsType }) => {
           </div>
         </div>
 
-        <div className="w-full flex flex-col justify-start items-start my-8 space-y-4">
+        <div className="w-full flex flex-col justify-start items-start mt-16 mb-8 space-y-4">
           <H2>Related Products</H2>
           <div className="w-full flex flex-row flex-wrap justify-evenly items-start">
             {

@@ -9,47 +9,69 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link";
+import Image from "next/image";
+import { Large } from "@/components/ui/typography";
+import { ShoppingCartIcon, SearchIcon } from "lucide-react";
 
 const Header = () => {
 
   const loggedin = true;
 
   return (
-    <header className="w-full h-16 px-4 bg-background grid grid-cols-4 items-center fixed z-10">
-      <span className="col-span-1">
-        <Link href="/">
-          <h1>Atiyas Fresh Farm</h1>
-        </Link>
-      </span>
-      <span className="col-span-2">
-        <SearchBar />
-      </span>
-      <span className="col-span-1 flex flex-row justify-end items-center">
-        {
-          loggedin ?
-          <>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="mt-1" align="end">
-                <ThemeToggleSubMenu />
-                <DropdownMenuSeparator />
-                <Link href="/profile"><DropdownMenuItem>Profile</DropdownMenuItem></Link>
-                <Link href="/settings"><DropdownMenuItem>Settings</DropdownMenuItem></Link>
-                <Link href="/logoff"><DropdownMenuItem>Log off</DropdownMenuItem></Link>                
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </> :
-          <>
-            <Link href="/login">Login</Link>
-            <Link href="/signup">Sign Up</Link>
-          </>
-        }
-      </span>
+    <header className="w-full bg-background flex flex-col">
+
+      <div className="w-full h-20 px-6 grid grid-cols-6 items-center border-b z-10">
+        <span className="col-span-3 md:col-span-1">
+          <Link href="/">
+            <Image src="/logo.png" width={150} height={60} alt="Atiyas Fresh Farm Logo" />
+          </Link>
+        </span>
+        <span className="hidden md:inline col-span-4">
+          <SearchBar />
+        </span>
+        <span className="col-span-3 md:col-span-1 flex flex-row justify-end items-center space-x-4">
+          <span className="inline md:hidden p-2">
+            <SearchIcon size={24} className="text-neutral-950" />
+          </span>
+          <span className="p-2">
+            <ShoppingCartIcon size={24}  className="text-neutral-950" />
+          </span>
+          {
+            loggedin ?
+            <>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="mt-1" align="end">
+                  <ThemeToggleSubMenu />
+                  <DropdownMenuSeparator />
+                  <Link href="/profile"><DropdownMenuItem>Profile</DropdownMenuItem></Link>
+                  <Link href="/settings"><DropdownMenuItem>Settings</DropdownMenuItem></Link>
+                  <Link href="/logoff"><DropdownMenuItem>Log off</DropdownMenuItem></Link>                
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </> :
+            <>
+              <Link href="/login">Login</Link>
+              <Link href="/signup">Sign Up</Link>
+            </>
+          }
+        </span>
+      </div>
+
+      <div className="flex justify-center items-center h-12 bg-lime-700">
+        <div className="container h-full flex flex-row justify-start items-center text-stone-50 space-x-8">
+          <Link href="#categories"><Large>All Categories</Large></Link>
+          <Link href="/flyer"><Large>Flyer</Large></Link>
+          <Link href="/contact"><Large>Contact</Large></Link>
+          <Link href="/about"><Large>About</Large></Link>
+        </div>
+      </div>
+
     </header>
   );
 }

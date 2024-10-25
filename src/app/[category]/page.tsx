@@ -126,7 +126,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-row justify-start items-start pt-10">
+      <main className="container flex flex-row justify-start items-start">
 
         <div className="min-w-96 ">
           <Link href={`/${params.category}`}>

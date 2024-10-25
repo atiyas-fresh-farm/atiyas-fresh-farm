@@ -19,7 +19,9 @@ const Home = async () => {
     {src: Section2, alt: "section 2"},
     {src: Section3, alt: "section 3"},
     {src: Section4, alt: "section 4"},
-    {src: Section5, alt: "section 5"}
+    {src: Section5, alt: "section 5"},
+    {src: Section3, alt: "section 3"},
+    {src: Section4, alt: "section 4"}
   ];
   const categories = [
     {

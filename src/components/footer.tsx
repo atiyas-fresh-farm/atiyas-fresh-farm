@@ -13,16 +13,16 @@ const Footer = () => {
           </Link>
           <div className="w-48 flex flex-row justify-between items-center">
             <Link href="/">
-              <InstagramIcon className="text-neutral-700" size={24} />
+              <InstagramIcon className="text-neutral-700 dark:text-neutral-50" size={24} />
             </Link>
             <Link href="/">
-              <FacebookIcon className="text-neutral-700" size={24} />
+              <FacebookIcon className="text-neutral-700 dark:text-neutral-50" size={24} />
             </Link>
             <Link href="/">
-              <TwitterIcon className="text-neutral-700" size={24} />
+              <TwitterIcon className="text-neutral-700 dark:text-neutral-50" size={24} />
             </Link>
             <Link href="/">
-              <LinkedinIcon className="text-neutral-700" size={24} />
+              <LinkedinIcon className="text-neutral-700 dark:text-neutral-50" size={24} />
             </Link>
           </div>
           <Large>&copy; Atiyas Fresh Farm Ltd.</Large>

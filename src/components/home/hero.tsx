@@ -20,8 +20,8 @@ const Hero = ({imageSrc, altText="hero banner"}: {imageSrc: StaticImport|string,
             <Image src={imageSrc} fill={true} alt={altText} />
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious className="hidden xl:inline" />
-        <CarouselNext className="hidden xl:inline" />
+        <CarouselPrevious className="hidden xl:inline-flex" />
+        <CarouselNext className="hidden xl:inline-flex" />
       </Carousel>
     </div>
   )

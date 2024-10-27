@@ -78,7 +78,7 @@ const Home = async () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start">
+      <main className="container flex flex-col justify-start items-start pt-10">
         <Hero imageSrc={FruitsBanner} altText="Hero banner" />
         <SpecialSections images={specialSectionImages} />
         <Categories title="Explore Categories" categories={categories} />

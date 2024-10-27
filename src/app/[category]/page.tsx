@@ -188,12 +188,13 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
     <div className="w-full flex justify-center">
       <main className="container flex flex-row justify-start items-start">
 
-        <div className="min-w-96">
+        <div className="w-18 md:min-w-64 h-full border-r pt-6">
           <Link href={`/${params.category}`}>
             <div className={`
-              w-64 h-14 flex flex-row justify-start items-center
-              p-8 bg-background hover:bg-accent border-r
-              ${searchParams?.filter ? `` : `bg-neutral-300`}
+              w-full h-14 flex flex-row justify-center md:justify-start items-center
+              p-1 md:p-8 bg-background hover:bg-lime-100
+              text-sm md:text-base
+              ${searchParams?.filter ? `` : `bg-lime-200 border-r-4 border-lime-600`}
             `}>
               All
             </div>
@@ -202,9 +203,10 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
             subcategories.map((subcategory: string) => (
               <Link key={subcategory} href={`/${params.category}?filter=${subcategory}`}>
                 <div className={`
-                  w-64 h-14 flex flex-row justify-start items-center
-                  p-8 bg-background hover:bg-accent border-r
-                  ${searchParams?.filter?.toLowerCase() === subcategory.toLowerCase() ? `bg-neutral-300` : ``}
+                  w-full h-14 flex flex-row justify-center md:justify-start items-center
+                  p-1 md:p-8 bg-background hover:bg-lime-100
+                  text-sm md:text-base
+                  ${searchParams?.filter?.toLowerCase() === subcategory.toLowerCase() ? `bg-lime-200 border-r-4 border-lime-600` : ``}
                 `}>
                   {subcategory}
                 </div>
@@ -213,7 +215,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
           }
         </div>
 
-        <div className="w-full flex flex-row flex-wrap justify-center items-start">
+        <div className="w-full flex flex-row flex-wrap justify-center items-start mb-16 pt-6">
           {
             products.map((product: ProductType) => {
               if (searchParams && searchParams.filter && subcategories.includes(searchParams.filter)) {

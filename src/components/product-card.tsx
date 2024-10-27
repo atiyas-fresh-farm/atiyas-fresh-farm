@@ -1,16 +1,17 @@
 import Image from 'next/image';
 import { P, Muted } from '@/components/ui/typography';
 import { Button } from '@/components/ui/button';
+import { StaticImageData } from "next/image";
 import Link from 'next/link';
 
 const ProductCard = ({ image="#", category, handle, name="Image of a product", count, price }:
   {
-    image?: string,
+    image?: string|StaticImageData,
     category?: string,
     handle?: string,
     name?: string,
     count?: string,
-    price?: string
+    price?: string|number
   }
 ) => {
   return (

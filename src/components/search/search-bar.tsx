@@ -2,14 +2,14 @@
 
 import { Search } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-//import { useDebouncedCallback } from 'use-debounce';
+import { useDebouncedCallback } from 'use-debounce';
 
 const SearchBar = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleSearch = (term: string) => {
+  const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set('query', term);
@@ -17,7 +17,7 @@ const SearchBar = () => {
       params.delete('query');
     }
     replace(`${pathname}?${params.toString()}`);
-  };
+  }, 300);
 
   return (
     <div className="w-full h-full flex flex-row justify-center items-center px-4 py-1 border border-neutral-300 rounded-full">

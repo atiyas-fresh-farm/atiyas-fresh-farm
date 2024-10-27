@@ -17,7 +17,9 @@ interface ProductType {
   }
 }
 
-const Search = () => {
+const Search = ({ searchParams }: { searchParams?: { query?: string} }) => {
+
+  console.log(searchParams?.query);
 
   const products = [
     {

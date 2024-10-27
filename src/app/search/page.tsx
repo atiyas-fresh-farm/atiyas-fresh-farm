@@ -1,4 +1,4 @@
-import { Large, Small } from '@/components/ui/typography';
+import { H4, Small } from '@/components/ui/typography';
 import { ProductCard } from "@/components/product-card";
 import { StaticImageData } from 'next/image';
 
@@ -20,6 +20,7 @@ interface ProductType {
 const Search = ({ searchParams }: { searchParams?: { query?: string} }) => {
 
   // TODO: make a query based on the query string from the searchParams
+  // - update the showing x results text
   console.log(searchParams?.query);
 
   const products = [
@@ -171,10 +172,14 @@ const Search = ({ searchParams }: { searchParams?: { query?: string} }) => {
   return (
     <div className="w-full flex justify-center">
       <main className="container flex flex-col justify-start items-start pt-6">
-        <Large>Search Results</Large>
+        <H4>
+          {
+            searchParams?.query ? `Search Results for "${searchParams.query}"` : `Start typing to search for products`
+          }
+        </H4>
         <Small>Showing 1-20 of 100 results</Small>
         <br />
-        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 justify-start items-start mb-6">
+        <div className="w-full this is grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 justify-start items-start mb-6">
           
           {
             products.map((product: ProductType) => {

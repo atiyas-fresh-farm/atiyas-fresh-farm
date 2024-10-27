@@ -10,7 +10,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link";
 import Image from "next/image";
-import { Large } from "@/components/ui/typography";
 import { ShoppingCartIcon, SearchIcon } from "lucide-react";
 
 const Header = () => {
@@ -65,10 +64,10 @@ const Header = () => {
 
       <div className="flex justify-center items-center h-12 bg-lime-700 px-2 xl:px-0">
         <div className="container h-full flex flex-row justify-start items-center text-stone-50 space-x-8">
-          <Link href="#categories"><Large>All Categories</Large></Link>
-          <Link href="/flyer"><Large>Flyer</Large></Link>
-          <Link href="/contact"><Large>Contact</Large></Link>
-          <Link href="/about"><Large>About</Large></Link>
+          <Link href="#categories"><p>All Categories</p></Link>
+          <Link href="/flyer"><p>Flyer</p></Link>
+          <Link href="/contact"><p>Contact</p></Link>
+          <Link href="/about"><p>About</p></Link>
         </div>
       </div>
 

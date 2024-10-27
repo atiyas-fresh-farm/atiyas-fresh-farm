@@ -19,6 +19,7 @@ interface ProductType {
 
 const Search = ({ searchParams }: { searchParams?: { query?: string} }) => {
 
+  // TODO: make a query based on the query string from the searchParams
   console.log(searchParams?.query);
 
   const products = [

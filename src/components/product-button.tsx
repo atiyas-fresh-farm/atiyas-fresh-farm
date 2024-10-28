@@ -25,7 +25,16 @@ const AddToCart = ({ className }: { className?: string }) => {
   );
 }
 
+const ItemCountBtn = ({ count: ItemCount }: { count: number }) => {
+  const [count, setCount] = useState(ItemCount);
+  return (
+    <div className="w-28">
+      <ItemCounter count={count} setCount={setCount} />
+    </div>
+  )
+}
 
+// TODO: take className
 const ItemCounter = ({ count, setCount }: { count: number, setCount: (e: number)=>void }) => {
   return (
     <div className="grid grid-cols-4 w-full h-10">
@@ -48,4 +57,4 @@ const ItemCounter = ({ count, setCount }: { count: number, setCount: (e: number)
   );
 }
 
-export { AddToCart };
+export { AddToCart, ItemCountBtn };

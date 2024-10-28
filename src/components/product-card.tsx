@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { P, Muted } from '@/components/ui/typography';
-import { AddToCart } from '@/components/add-to-cart';
+import { AddToCart } from '@/components/product-button';
 import { StaticImageData } from "next/image";
 import Link from 'next/link';
 

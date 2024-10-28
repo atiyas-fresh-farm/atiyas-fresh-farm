@@ -7,10 +7,19 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCartIcon, SearchIcon } from "lucide-react";
+import { ShoppingCartIcon, SearchIcon, TrashIcon } from "lucide-react";
 
 const Header = () => {
 
@@ -33,7 +42,218 @@ const Header = () => {
             <SearchIcon size={24} className="text-neutral-950" />
           </span>
           <span className="p-2">
-            <ShoppingCartIcon size={24}  className="text-neutral-950" />
+            <Sheet>
+              <SheetTrigger>
+                <ShoppingCartIcon size={24} className="text-neutral-950" />
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>My Cart</SheetTitle>
+                  <SheetDescription>
+                    This action cannot be undone. This will permanently delete your account
+                    and remove your data from our servers.
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="h-4/5 flex flex-col justify-start items-start overflow-y-scroll">
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                  <div className="w-full flex flex-row justify-between items-center mt-8">
+                    <div className="flex flex-row items-center">
+                      <div className="w-16 aspect-square h-full bg-neutral-300 rounded"></div>
+                      <p className="ml-4">Banana</p>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                      <p> x $2.00</p>
+                      <TrashIcon className="ml-4" size={24} />
+                    </div>
+                  </div>
+
+                </div>
+                <SheetFooter>
+                  checkout button
+                </SheetFooter>
+              </SheetContent>
+            </Sheet>
           </span>
           {
             loggedin ?

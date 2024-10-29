@@ -1,8 +1,7 @@
-import { H2, P, Large, Small } from "@/components/ui/typography";
+import { H2, P, Small } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { CartRow } from "@/components/cart-row";
-
+import { CartRow } from "@/components/cart/cart-row";
+import { CartCalculation } from "@/components/cart/cart-calculation";
 
 const Cart = () => {
 
@@ -57,28 +56,11 @@ const Cart = () => {
           ))
         }
 
-        <div className="w-full flex flex-row justify-end items-center mt-8">
-          <div className="w-1/4 grid grid-col-2 grid-row-5">
-
-            <div className="col-span-1 row-span-1">Subtotal:</div>
-            <div className="col-span-1 col-start-2 row-span-1">$6.00</div>
-
-            <div className="col-span-1 row-span-2">Delivery:</div>
-            <div className="col-span-1 col-start-2 row-span-2">$0.60</div>
-
-            <div className="col-span-1 row-span-3">Tax:</div>
-            <div className="col-span-1 col-start-2 row-span-3">$0.60</div>
-
-            <div className="col-span-1 row-span-4"><Large>Total:</Large></div>
-            <div className="col-span-1 col-start-2 row-span-4"><Large>$6.60</Large></div>
-
-            <div className="col-span-1 col-start-2 row-span-4">
-              <Badge>Saving $11.23</Badge>
-            </div>
-          </div>
+        <div className="w-full flex flex-row justify-end items-center mt-6">
+          <CartCalculation />
         </div>
 
-        <div className="w-full flex flex-row justify-between items-center">
+        <div className="w-full flex flex-row justify-between items-center pt-4">
           <P>Clear Cart</P>
           <Button>Checkout</Button>
         </div>

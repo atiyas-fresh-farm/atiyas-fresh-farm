@@ -15,7 +15,7 @@ interface CartRowType {
   deleteRow?: (i: number) => void
 }
 
-const CartRow = ({ count, product, index, deleteRow }: CartRowType) => {
+const CartRow = ({ count, product }: CartRowType) => {
   return (
     <div className="w-full flex flex-row justify-between items-center mt-8">
       <div className="flex flex-row items-center">

@@ -1,8 +1,10 @@
 import { ItemCountBtn } from '@/components/product-button';
 import { TrashIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface CartRowType {
+  index: number,
   count: number,
   product: {
     title: string,
@@ -10,9 +12,10 @@ interface CartRowType {
     altText: string,
     price: number
   }
+  deleteRow?: (i: number) => void
 }
 
-const CartRow = ({ count, product }: CartRowType) => {
+const CartRow = ({ count, product, index, deleteRow }: CartRowType) => {
   return (
     <div className="w-full flex flex-row justify-between items-center mt-8">
       <div className="flex flex-row items-center">
@@ -31,7 +34,9 @@ const CartRow = ({ count, product }: CartRowType) => {
           <p>${product.price * count}</p>
         </div>
         <div className="col-span-1 flex justify-end items-center">
-          <TrashIcon className="ml-4 col-span-1" size={24} />
+        <Button className="col-span-1" variant="outline" size="icon">
+          <TrashIcon size={24} />
+        </Button>
         </div>
 
       </div>

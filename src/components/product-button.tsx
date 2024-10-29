@@ -60,7 +60,7 @@ const ItemCounter = ({ count, setCount, size="medium", rounded="full" }:
           ${rounded==="full" ? "rounded-tl-md" : ""}
           ${sizeStyle}
         `}
-        onClick={() => setCount(count - 1)}
+        onClick={() => count ? setCount(count - 1) : 0}
       >-</button>
       <input type="text"
         className={`col-span-2 outline-none border-y p-2 text-center ${sizeStyle}`}

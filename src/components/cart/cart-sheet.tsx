@@ -97,8 +97,8 @@ const CartSheet = () => {
 
         <ScrollArea className="h-3/4 flex flex-col justify-start items-start overflow-y-auto">
           {
-            cart.map((row) => (
-              <CartRowSm key={row.product.title} product={row.product} count={row.count} />
+            cart.map((row, i) => (
+              <CartRowSm key={row.product.title} index={i} product={row.product} count={row.count} />
             ))
           }
         </ScrollArea>

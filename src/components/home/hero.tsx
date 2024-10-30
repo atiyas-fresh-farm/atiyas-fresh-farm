@@ -14,7 +14,7 @@ const Hero = ({imageSrc, altText="hero banner"}: {imageSrc: StaticImport|string,
       <Carousel className="w-full h-[550px]">
         <CarouselContent>
           <CarouselItem className="w-full h-[550px] relative">
-            <Image src="/home/home-banner.png" fill={true} alt={altText} />
+            <Image src="/home/home-banner.png" fill={true} objectFit="cover" alt={altText} />
           </CarouselItem>
           <CarouselItem className="w-full h-[550px] relative">
             <Image src={imageSrc} fill={true} alt={altText} />

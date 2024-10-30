@@ -50,7 +50,7 @@ const Header = () => {
                 <DropdownMenuContent className="mt-1" align="end">
                   <ThemeToggleSubMenu />
                   <DropdownMenuSeparator />
-                  <Link href="/profile"><DropdownMenuItem>Profile</DropdownMenuItem></Link>
+                  <Link href="/order-history"><DropdownMenuItem>Order History</DropdownMenuItem></Link>
                   <Link href="/settings"><DropdownMenuItem>Settings</DropdownMenuItem></Link>
                   <Link href="/logoff"><DropdownMenuItem>Log off</DropdownMenuItem></Link>                
                 </DropdownMenuContent>

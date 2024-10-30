@@ -71,7 +71,6 @@ const OrderHistory = () => {
       count: 8,
       price: 301.02,
     },
-    ,
     {
       id: "648463",
       date: "Sep 05, 2024",

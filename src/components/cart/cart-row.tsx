@@ -4,18 +4,19 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface CartRowType {
-  index: number,
-  count: number,
+  index: number
+  count: number
   product: {
-    title: string,
-    imageURL: string,
-    altText: string,
+    title: string
+    imageURL: string
+    altText: string
     price: number
-  }
+  },
+  editable?: boolean
   deleteRow?: (i: number) => void
 }
 
-const CartRow = ({ count, product }: CartRowType) => {
+const CartRow = ({ count, product, editable=true }: CartRowType) => {
   return (
     <div className="w-full flex flex-row justify-between items-center mt-8">
       <div className="flex flex-row items-center">
@@ -24,20 +25,28 @@ const CartRow = ({ count, product }: CartRowType) => {
         </div>
         <p className="ml-4">{ product.title }</p>
       </div>
-      <div className="grid grid-cols-3">
-
-        <div className="col-span-1 flex justify-center items-center">
-          <ItemCountBtn count={count} />
+      <div className={`grid ${editable ? "grid-cols-3" : "grid-cols-2"}`}>
+        
+        <div className="min-w-20 col-span-1 flex justify-center items-center">
+          {
+            editable ?
+            <ItemCountBtn count={count} /> :
+            count + " count"
+          }
         </div>
         
         <div className="col-span-1 flex justify-end items-center">
           <p>${product.price * count}</p>
         </div>
-        <div className="col-span-1 flex justify-end items-center">
-        <Button className="col-span-1" variant="outline" size="icon">
-          <TrashIcon size={24} />
-        </Button>
-        </div>
+
+        {
+          editable &&
+          <div className="col-span-1 flex justify-end items-center">
+            <Button className="col-span-1" variant="outline" size="icon">
+              <TrashIcon size={24} />
+            </Button>
+          </div>
+        }
 
       </div>
     </div>

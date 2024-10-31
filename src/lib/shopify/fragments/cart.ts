@@ -7,15 +7,12 @@ const cartFragment = /* GraphQL */ `
     cost {
       subtotalAmount {
         amount
-        currencyCode
       }
       totalAmount {
         amount
-        currencyCode
       }
       totalTaxAmount {
         amount
-        currencyCode
       }
     }
     lines(first: 100) {
@@ -26,17 +23,12 @@ const cartFragment = /* GraphQL */ `
           cost {
             totalAmount {
               amount
-              currencyCode
             }
           }
           merchandise {
             ... on ProductVariant {
               id
               title
-              selectedOptions {
-                name
-                value
-              }
               product {
                 ...product
               }

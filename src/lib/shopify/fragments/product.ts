@@ -8,8 +8,7 @@ const productFragment = /* GraphQL */ `
     availableForSale
     title
     description
-    
-    collections(first: 10) {
+    collections(first: 50) {
       nodes {
         id
         handle

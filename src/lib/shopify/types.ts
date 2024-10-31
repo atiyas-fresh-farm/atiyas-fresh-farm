@@ -28,17 +28,11 @@ export type CartItem = {
   merchandise: {
     id: string;
     title: string;
-    selectedOptions: {
-      name: string;
-      value: string;
-    }[];
     product: CartProduct;
   };
 };
 
-export type Collection = ShopifyCollection & {
-  path: string;
-};
+export type Collection = ShopifyCollection;
 
 export type Image = {
   url: string;
@@ -47,47 +41,12 @@ export type Image = {
   height: number;
 };
 
-export type Menu = {
-  title: string;
-  path: string;
-};
-
 export type Money = {
   amount: string;
-  currencyCode: string;
 };
 
-export type Page = {
-  id: string;
-  title: string;
-  handle: string;
-  body: string;
-  bodySummary: string;
-  seo?: SEO;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
-  variants: ProductVariant[];
+export type Product = Omit<ShopifyProduct, 'images'> & {
   images: Image[];
-};
-
-export type ProductOption = {
-  id: string;
-  name: string;
-  values: string[];
-};
-
-export type ProductVariant = {
-  id: string;
-  title: string;
-  availableForSale: boolean;
-  selectedOptions: {
-    name: string;
-    value: string;
-  }[];
-  price: Money;
 };
 
 export type SEO = {
@@ -111,6 +70,7 @@ export type ShopifyCollection = {
   handle: string;
   title: string;
   description: string;
+  image: Image;
   seo: SEO;
   updatedAt: string;
 };
@@ -121,20 +81,22 @@ export type ShopifyProduct = {
   availableForSale: boolean;
   title: string;
   description: string;
-  descriptionHtml: string;
-  options: ProductOption[];
   priceRange: {
     maxVariantPrice: Money;
-    minVariantPrice: Money;
   };
-  variants: Connection<ProductVariant>;
   featuredImage: Image;
   images: Connection<Image>;
   seo: SEO;
   tags: string[];
-  updatedAt: string;
 };
 
+
+
+
+
+/**
+ * Shopify Operations
+ */
 export type ShopifyCartOperation = {
   data: {
     cart: ShopifyCart;
@@ -230,17 +192,6 @@ export type ShopifyMenuOperation = {
   };
   variables: {
     handle: string;
-  };
-};
-
-export type ShopifyPageOperation = {
-  data: { pageByHandle: Page };
-  variables: { handle: string };
-};
-
-export type ShopifyPagesOperation = {
-  data: {
-    pages: Connection<Page>;
   };
 };
 

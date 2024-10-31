@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Sheet,
   SheetContent,
@@ -12,6 +14,9 @@ import { ShoppingCartIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { CartCalculation } from "@/components/cart/cart-calculation";
+import { createCartAndSetCookie } from './actions';
+import { useEffect } from 'react';
+import { useCart } from '@/components/cart/cart-context';
 
 const CartSheet = () => {
 
@@ -80,6 +85,15 @@ const CartSheet = () => {
       }
     },
   ];
+  const { cart: NextCart } = useCart();
+
+  useEffect(() => {
+    if (!NextCart) {
+      createCartAndSetCookie();
+    }
+  }, [cart]);
+
+  console.log(NextCart);
 
   return (
     <Sheet>

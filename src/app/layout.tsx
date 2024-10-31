@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
+import { CartProvider } from "@/components/cart/cart-context";
+import { cookies } from 'next/headers';
+import { getCart } from "@/lib/shopify";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -21,11 +24,15 @@ export const metadata: Metadata = {
   description: "Indian grocery store in the heart of Scarborough",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cartId = (await cookies()).get('cartId')?.value;
+  // Don't await the fetch, pass the Promise to the context provider
+  const cart = getCart(cartId);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -37,13 +44,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col justify-start items-start">
-            <Header />
-            <div className="w-full min-h-screen flex flex-col justify-between">
-              {children}
-              <Footer />
+          <CartProvider cartPromise={cart}>
+            <div className="flex flex-col justify-start items-start">
+              <Header />
+              <div className="w-full min-h-screen flex flex-col justify-between">
+                {children}
+                <Footer />
+              </div>
             </div>
-          </div>
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

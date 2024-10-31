@@ -1,5 +1,5 @@
-import imageFragment from './image.ts';
-import seoFragment from './seo.ts';
+import imageFragment from './image';
+import seoFragment from './seo';
 
 const productFragment = /* GraphQL */ `
   fragment product on Product {

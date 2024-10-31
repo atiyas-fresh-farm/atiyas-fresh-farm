@@ -8,9 +8,8 @@ interface CategoryProps {
     category: string;
   }
   searchParams?: {
-    filter: string;
+    filter?: string;
   }
-  category: string;
 };
 
 interface ProductType {

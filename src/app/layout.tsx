@@ -1,8 +1,11 @@
+"use client";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
+import { ShopifyProvider } from '@shopify/hydrogen-react';
 import "./globals.css";
 
 const geistSans = localFont({
@@ -16,10 +19,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
+/*export const metadata: Metadata = {
   title: "Atiyas Fresh Farm",
   description: "Indian grocery store in the heart of Scarborough",
-};
+};*/
 
 export default function RootLayout({
   children,
@@ -37,13 +40,21 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col justify-start items-start">
-            <Header />
-            <div className="w-full min-h-screen flex flex-col justify-between">
-              {children}
-              <Footer />
+          <ShopifyProvider
+            storeDomain={process.env.SHOPIFY_STORE_DOMAIN ?? ""}
+            storefrontToken={ process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN ?? ""}
+            storefrontApiVersion="2024-07"
+            countryIsoCode="CA"
+            languageIsoCode="EN"
+          >
+            <div className="flex flex-col justify-start items-start">
+              <Header />
+              <div className="w-full min-h-screen flex flex-col justify-between">
+                {children}
+                <Footer />
+              </div>
             </div>
-          </div>
+          </ShopifyProvider>
         </ThemeProvider>
       </body>
     </html>

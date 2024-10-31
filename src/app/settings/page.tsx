@@ -51,8 +51,7 @@ const Settings = () => {
     },
   ];
 
-  const [editID, setEditID] = useState(-1);
-  console.log(editID);
+  const [] = useState();
 
   return (
     <div className="w-full flex justify-center">
@@ -109,44 +108,55 @@ const Settings = () => {
                   <Card key={index} className="w-full hover:border-neutral-800">
                     <CardContent className="p-6">
                       <div className="w-full flex flex-row justify-between items-center">
-                        <Large>
-                          {
-                            editID === index ? (
-                              <div className="grid w-full max-w-sm items-center gap-1.5">
-                                <Label htmlFor="AddressName">Address Name</Label>
-                                <Input type="text" id="AddressName" placeholder="Address Name" />
-                              </div>
-                            ) : address.name
-                          }
-                        </Large>
-                        <div className="flex flex-row items-center">
-                          {
-                            editID === index ? (
-                              <Button onClick={() => {setEditID(-1)}}>Save</Button>
-                            ) :
-                            <span className="hover:cursor-pointer" onClick={() => {setEditID(index)}}>
-                              <Pencil size={24} />
-                            </span>
-                          }
+                        <Large>{address.name}</Large>
+                        <span className="flex flex-row">
+                          <Pencil size={24} />
                           <Trash className="ml-4" size={24} />
-                        </div>
+                        </span>
                       </div>
-
-                      {
-                        editID === index ? (
-                          <AddressEditForm />
-                        ) :
-                        <>
-                          <P>{address.address_1}</P>
-                          <P>{address.address_2}</P>
-                          <P>{address.city}, {address.province}, {address.postal_code}</P>
-                        </>
-                      }
-
+                      <P>{address.address_1}</P>
+                      <P>{address.address_2}</P>
+                      <P>{address.city}, {address.province}, {address.postal_code}</P>
                     </CardContent>
                   </Card>
                 ))
               }
+
+              <Card className="w-full hover:border-neutral-800">
+                <CardContent className="p-6">
+                  <div className="w-full flex flex-row justify-between items-center">
+                    <Large>Family</Large>
+                    <span className="flex flex-row">
+                      <Pencil size={24} />
+                      <Trash className="ml-4" size={24} />
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col space-y-2">
+                    <div className="grid w-full max-w-sm items-center gap-1.5">
+                      <Label htmlFor="Address1">Address line 1</Label>
+                      <Input type="text" id="Address1" placeholder="Address Line 1" />
+                    </div>
+                    <div className="grid w-full max-w-sm items-center gap-1.5">
+                      <Label htmlFor="Address2">Address line 2</Label>
+                      <Input type="text" id="Address2" placeholder="Address Line 2" />
+                    </div>
+                    <div className="grid w-full max-w-sm items-center gap-1.5">
+                      <Label htmlFor="City">City</Label>
+                      <Input type="text" id="City" placeholder="City" />
+                    </div>
+                    <div className="grid w-full max-w-sm items-center gap-1.5">
+                      <Label htmlFor="Province">Province</Label>
+                      <Input type="text" id="Province" placeholder="Province" />
+                    </div>
+                    <div className="grid w-full max-w-sm items-center gap-1.5">
+                      <Label htmlFor="PostalCode">Postal Code</Label>
+                      <Input type="text" id="PostalCode" placeholder="Postal Code" />
+                    </div>
+                  </div>
+
+                </CardContent>
+              </Card>
             </div>
           </section>
 
@@ -158,33 +168,6 @@ const Settings = () => {
 
         </div>
       </main>
-    </div>
-  );
-}
-
-const AddressEditForm = () => {
-  return (
-    <div className="w-full flex flex-row flex-wrap space-y-4 mt-4">
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="Address1">Address line 1</Label>
-        <Input type="text" id="Address1" placeholder="Address Line 1" />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="Address2">Address line 2</Label>
-        <Input type="text" id="Address2" placeholder="Address Line 2" />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="City">City</Label>
-        <Input type="text" id="City" placeholder="City" />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="Province">Province</Label>
-        <Input type="text" id="Province" placeholder="Province" />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="PostalCode">Postal Code</Label>
-        <Input type="text" id="PostalCode" placeholder="Postal Code" />
-      </div>
     </div>
   );
 }

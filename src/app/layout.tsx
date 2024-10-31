@@ -43,7 +43,7 @@ export default function RootLayout({
           <ShopifyProvider
             storeDomain={process.env.SHOPIFY_STORE_DOMAIN ?? ""}
             storefrontToken={ process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN ?? ""}
-            storefrontApiVersion="2024-07"
+            storefrontApiVersion="2024-10"
             countryIsoCode="CA"
             languageIsoCode="EN"
           >

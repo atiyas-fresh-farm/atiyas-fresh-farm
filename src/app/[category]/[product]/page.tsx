@@ -78,6 +78,7 @@ const Product = async ({ params }: { params: ParamsType }) => {
       product: params.product
     }
   });
+  console.error(errors);
 
   let validCategory = false;
   const currentCollection = {
@@ -101,6 +102,7 @@ const Product = async ({ params }: { params: ParamsType }) => {
       category: params.category
     }
   });
+  console.error(relatedProductsErrors);
   const relatedProducts: Array<RelatedProductType> = [];
   relatedProductsData.collectionByHandle.products.nodes.map((prod: ProductType) => {
     if (prod.handle !== params.product) {

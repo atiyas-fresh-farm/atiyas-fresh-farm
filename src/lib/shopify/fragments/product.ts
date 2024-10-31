@@ -8,37 +8,16 @@ const productFragment = /* GraphQL */ `
     availableForSale
     title
     description
-    descriptionHtml
-    options {
-      id
-      name
-      values
+    
+    collections(first: 10) {
+      nodes {
+        id
+        handle
+      }
     }
     priceRange {
       maxVariantPrice {
         amount
-        currencyCode
-      }
-      minVariantPrice {
-        amount
-        currencyCode
-      }
-    }
-    variants(first: 250) {
-      edges {
-        node {
-          id
-          title
-          availableForSale
-          selectedOptions {
-            name
-            value
-          }
-          price {
-            amount
-            currencyCode
-          }
-        }
       }
     }
     featuredImage {
@@ -55,7 +34,6 @@ const productFragment = /* GraphQL */ `
       ...seo
     }
     tags
-    updatedAt
   }
   ${imageFragment}
   ${seoFragment}

@@ -17,6 +17,7 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+
 function calculateItemCost(quantity: number, price: string): string {
   return (Number(price) * quantity).toString();
 }

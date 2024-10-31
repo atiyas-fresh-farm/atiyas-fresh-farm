@@ -2,11 +2,22 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+//import { useCart } from '@/components/cart/cart-context';
 
 // Button used on product card and product page
 const AddToCart = ({ className }: { className?: string }) => {
   
+  //const { addCartItem } = useCart();
   const [count, setCount] = useState(0);
+
+  /**
+   * TODO:
+   * - update cart context with addCartItem
+   * - update cart context with updateCartItem
+   * - update cart context with removeCartItem
+   * - update cart context with clearCart
+   * - update ShopifyDB with addToCart
+   */
 
   return (
     <>
@@ -16,7 +27,9 @@ const AddToCart = ({ className }: { className?: string }) => {
         ) : (
           <Button
             className={`w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground rounded-t-none rounded-b-md ${className}`}
-            onClick={() => setCount(count + 1)}
+            onClick={() => {
+              setCount(count + 1);
+            }}
           >
             Add to Cart
           </Button>

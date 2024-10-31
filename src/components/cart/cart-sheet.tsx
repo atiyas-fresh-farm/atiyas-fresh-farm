@@ -14,7 +14,7 @@ import { ShoppingCartIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { CartCalculation } from "@/components/cart/cart-calculation";
-import { createCartAndSetCookie } from './actions';
+import { createCartAndSetCookie } from "./actions";
 import { useEffect } from 'react';
 import { useCart } from '@/components/cart/cart-context';
 
@@ -91,7 +91,42 @@ const CartSheet = () => {
     if (!NextCart) {
       createCartAndSetCookie();
     }
-  }, [cart]);
+  }, [NextCart]);
+
+  /**
+   * id: string | undefined;
+    checkoutUrl: string;
+    cost: {
+      subtotalAmount: Money;
+      totalAmount: Money;
+      totalTaxAmount: Money;
+    };
+    lines: Connection<CartItem>;
+    totalQuantity: number;
+   */
+   /* export type CartProduct = {
+      id: string;
+      handle: string;
+      title: string;
+      featuredImage: Image;
+    };
+    
+    export type CartItem = {
+      id: string | undefined;
+      quantity: number;
+      cost: {
+        totalAmount: Money;
+      };
+      merchandise: {
+        id: string;
+        title: string;
+        selectedOptions: {
+          name: string;
+          value: string;
+        }[];
+        product: CartProduct;
+      };
+    };*/
 
   console.log(NextCart);
 
@@ -110,6 +145,11 @@ const CartSheet = () => {
         </SheetHeader>
 
         <ScrollArea className="h-3/4 flex flex-col justify-start items-start overflow-y-auto">
+          {/* {
+            NextCart.map((row, i) => (
+
+            ))
+          } */}
           {
             cart.map((row, i) => (
               <CartRowSm key={row.product.title} index={i} product={row.product} count={row.count} />

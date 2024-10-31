@@ -1,9 +1,12 @@
 import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT, TAGS } from '@/lib/constants';
 import { isShopifyError } from '@/lib/type-guards';
 import { ensureStartsWith } from '@/lib/utils';
+import { shopifyClient } from "@/lib/shopify/client";
 import { revalidateTag } from 'next/cache';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+
+// GraphQL operations
 import {
   addToCartMutation,
   createCartMutation,
@@ -23,6 +26,7 @@ import {
   getProductRecommendationsQuery,
   getProductsQuery
 } from './queries/product';
+
 import {
   Cart,
   Collection,
@@ -31,14 +35,14 @@ import {
   Menu,
   Page,
   Product,
-  ShopifyAddToCartOperation,
+  //ShopifyAddToCartOperation,
   ShopifyCart,
   ShopifyCartOperation,
   ShopifyCollection,
   ShopifyCollectionOperation,
   ShopifyCollectionProductsOperation,
   ShopifyCollectionsOperation,
-  ShopifyCreateCartOperation,
+  //ShopifyCreateCartOperation,
   ShopifyMenuOperation,
   ShopifyPageOperation,
   ShopifyPagesOperation,
@@ -202,27 +206,27 @@ const reshapeProducts = (products: ShopifyProduct[]) => {
 };
 
 export async function createCart(): Promise<Cart> {
-  const res = await shopifyFetch<ShopifyCreateCartOperation>({
-    query: createCartMutation,
-    cache: 'no-store'
-  });
+  //mutation type must be ShopifyCreateCartOperation
+  const { data } = await shopifyClient.request(createCartMutation);
+  const cart = data.cartCreate.cart;
 
-  return reshapeCart(res.body.data.cartCreate.cart);
+  return reshapeCart(cart);
 }
 
 export async function addToCart(
   cartId: string,
   lines: { merchandiseId: string; quantity: number }[]
 ): Promise<Cart> {
-  const res = await shopifyFetch<ShopifyAddToCartOperation>({
-    query: addToCartMutation,
+
+  //type ShopifyAddToCartOperation
+  const { data, errors } = await shopifyClient.request(addToCartMutation, {
     variables: {
       cartId,
       lines
-    },
-    cache: 'no-store'
+    }
   });
-  return reshapeCart(res.body.data.cartLinesAdd.cart);
+  console.error(errors);
+  return reshapeCart(data.cartLinesAdd.cart);
 }
 
 export async function removeFromCart(cartId: string, lineIds: string[]): Promise<Cart> {

@@ -2,13 +2,49 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-//import { useCart } from '@/components/cart/cart-context';
+import { addItem } from '@/components/cart/actions';
+import { useCart } from '@/components/cart/cart-context';
 
 // Button used on product card and product page
 const AddToCart = ({ className }: { className?: string }) => {
   
-  //const { addCartItem } = useCart();
+  const { cart, addCartItem } = useCart();
+  //const [message, formAction] = useActionState(addItem, null);
+  //const actionWithProduct = formAction.bind(null, "gid://shopify/Product/9535946064170");
   const [count, setCount] = useState(0);
+
+  // sample product
+  const product = {
+    id: "gid://shopify/Product/9535946064170",
+    handle: "crispy-besan-roti-15-pc",
+    availableForSale: true,
+    title: "Crispy Besan Roti 15 pc",
+    description: "",
+    priceRange: {
+      maxVariantPrice: {
+        amount: "4.29"
+      }
+    },
+    featuredImage: {
+      altText: "",
+      height: 3552,
+      url: "https://cdn.shopify.com/s/files/1/0902/9160/1706/files/crispy-roti-besan.png?v=1729470480",
+      width: 3781
+    },
+    images: [
+      {
+        altText: "",
+        height: 3552,
+        url: "https://cdn.shopify.com/s/files/1/0902/9160/1706/files/crispy-roti-besan.png?v=1729470480",
+        width: 3781
+      }
+    ],
+    seo: {
+      description: "",
+      title: ""
+    },
+    tags: ["Roti"]
+  }
 
   /**
    * TODO:
@@ -18,6 +54,8 @@ const AddToCart = ({ className }: { className?: string }) => {
    * - update cart context with clearCart
    * - update ShopifyDB with addToCart
    */
+  //console.log(message)
+  console.log(`product-button \n` + cart);
 
   return (
     <>
@@ -27,7 +65,9 @@ const AddToCart = ({ className }: { className?: string }) => {
         ) : (
           <Button
             className={`w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground rounded-t-none rounded-b-md ${className}`}
-            onClick={() => {
+            onClick={async () => {
+              addCartItem(product);
+              await addItem(null, "gid://shopify/Product/9535946064170");
               setCount(count + 1);
             }}
           >

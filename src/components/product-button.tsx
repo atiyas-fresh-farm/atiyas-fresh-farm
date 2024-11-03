@@ -67,9 +67,9 @@ const AddToCart = ({ className, product }: { className?: string, product: Produc
           <Button
             className={`w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground rounded-t-none rounded-b-md ${className}`}
             onClick={async () => {
+              setCount(count + 1);
               addCartItem(product.variants[0], product); // add item to local cart
               await addItem(null, product.variants[0].id); // add item to Shopify cart
-              setCount(count + 1);
             }}
           >
             Add to Cart

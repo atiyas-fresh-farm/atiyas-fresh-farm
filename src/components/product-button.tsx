@@ -9,13 +9,13 @@ import { Product } from '@/lib/shopify/types';
 // Button used on product card and product page
 const AddToCart = ({ className, product }: { className?: string, product: Product }) => {
   
-  const { cart, addCartItem } = useCart();
+  const { addCartItem } = useCart();
   //const [message, formAction] = useActionState(addItem, null);
   //const actionWithProduct = formAction.bind(null, "gid://shopify/Product/9535946064170");
   const [count, setCount] = useState(0);
 
   // sample product
-  /*const product = {
+  /*const sampleProduct = {
     id: "gid://shopify/Product/9535946064170",
     handle: "crispy-besan-roti-15-pc",
     availableForSale: true,
@@ -67,8 +67,8 @@ const AddToCart = ({ className, product }: { className?: string, product: Produc
           <Button
             className={`w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground rounded-t-none rounded-b-md ${className}`}
             onClick={async () => {
-              addCartItem(product.variants[0], product);
-              await addItem(null, product.variants[0].id);
+              addCartItem(product.variants[0], product); // add item to local cart
+              await addItem(null, product.variants[0].id); // add item to Shopify cart
               setCount(count + 1);
             }}
           >

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { P, Muted } from '@/components/ui/typography';
+import { P } from '@/components/ui/typography';
 import { AddToCart } from '@/components/product-button';
 import { Product } from '@/lib/shopify/types';
 import Link from 'next/link';

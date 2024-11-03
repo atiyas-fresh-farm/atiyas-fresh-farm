@@ -1,6 +1,7 @@
 import { ItemCountBtn } from '@/components/product-button';
 import { TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CartItem } from "@/lib/shopify/types";
 import Image from "next/image";
 
 interface CartRowType {
@@ -53,19 +54,22 @@ const CartRow = ({ count, product, editable=true }: CartRowType) => {
   );
 }
 
-const CartRowSm = ({ count, product }: CartRowType) => {
+const CartRowSm = ({ row }: { row: CartItem }) => {
+
+  const image = row.merchandise.product.featuredImage;
+
   return (
     <div className="w-full flex flex-col justify-start items-start mt-8">
 
       <div className="w-full flex flex-row justify-between items-center">
         <div className="flex flex-row items-center">
           <div className="w-16 aspect-square rounded relative">
-            <Image src={product.imageURL} fill={true} alt={product.altText} className="rounded" />
+            <Image src={image ? image.url : "/bread.png"} fill={true} alt={image?.altText} className="rounded" />
           </div>
-          <p className="ml-4 text-wrap text-sm lg:text-base pr-2">{ product.title }</p>
+          <p className="ml-4 text-wrap text-sm lg:text-base pr-2">{ row.merchandise.product.title }</p>
         </div>
         <div className="flex justify-end items-center pr-2">
-          <p className="text-sm lg:text-base">${product.price * count}</p>
+          <p className="text-sm lg:text-base">${ Number(row.cost.totalAmount.amount) * row.quantity }</p>
         </div>
       </div>
       
@@ -74,7 +78,7 @@ const CartRowSm = ({ count, product }: CartRowType) => {
           Remove
         </div>
         <div className="lex justify-end items-center">
-          <ItemCountBtn count={count} />
+          <ItemCountBtn count={row.quantity} />
         </div>
       </div>
 

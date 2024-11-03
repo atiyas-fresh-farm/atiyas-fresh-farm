@@ -20,6 +20,7 @@ import { useCart } from '@/components/cart/cart-context';
 
 const CartSheet = () => {
 
+  /*
   const cart = [
     {
       count: 2,
@@ -84,16 +85,16 @@ const CartSheet = () => {
         price: 2.3
       }
     },
-  ];
-  const { cart: NextCart } = useCart();
+  ];*/
+  const { cart } = useCart();
 
   useEffect(() => {
-    if (!NextCart) {
+    if (!cart) {
       createCartAndSetCookie();
     }
-  }, [NextCart]);
+  }, [cart]);
 
-  console.log(NextCart);
+  //console.log(NextCart);
 
   return (
     <Sheet>
@@ -116,8 +117,8 @@ const CartSheet = () => {
             ))
           } */}
           {
-            cart.map((row, i) => (
-              <CartRowSm key={row.product.title} index={i} product={row.product} count={row.count} />
+            cart?.lines.map((line, i) => (
+              <CartRowSm key={line.merchandise.id} row={line} />
             ))
           }
         </ScrollArea>

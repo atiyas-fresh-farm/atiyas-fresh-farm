@@ -1,18 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { addItem } from '@/components/cart/actions';
+import { addItem, updateItemQuantity, removeItem } from '@/components/cart/actions';
 import { useCart } from '@/components/cart/cart-context';
 import { Product } from '@/lib/shopify/types';
 
 // Button used on product card and product page
 const AddToCart = ({ className, product }: { className?: string, product: Product }) => {
   
-  const { addCartItem } = useCart();
+  const { cart, addCartItem } = useCart();
   //const [message, formAction] = useActionState(addItem, null);
   //const actionWithProduct = formAction.bind(null, "gid://shopify/Product/9535946064170");
-  const [count, setCount] = useState(0);
+  let initialCount = 0;
+  if (cart?.lines.length) {
+    const line = cart.lines.find((line) => line.merchandise.product.id === product.id);
+    if (line) initialCount = line.quantity;
+  }
+  const [count, setCount] = useState(initialCount);
+
+  useEffect(() => {
+    const line = cart?.lines.find((line) => line.merchandise.product.id === product.id);
+    setCount(line ? line.quantity : 0);
+  }, [cart?.lines]);
 
   // sample product
   /*const sampleProduct = {
@@ -48,21 +58,13 @@ const AddToCart = ({ className, product }: { className?: string, product: Produc
     tags: ["Roti"]
   }*/
 
-  /**
-   * TODO:
-   * - update cart context with addCartItem
-   * - update cart context with updateCartItem
-   * - update cart context with removeCartItem
-   * - update cart context with clearCart
-   * - update ShopifyDB with addToCart
-   */
-  //console.log(message)
+  
 
   return (
     <>
       {
         count ? (
-          <ItemCounter count={count} setCount={setCount} rounded="bottom" />
+          <ItemCounter variantID={product.variants[0].id} count={count} setCount={setCount} rounded="bottom" />
         ) : (
           <Button
             className={`w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground rounded-t-none rounded-b-md ${className}`}
@@ -82,18 +84,21 @@ const AddToCart = ({ className, product }: { className?: string, product: Produc
 
 // Item counter that you see once an item has been added to the cart.
 // Used in multiple places
-const ItemCountBtn = ({ count: ItemCount }: { count: number }) => {
+const ItemCountBtn = ({ count: ItemCount, variantID }: { count: number, variantID: string }) => {
+
   const [count, setCount] = useState(ItemCount);
+
   return (
     <div className="w-28">
-      <ItemCounter count={count} setCount={setCount} size="small" />
+      <ItemCounter variantID={variantID} count={count} setCount={setCount} size="small" />
     </div>
   )
 }
 
 // TODO: handle size styling properly
-const ItemCounter = ({ count, setCount, size="medium", rounded="full" }:
+const ItemCounter = ({ variantID, count, setCount, size="medium", rounded="full" }:
   {
+    variantID: string,
     count: number,
     setCount: (e: number) => void,
     className?: string,
@@ -106,6 +111,8 @@ const ItemCounter = ({ count, setCount, size="medium", rounded="full" }:
   if (size==="small") sizeStyle = "h-8";
   if (size==="large") sizeStyle = "h-10";
 
+  const { updateCartItem } = useCart();
+
   return (
     <div className={`grid grid-cols-4 w-full ${sizeStyle}`}>
       <button
@@ -114,12 +121,17 @@ const ItemCounter = ({ count, setCount, size="medium", rounded="full" }:
           ${rounded==="full" ? "rounded-tl-md" : ""}
           ${sizeStyle}
         `}
-        onClick={() => count ? setCount(count - 1) : 0}
+        onClick={async () => 
+          {
+            setCount(count ? count - 1 : 0)
+            updateCartItem(variantID, "minus");
+            await updateItemQuantity(null, {merchandiseId: variantID, quantity: count - 1});
+          }}
       >-</button>
       <input type="text"
         className={`col-span-2 outline-none border-y p-2 text-center ${sizeStyle}`}
         value={count}
-        onChange={(e) => setCount(Number(e.target.value))}
+        readOnly
       />
       <button
         className={`
@@ -127,7 +139,11 @@ const ItemCounter = ({ count, setCount, size="medium", rounded="full" }:
           ${rounded==="full" ? "rounded-tr-md" : ""}
           ${sizeStyle}
         `}
-        onClick={() => setCount(count + 1)}
+        onClick={async () => {
+          setCount(count + 1)
+          updateCartItem(variantID, "plus");
+          await updateItemQuantity(null, {merchandiseId: variantID, quantity: count + 1});
+        }}
       >
         +
       </button>
@@ -135,4 +151,21 @@ const ItemCounter = ({ count, setCount, size="medium", rounded="full" }:
   );
 }
 
-export { AddToCart, ItemCountBtn };
+const DeleteCartItem = ({ variantID }: { variantID: string }) => {
+
+  const { updateCartItem } = useCart();
+
+  return (
+    <div
+      className="flex justify-start items-end underline cursor-pointer text-sm lg:text-base"
+      onClick={async () => {
+        updateCartItem(variantID, "delete");
+        await removeItem(null, variantID);
+      }}
+    >
+      Remove
+    </div>
+  );
+}
+
+export { AddToCart, ItemCountBtn, DeleteCartItem };

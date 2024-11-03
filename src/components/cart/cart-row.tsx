@@ -1,4 +1,4 @@
-import { ItemCountBtn } from '@/components/product-button';
+import { ItemCountBtn, DeleteCartItem } from '@/components/product-button';
 import { TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CartItem } from "@/lib/shopify/types";
@@ -69,16 +69,14 @@ const CartRowSm = ({ row }: { row: CartItem }) => {
           <p className="ml-4 text-wrap text-sm lg:text-base pr-2">{ row.merchandise.product.title }</p>
         </div>
         <div className="flex justify-end items-center pr-2">
-          <p className="text-sm lg:text-base">${ Number(row.cost.totalAmount.amount) * row.quantity }</p>
+          <p className="text-sm lg:text-base">${ Number(row.cost.totalAmount.amount) }</p>
         </div>
       </div>
       
       <div className="w-full flex flex-row justify-between items-center">
-        <div className="flex justify-start items-end underline cursor-pointer text-sm lg:text-base">
-          Remove
-        </div>
+        <DeleteCartItem variantID={row.merchandise.id} />
         <div className="lex justify-end items-center">
-          <ItemCountBtn count={row.quantity} />
+          <ItemCountBtn count={row.quantity} variantID={row.merchandise.id} />
         </div>
       </div>
 

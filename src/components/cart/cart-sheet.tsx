@@ -17,6 +17,7 @@ import { CartCalculation } from "@/components/cart/cart-calculation";
 import { createCartAndSetCookie } from "./actions";
 import { useEffect } from 'react';
 import { useCart } from '@/components/cart/cart-context';
+import Link from 'next/link';
 
 const CartSheet = () => {
 
@@ -126,7 +127,7 @@ const CartSheet = () => {
         <SheetFooter>
           <div className="w-full flex flex-col justify-center items-center">
             <CartCalculation className="w-full" />
-            <Button className="w-full">Proceed to Checkout</Button>
+            <Link href={cart ? cart.checkoutUrl : "#"}><Button className="w-full">Proceed to Checkout</Button></Link>
           </div>
         </SheetFooter>
 

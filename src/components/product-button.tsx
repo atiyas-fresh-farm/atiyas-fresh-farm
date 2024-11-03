@@ -15,7 +15,7 @@ const AddToCart = ({ className, product }: { className?: string, product: Produc
   const [count, setCount] = useState(0);
 
   // sample product
-  /*const sampleProduct = {
+  const sampleProduct = {
     id: "gid://shopify/Product/9535946064170",
     handle: "crispy-besan-roti-15-pc",
     availableForSale: true,
@@ -46,7 +46,7 @@ const AddToCart = ({ className, product }: { className?: string, product: Produc
       title: ""
     },
     tags: ["Roti"]
-  }*/
+  }
 
   /**
    * TODO:

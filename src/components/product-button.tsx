@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { addItem, updateItemQuantity, removeItem } from '@/components/cart/actions';
 import { useCart } from '@/components/cart/cart-context';
 import { Product } from '@/lib/shopify/types';
+import { TrashIcon } from "lucide-react";
 
 // Button used on product card and product page
 const AddToCart = ({ className, product }: { className?: string, product: Product }) => {
@@ -151,21 +152,35 @@ const ItemCounter = ({ variantID, count, setCount, size="medium", rounded="full"
   );
 }
 
-const DeleteCartItem = ({ variantID }: { variantID: string }) => {
+const DeleteCartItem = ({ type="text", variantID }: { type?: string, variantID: string }) => {
 
   const { updateCartItem } = useCart();
 
-  return (
-    <div
-      className="flex justify-start items-end underline cursor-pointer text-sm lg:text-base"
-      onClick={async () => {
-        updateCartItem(variantID, "delete");
-        await removeItem(null, variantID);
-      }}
-    >
-      Remove
-    </div>
-  );
+  if (type === "button") {
+    return (
+      <Button
+        className="col-span-1" variant="outline" size="icon"
+        onClick={async () => {
+          updateCartItem(variantID, "delete");
+          await removeItem(null, variantID);
+        }}
+      >
+        <TrashIcon size={24} />
+      </Button>
+    )
+  } else {
+    return (
+      <div
+        className="flex justify-start items-end underline cursor-pointer text-sm lg:text-base"
+        onClick={async () => {
+          updateCartItem(variantID, "delete");
+          await removeItem(null, variantID);
+        }}
+      >
+        Remove
+      </div>
+    );
+  }
 }
 
 export { AddToCart, ItemCountBtn, DeleteCartItem };

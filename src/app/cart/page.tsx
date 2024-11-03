@@ -1,10 +1,16 @@
+'use client'
+
 import { H2, P, Small } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { CartRow } from "@/components/cart/cart-row";
 import { CartCalculation } from "@/components/cart/cart-calculation";
+import { useCart } from '@/components/cart/cart-context';
 
 const Cart = () => {
 
+  const { cart } = useCart();
+
+  /*
   const cart = [
     {
       count: 2,
@@ -46,7 +52,7 @@ const Cart = () => {
       },
       isDeleted: false,
     }
-  ];
+  ];*/
 
   return (
     <div className="w-full flex justify-center">
@@ -55,16 +61,13 @@ const Cart = () => {
         <Small>5 items</Small>
 
         {
-          cart.map((row, i) => (
-            <CartRow
-              key={row.product.title} index={i}
-              product={row.product} count={row.count}
-            />
+          cart?.lines.map((line) => (
+            <CartRow key={line.merchandise.id} row={line} />
           ))
         }
 
         <div className="w-full flex flex-row justify-end items-center mt-6">
-          <CartCalculation className="w-full md:w-auto" />
+          <CartCalculation cost={cart?.cost} className="w-full md:w-auto" />
         </div>
 
         <div className="w-full flex flex-row justify-between items-center pt-4">

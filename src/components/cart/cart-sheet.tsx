@@ -117,7 +117,7 @@ const CartSheet = () => {
             ))
           } */}
           {
-            cart?.lines.map((line, i) => (
+            cart?.lines.map((line) => (
               <CartRowSm key={line.merchandise.id} row={line} />
             ))
           }

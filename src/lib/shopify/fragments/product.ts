@@ -8,6 +8,13 @@ const productFragment = /* GraphQL */ `
     availableForSale
     title
     description
+    variants(first: 1) {
+      edges {
+        node {
+          id
+        }
+      }
+    }
     collections(first: 50) {
       nodes {
         id

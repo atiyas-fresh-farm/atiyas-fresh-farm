@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { addItem } from '@/components/cart/actions';
 import { useCart } from '@/components/cart/cart-context';
+import { Product } from '@/lib/shopify/types';
 
 // Button used on product card and product page
-const AddToCart = ({ className }: { className?: string }) => {
+const AddToCart = ({ className, product }: { className?: string, product: Product }) => {
   
   const { cart, addCartItem } = useCart();
   //const [message, formAction] = useActionState(addItem, null);
@@ -14,12 +15,13 @@ const AddToCart = ({ className }: { className?: string }) => {
   const [count, setCount] = useState(0);
 
   // sample product
-  const product = {
+  /*const product = {
     id: "gid://shopify/Product/9535946064170",
     handle: "crispy-besan-roti-15-pc",
     availableForSale: true,
     title: "Crispy Besan Roti 15 pc",
     description: "",
+    variants: [{ id: "gid://shopify/ProductVariant/49443003334954" }],
     priceRange: {
       maxVariantPrice: {
         amount: "4.29"
@@ -44,7 +46,7 @@ const AddToCart = ({ className }: { className?: string }) => {
       title: ""
     },
     tags: ["Roti"]
-  }
+  }*/
 
   /**
    * TODO:
@@ -55,7 +57,6 @@ const AddToCart = ({ className }: { className?: string }) => {
    * - update ShopifyDB with addToCart
    */
   //console.log(message)
-  console.log(`product-button \n` + cart);
 
   return (
     <>
@@ -66,8 +67,8 @@ const AddToCart = ({ className }: { className?: string }) => {
           <Button
             className={`w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground rounded-t-none rounded-b-md ${className}`}
             onClick={async () => {
-              addCartItem(product);
-              await addItem(null, "gid://shopify/Product/9535946064170");
+              addCartItem(product.variants[0], product);
+              await addItem(null, product.variants[0].id);
               setCount(count + 1);
             }}
           >

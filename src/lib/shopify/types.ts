@@ -41,11 +41,16 @@ export type Image = {
   height: number;
 };
 
+export type ProductVariant = {
+  id: string;
+};
+
 export type Money = {
   amount: string;
 };
 
-export type Product = Omit<ShopifyProduct, 'images'> & {
+export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
+  variants: ProductVariant[];
   images: Image[];
 };
 
@@ -81,6 +86,7 @@ export type ShopifyProduct = {
   availableForSale: boolean;
   title: string;
   description: string;
+  variants: Connection<ProductVariant>;
   priceRange: {
     maxVariantPrice: Money;
   };

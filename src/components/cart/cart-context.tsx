@@ -1,18 +1,18 @@
 'use client';
 
-import type { Cart, CartItem, Product } from '@/lib/shopify/types';
+import type { Cart, CartItem, Product, ProductVariant } from '@/lib/shopify/types';
 import React, { createContext, use, useContext, useMemo, useOptimistic } from 'react';
 
 type UpdateType = 'plus' | 'minus' | 'delete';
 
 type CartAction =
   | { type: 'UPDATE_ITEM'; payload: { merchandiseId: string; updateType: UpdateType } }
-  | { type: 'ADD_ITEM'; payload: { product: Product } };
+  | { type: 'ADD_ITEM'; payload: { variant: ProductVariant; product: Product } };
 
 type CartContextType = {
   cart: Cart | undefined;
   updateCartItem: (merchandiseId: string, updateType: UpdateType) => void;
-  addCartItem: ( product: Product) => void;
+  addCartItem: ( variant: ProductVariant, product: Product) => void;
 };
 
 // Updated
@@ -49,6 +49,7 @@ function updateCartItem(item: CartItem, updateType: UpdateType): CartItem | null
 // Updated
 function createOrUpdateCartItem(
   existingItem: CartItem | undefined,
+  variant: ProductVariant,
   product: Product
 ): CartItem {
   const quantity = existingItem ? existingItem.quantity + 1 : 1;
@@ -63,7 +64,7 @@ function createOrUpdateCartItem(
       }
     },
     merchandise: {
-      id: product.id,
+      id: variant.id,
       title: product.title,
       product: {
         id: product.id,
@@ -133,12 +134,12 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
       return { ...currentCart, ...updateCartTotals(updatedLines), lines: updatedLines };
     }
     case 'ADD_ITEM': {
-      const { product } = action.payload;
-      const existingItem = currentCart.lines.find((item) => item.merchandise.id === product.id);
-      const updatedItem = createOrUpdateCartItem(existingItem, product);
+      const { variant, product } = action.payload;
+      const existingItem = currentCart.lines.find((item) => item.merchandise.id === variant.id);
+      const updatedItem = createOrUpdateCartItem(existingItem, variant, product);
 
       const updatedLines = existingItem
-        ? currentCart.lines.map((item) => (item.merchandise.id === product.id ? updatedItem : item))
+        ? currentCart.lines.map((item) => (item.merchandise.id === variant.id ? updatedItem : item))
         : [...currentCart.lines, updatedItem];
 
       return { ...currentCart, ...updateCartTotals(updatedLines), lines: updatedLines };
@@ -163,8 +164,8 @@ export function CartProvider({
     updateOptimisticCart({ type: 'UPDATE_ITEM', payload: { merchandiseId, updateType } });
   };
 
-  const addCartItem = (product: Product) => {
-    updateOptimisticCart({ type: 'ADD_ITEM', payload: { product } });
+  const addCartItem = (variant: ProductVariant, product: Product) => {
+    updateOptimisticCart({ type: 'ADD_ITEM', payload: { variant, product } });
   };
 
   const value = useMemo(

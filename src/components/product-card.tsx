@@ -1,35 +1,43 @@
 import Image from 'next/image';
 import { P, Muted } from '@/components/ui/typography';
 import { AddToCart } from '@/components/product-button';
-import { StaticImageData } from "next/image";
+import { Product } from '@/lib/shopify/types';
 import Link from 'next/link';
 
-const ProductCard = ({ image="#", category, handle, name="Image of a product", count, price }:
+const ProductCard = ({ category, product }:
   {
-    image?: string|StaticImageData,
-    category?: string,
-    handle?: string,
-    name?: string,
-    count?: string,
-    price?: string|number
+    category: string,
+    product: Product
   }
 ) => {
+
+  const {
+    //id,
+    title,
+    //description,
+    handle,
+    //variants,
+    featuredImage: image,
+    priceRange,
+    //seo,
+    //tags
+  } = product;
+  
   return (
     <div className="w-40 md:w-48 mx-1 md:mx-3 mb-6 rounded-md">
       <Link href={`/${category}/${handle}`}>
         <div className="w-full aspect-square border rounded-t-md relative">
-          <Image src={image} className="rounded-t-md" fill={true} alt={name} />
+          <Image src={image ? image.url : '/bread.png'} className="rounded-t-md" fill={true} alt={title} />
         </div>
       </Link>
       <Link href={`/${category}/${handle}`}>
         <div className="py-2">
-          <p className="font-semibold truncate">{name}</p>
-          <Muted>{count}</Muted>
-          <P>${price}</P>
+          <p className="font-semibold truncate">{title}</p>
+          <P>${priceRange.maxVariantPrice.amount}</P>
         </div>
       </Link>
       <div>
-        <AddToCart />
+        <AddToCart product={product} />
       </div>
     </div>
   );

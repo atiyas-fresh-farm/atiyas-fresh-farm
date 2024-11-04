@@ -6,7 +6,7 @@ import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function addItem(prevState: any, selectedVariantId: string | undefined) {
+export async function addItem(prevState: unknown, selectedVariantId: string | undefined) {
   const cartId = (await cookies()).get('cartId')?.value;
 
   if (!cartId || !selectedVariantId) {
@@ -21,7 +21,7 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   }
 }
 
-export async function removeItem(prevState: any, merchandiseId: string) {
+export async function removeItem(prevState: unknown, merchandiseId: string) {
   const cartId = (await cookies()).get('cartId')?.value;
 
   if (!cartId) {
@@ -49,7 +49,7 @@ export async function removeItem(prevState: any, merchandiseId: string) {
 }
 
 export async function updateItemQuantity(
-  prevState: any,
+  prevState: unknown,
   payload: {
     merchandiseId: string;
     quantity: number;

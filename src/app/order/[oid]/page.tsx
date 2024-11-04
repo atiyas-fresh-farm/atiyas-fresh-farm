@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const Order = ({ params }: { params: { oid: string } }) => {
 
+  console.log(params);
   const products = [
     {
       count: 2,

@@ -1,173 +1,15 @@
 import { H4, Small } from '@/components/ui/typography';
 import { ProductCard } from "@/components/product-card";
-import { StaticImageData } from 'next/image';
+import { Product } from '@/lib/shopify/types';
+import { getProducts } from '@/lib/shopify';
 
-interface ProductType {
-  handle: string,
-  title: string,
-  categoryHandle: string,
-  subcategories: Array<string>,
-  price: number | {
-    current: number,
-    original: number
-  },
-  image: {
-    src: string|StaticImageData,
-    alt: string
-  }
-}
 
-const Search = ({ searchParams }: { searchParams?: { query?: string} }) => {
+const Search = async ({ searchParams }: { searchParams?: { query?: string} }) => {
 
   // TODO: make a query based on the query string from the searchParams
   // - update the showing x results text
-  console.log(searchParams?.query);
 
-  const products = [
-    {
-      handle: "apple-gala",
-      title: "Apple Gala 4pc",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit"],
-      price: 4.25,
-      image: {
-        src: "/fruits-vegetables/apple-gala.jpeg",
-        alt: "apple gala"
-      }
-    },
-    {
-      handle: "baby-orange",
-      title: "Baby Orange 4pc",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit"],
-      price: 3.25,
-      image: {
-        src: "/fruits-vegetables/baby-orange.jpeg",
-        alt: "baby orange"
-      }
-    },
-    {
-      handle: "banana",
-      title: "Banana 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/banana.jpeg",
-        alt: "banana"
-      }
-    },
-    {
-      handle: "blue-berries",
-      title: "Blue Berries 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/blue-berry.jpg",
-        alt: "blue berries"
-      }
-    },
-    {
-      handle: "coconut",
-      title: "Coconut 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit", "protein"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/coconut.jpeg",
-        alt: "coconut"
-      }
-    },
-    {
-      handle: "dragon fruit",
-      title: "Dragon Fruit 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/drangon-fruit.jpeg",
-        alt: "dragon fruit"
-      }
-    },
-    {
-      handle: "garlic",
-      title: "Garlic 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["vegetable"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/garlic.jpeg",
-        alt: "garlic"
-      }
-    },
-    {
-      handle: "ginger",
-      title: "Ginger 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["vegetable"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/ginger.jpeg",
-        alt: "ginger"
-      }
-    },
-    {
-      handle: "kiwi",
-      title: "Kiwi 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/kiwi.jpeg",
-        alt: "kiwi"
-      }
-    },
-    {
-      handle: "mosambi",
-      title: "Mosambi 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/mosambi.jpeg",
-        alt: "mosambi"
-      }
-    },
-    {
-      handle: "onion",
-      title: "Onion 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["vegetable"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/onion.jpeg",
-        alt: "onion"
-      }
-    },
-    {
-      handle: "pomegranate",
-      title: "Pomegranate 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["fruit"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/pomegranate.jpeg",
-        alt: "pomegranate"
-      }
-    },
-    {
-      handle: "potatoes",
-      title: "Potatoes 100g",
-      categoryHandle: "fruits-vegetables",
-      subcategories: ["vegetable"],
-      price: 2.5,
-      image: {
-        src: "/fruits-vegetables/potatoes.jpeg",
-        alt: "potatoes"
-      }
-    },
-  ];
+  const products = searchParams?.query ? await getProducts({ query: searchParams?.query }) : [];
 
   return (
     <div className="w-full flex justify-center">
@@ -179,19 +21,16 @@ const Search = ({ searchParams }: { searchParams?: { query?: string} }) => {
         </H4>
         <Small>Showing 1-20 of 100 results</Small>
         <br />
-        <div className="w-full this is grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 justify-start items-start mb-6">
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 justify-start items-start mb-6">
           
           {
-            products.map((product: ProductType) => {
+            products.map((product: Product) => {
               return (
                 <div key={product.handle} className="col-span-1 flex justify-center">
                   <ProductCard
-                    category={product.categoryHandle}
-                    handle={product.handle}
-                    name={product.title}
-                    count="1 pack"
-                    image={product.image ? product.image.src : "/bread.png"}
-                    price={typeof product.price === "number" ? product.price : product.price.current}
+                    key={product.handle}
+                    category={`bakery`}
+                    product={product}
                   />
                 </div>
               )

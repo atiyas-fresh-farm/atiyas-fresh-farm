@@ -25,29 +25,32 @@ const ProductPage = async ({ params }: { params: ParamsType }) => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-10 px-2 lg:px-0">
+      <main className="container flex flex-col justify-start items-start pt-10 px-2 xl:px-0">
 
-        <div className="w-full flex flex-row justify-center md:space-x-4 items-start">
-          <div className="w-[550px] h-full aspect-square border rounded-md relative">
+        <div className="w-full flex flex-col md:flex-row justify-center md:space-x-4 items-start">
+
+          <div className="w-[550px] max-w-full h-full aspect-square border rounded-md relative">
             <Image src={product?.featuredImage?.url ?? "/bread.png"} fill={true} alt={product?.featuredImage?.altText ?? ""} />
           </div>
-          <div className="w-[550px] h-full aspect-square flex flex-col justify-start items-start">
+          
+          <div className="w-[550px] max-w-full h-full flex flex-col justify-start items-start pt-4 md:pt-0">
             <Small>
               Home / {params.category.charAt(0).toUpperCase() + params.category.slice(1)} / {product?.title}
             </Small>
             <H2>{product?.title}</H2>
             <H4>${product?.priceRange.maxVariantPrice.amount}</H4>
-
-            <br /><br /><br />
             {
               product &&
-              <AddToCart rounded="full" product={product} />
+              <div className="w-full mt-4 md:mt-16">
+                <AddToCart rounded="full" product={product} />
+              </div>
             }
             <div className="mt-4">
               <Large>Product Description</Large>
               <P>{product?.description}</P>
             </div>
           </div>
+
         </div>
 
         <div className="w-full flex flex-col justify-start items-start mt-16 mb-8 space-y-4">

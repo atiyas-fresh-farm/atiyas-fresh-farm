@@ -16,7 +16,7 @@ import { CartSheet } from "@/components/cart/cart-sheet";
 
 const Header = () => {
 
-  const loggedin = true;
+  const loggedin = false;
 
   return (
     <header className="w-full bg-background flex flex-col">
@@ -56,10 +56,10 @@ const Header = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </> :
-            <>
+            <div className="hidden">
               <Link href="/login">Login</Link>
               <Link href="/signup">Sign Up</Link>
-            </>
+            </div>
           }
         </span>
       </div>

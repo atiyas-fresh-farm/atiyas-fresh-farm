@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { CartProvider } from "@/components/cart/cart-context";
 import { cookies } from 'next/headers';
 import { getCart } from "@/lib/shopify";
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 
 const geistSans = localFont({
@@ -52,6 +53,7 @@ export default async function RootLayout({
                 <Footer />
               </div>
             </div>
+            <Toaster closeButton />
           </CartProvider>
         </ThemeProvider>
       </body>

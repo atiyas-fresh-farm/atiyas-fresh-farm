@@ -15,13 +15,11 @@ interface CategoryProps {
 
 const Category = async ({ params, searchParams }: CategoryProps) => {
 
-
   const products = await getCollectionProducts({
     collection: params.category,
     reverse: false,
     sortKey: "CREATED_AT",
   });
-
   const subcategories = await getCollectionSubcategories(params.category);
 
   return (
@@ -40,7 +38,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
             </div>
           </Link>
           {
-            subcategories.map((subcategory: string) => (
+            subcategories?.map((subcategory: string) => (
               <Link key={subcategory} href={`/${params.category}?filter=${subcategory}`}>
                 <div className={`
                   w-full h-14 flex flex-row justify-center md:justify-start items-center
@@ -60,7 +58,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
             // TODO: Filter products by subcategory
             products.map((product: Product) => {
               if (searchParams && searchParams.filter &&
-                  subcategories.includes(searchParams.filter.charAt(0).toUpperCase() + searchParams.filter.slice(1))
+                  subcategories?.includes(searchParams.filter.charAt(0).toUpperCase() + searchParams.filter.slice(1))
                 ) { // is a valid filter being applied?
                 if (product.tags.includes(searchParams.filter.charAt(0).toUpperCase() + searchParams.filter.slice(1))) {
                   return (

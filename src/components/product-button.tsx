@@ -6,6 +6,7 @@ import { addItem, updateItemQuantity, removeItem } from '@/components/cart/actio
 import { useCart } from '@/components/cart/cart-context';
 import { Product } from '@/lib/shopify/types';
 import { TrashIcon } from "lucide-react";
+import { toast } from "sonner";
 
 // Button used on product card and product page
 const AddToCart = ({ className, product }: { className?: string, product: Product }) => {
@@ -71,6 +72,9 @@ const AddToCart = ({ className, product }: { className?: string, product: Produc
             className={`w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground rounded-t-none rounded-b-md ${className}`}
             onClick={async () => {
               setCount(count + 1);
+              toast("Item added to cart", {
+                description: `${product.title} added to cart`
+              });
               addCartItem(product.variants[0], product); // add item to local cart
               await addItem(null, product.variants[0].id); // add item to Shopify cart
             }}

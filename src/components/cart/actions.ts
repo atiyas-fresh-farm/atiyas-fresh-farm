@@ -17,6 +17,7 @@ export async function addItem(prevState: unknown, selectedVariantId: string | un
     await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1 }]);
     revalidateTag(TAGS.cart);
   } catch (e) {
+    console.error(e);
     return 'Error adding item to cart';
   }
 }
@@ -44,6 +45,7 @@ export async function removeItem(prevState: unknown, merchandiseId: string) {
       return 'Item not found in cart';
     }
   } catch (e) {
+    console.error(e);
     return 'Error removing item from cart';
   }
 }

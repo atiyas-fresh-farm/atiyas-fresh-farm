@@ -25,7 +25,7 @@ const ProductPage = async ({ params }: { params: ParamsType }) => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-10">
+      <main className="container flex flex-col justify-start items-start pt-10 px-2 lg:px-0">
 
         <div className="w-full flex flex-row justify-center md:space-x-4 items-start">
           <div className="w-[550px] h-full aspect-square border rounded-md relative">

@@ -9,7 +9,7 @@ import { TrashIcon } from "lucide-react";
 import { toast } from "sonner";
 
 // Button used on product card and product page
-const AddToCart = ({ className, product }: { className?: string, product: Product }) => {
+const AddToCart = ({ className, product, rounded="bottom" }: { className?: string, product: Product, rounded?: "full"|"bottom" }) => {
   
   const { cart, addCartItem } = useCart();
   //const [message, formAction] = useActionState(addItem, null);
@@ -66,10 +66,14 @@ const AddToCart = ({ className, product }: { className?: string, product: Produc
     <>
       {
         count ? (
-          <ItemCounter variantID={product.variants[0].id} count={count} setCount={setCount} rounded="bottom" />
+          <ItemCounter variantID={product.variants[0].id} count={count} setCount={setCount} rounded={rounded} />
         ) : (
           <Button
-            className={`w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground rounded-t-none rounded-b-md ${className}`}
+            className={`
+              w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground
+              ${rounded==="full" ? `rounded-t-md` : `rounded-t-none`} rounded-b-md
+              ${className}
+            `}
             onClick={async () => {
               setCount(count + 1);
               toast("Item added to cart", {

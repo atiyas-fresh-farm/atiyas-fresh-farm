@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { H2, H4, Large, Small, P } from "@/components/ui/typography";
 import { ProductCard } from "@/components/product-card";
+import { AddToCart } from '@/components/product-button';
 import { Product } from "@/lib/shopify/types";
 import { getProduct, getProductRecommendations } from "@/lib/shopify";
 import Image from "next/image";
@@ -10,7 +10,7 @@ interface ParamsType {
   product: string;
 }
 
-const Product = async ({ params }: { params: ParamsType }) => {
+const ProductPage = async ({ params }: { params: ParamsType }) => {
 
   // TODO: make sure the url is valid
   // let validCategory = false;
@@ -21,6 +21,7 @@ const Product = async ({ params }: { params: ParamsType }) => {
 
   const product = await getProduct(params.product);
   const recommendedProducts = product ? await getProductRecommendations(product?.id) : [];
+  recommendedProducts.length = 7;
 
   return (
     <div className="w-full flex justify-center">
@@ -28,7 +29,7 @@ const Product = async ({ params }: { params: ParamsType }) => {
 
         <div className="w-full flex flex-row justify-center md:space-x-4 items-start">
           <div className="w-[550px] h-full aspect-square border rounded-md relative">
-            <Image src={product?.featuredImage.url ?? "/bread.png"} fill={true} alt={product?.featuredImage.altText ?? ""} />
+            <Image src={product?.featuredImage?.url ?? "/bread.png"} fill={true} alt={product?.featuredImage?.altText ?? ""} />
           </div>
           <div className="w-[550px] h-full aspect-square flex flex-col justify-start items-start">
             <Small>
@@ -38,7 +39,10 @@ const Product = async ({ params }: { params: ParamsType }) => {
             <H4>${product?.priceRange.maxVariantPrice.amount}</H4>
 
             <br /><br /><br />
-            <Button className="px-8 bg-lime-700">Add to Cart</Button>
+            {
+              product &&
+              <AddToCart rounded="full" product={product} />
+            }
             <div className="mt-4">
               <Large>Product Description</Large>
               <P>{product?.description}</P>
@@ -66,4 +70,4 @@ const Product = async ({ params }: { params: ParamsType }) => {
   );
 }
 
-export default Product;
+export default ProductPage;

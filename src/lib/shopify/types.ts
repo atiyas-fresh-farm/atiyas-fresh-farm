@@ -8,6 +8,11 @@ export type Edge<T> = {
   node: T;
 };
 
+export type Fields = {
+  key: string;
+  value: string;
+};
+
 export type Cart = Omit<ShopifyCart, 'lines'> & {
   lines: CartItem[];
 };
@@ -54,6 +59,10 @@ export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
   images: Image[];
 };
 
+export type Category = Omit<ShopifyCategory, 'fields'> & {
+  subcategories: string[];
+};
+
 export type SEO = {
   title: string;
   description: string;
@@ -78,6 +87,13 @@ export type ShopifyCollection = {
   image: Image;
   seo: SEO;
   updatedAt: string;
+};
+
+export type ShopifyCategory = {
+  handle: string;
+  id: string;
+  type: string;
+  fields: Fields[];
 };
 
 export type ShopifyProduct = {
@@ -186,6 +202,12 @@ export type ShopifyCollectionsOperation = {
     collections: Connection<ShopifyCollection>;
   };
 };
+
+export type ShopifyCategoriesOperation = {
+  data: {
+    metaobjects: Connection<ShopifyCategory>
+  }
+}
 
 export type ShopifyMenuOperation = {
   data: {

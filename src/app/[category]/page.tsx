@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components/product-card";
-import { getCollectionProducts } from "@/lib/shopify";
+import { getCollectionProducts, getCollectionSubcategories } from "@/lib/shopify";
 import { Product } from "@/lib/shopify/types";
 import Link from "next/link";
 
@@ -16,19 +16,13 @@ interface CategoryProps {
 const Category = async ({ params, searchParams }: CategoryProps) => {
 
 
-  const subcategories = [
-    "Roti",
-    "Vegetable",
-    "Grain",
-    "Dairy",
-    "Protein",
-  ];
-
   const products = await getCollectionProducts({
     collection: params.category,
     reverse: false,
     sortKey: "CREATED_AT",
   });
+
+  const subcategories = await getCollectionSubcategories(params.category);
 
   return (
     <div className="w-full flex justify-center">

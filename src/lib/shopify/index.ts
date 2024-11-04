@@ -24,6 +24,9 @@ import {
   getProductRecommendationsQuery,
   getProductsQuery
 } from './queries/product';
+import {
+  getCategoriesQuery
+} from './queries/subcategories';
 
 import {
   Cart,
@@ -31,19 +34,22 @@ import {
   Connection,
   Image,
   Product,
+  Category,
   //ShopifyAddToCartOperation,
   ShopifyCart,
+  ShopifyCategory,
+  ShopifyProduct,
   ShopifyCartOperation,
   ShopifyCollectionOperation,
   ShopifyCollectionProductsOperation,
   ShopifyCollectionsOperation,
+  ShopifyCategoriesOperation,
   //ShopifyCreateCartOperation,
-  ShopifyProduct,
   ShopifyProductOperation,
   ShopifyProductRecommendationsOperation,
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
-  ShopifyUpdateCartOperation
+  ShopifyUpdateCartOperation,
 } from './types';
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
@@ -173,6 +179,31 @@ const reshapeProducts = (products: ShopifyProduct[]) => {
 
   return reshapedProducts;
 };
+
+const reshapeCategory = (category: ShopifyCategory) => {
+  const { fields, ...rest } = category;
+  const subcategories = fields.find((field) => field.key === 'subcategories');
+  return {
+    ...rest,
+    subcategories: subcategories ? JSON.parse(subcategories.value) : []
+  };
+};
+
+const reshapeCategories = (categories: ShopifyCategory[]) => {
+  const reshapedCategories = [];
+
+  for (const category of categories) {
+    if (category) {
+      const reshapedCategory = reshapeCategory(category);
+
+      if (reshapedCategory) {
+        reshapedCategories.push(reshapedCategory);
+      }
+    }
+  }
+
+  return reshapedCategories;
+}
 
 // Updated
 export async function createCart(): Promise<Cart> {
@@ -363,6 +394,35 @@ export async function getProducts({
   });
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+}
+
+/**
+ * TODO:
+ * define Shopifysubcategories type
+ * define subcategories type
+ * reshape subcategories
+ * reshape CollectionSubcategories
+ * create new tags for subcategories [metaobjects]
+ */
+
+// Get all the subcategories for all categories
+export async function getCategories(): Promise<Category[]> {
+  const res = await shopifyFetch<ShopifyCategoriesOperation>({
+    query: getCategoriesQuery,
+    tags: [TAGS.collections]
+  });
+
+  const categories = removeEdgesAndNodes(res.body.data.metaobjects);
+  const reshapedCategories = reshapeCategories(categories);
+  
+  return reshapedCategories;
+}
+
+// Get the subcategories for a specific category
+export async function getCollectionSubcategories( collectionHandle: string ): Promise<string[] | undefined> {
+  const categories = await getCategories();
+  const selectedCollection = categories.find((category) => category.handle.toLowerCase() === collectionHandle.toLowerCase());
+  return selectedCollection?.subcategories;
 }
 
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.

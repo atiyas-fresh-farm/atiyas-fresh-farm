@@ -1,14 +1,12 @@
 import { MoveLeft } from "lucide-react";
 import { H2, P } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
-import { CartRow } from "@/components/cart/cart-row";
 import { CartCalculation } from "@/components/cart/cart-calculation";
 import Link from "next/link";
 
 
 const Order = ({ params }: { params: { oid: string } }) => {
 
-  console.log(params);
   const products = [
     {
       count: 2,
@@ -73,12 +71,8 @@ const Order = ({ params }: { params: { oid: string } }) => {
         </div>
 
         {
-          order.products.map((row, i) => (
-            <CartRow
-              key={row.product.title} index={i}
-              product={row.product} count={row.count}
-              editable={false}
-            />
+          order.products.map((row) => (
+            <span key={row.product.title}>{row.product.title}</span>
           ))
         }
 

@@ -21,6 +21,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
     sortKey: "CREATED_AT",
   });
   const subcategories = await getCollectionSubcategories(params.category);
+  console.log(subcategories)
 
   return (
     <div className="w-full flex justify-center">

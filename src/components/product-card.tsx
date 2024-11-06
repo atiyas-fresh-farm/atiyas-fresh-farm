@@ -27,7 +27,7 @@ const ProductCard = ({ category, product }:
     <div className="w-40 md:w-48 mx-1 md:mx-3 mb-6 rounded-md">
       <Link href={`/${category}/${handle}`}>
         <div className="w-full aspect-square border rounded-t-md relative">
-          <Image src={image ? image.url : '/bread.png'} className="rounded-t-md" fill={true} alt={title} />
+          <Image src={image ? image.url : '/file-image.svg'} className="rounded-t-md" fill={true} alt={title} />
         </div>
       </Link>
       <Link href={`/${category}/${handle}`}>

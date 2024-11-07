@@ -64,7 +64,7 @@ const Header = () => {
         </span>
       </div>
 
-      <div className="flex justify-center items-center h-12 bg-lime-700 px-2 xl:px-0">
+      <div className="flex justify-center items-center h-12 bg-brand px-2 xl:px-0">
         <div className="container h-full flex flex-row justify-start items-center text-stone-50 space-x-8">
           <Link href="#categories"><p>All Categories</p></Link>
           <Link href="/flyer"><p>Flyer</p></Link>

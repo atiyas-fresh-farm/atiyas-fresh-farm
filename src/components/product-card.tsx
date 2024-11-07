@@ -24,14 +24,14 @@ const ProductCard = ({ category, product }:
   } = product;
   
   return (
-    <div className="w-40 md:w-48 mx-1 md:mx-3 mb-6 rounded-md">
+    <div className="w-40 md:w-48 mx-1 md:mx-3 mb-6 rounded-md shadow-neutral-200 shadow-lg hover:shadow-neutral-300 hover:shadow-xl">
       <Link href={`/${category}/${handle}`}>
-        <div className="w-full aspect-square border rounded-t-md relative">
+        <div className="w-full aspect-square rounded-t-md relative">
           <Image src={image ? image.url : '/file-image.svg'} className="rounded-t-md" fill={true} alt={title} />
         </div>
       </Link>
       <Link href={`/${category}/${handle}`}>
-        <div className="py-2">
+        <div className="p-2">
           <p className="font-semibold truncate">{title}</p>
           <P>${priceRange.maxVariantPrice.amount}</P>
         </div>

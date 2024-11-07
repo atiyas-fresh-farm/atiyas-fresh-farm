@@ -4,7 +4,7 @@ import { H2, P } from "@/components/ui/typography";
 const OurStore = () => {
   return (
     <div id="our-store" className="flex flex-row justify-center items-center w-full">
-      <div className="flex flex-row justify-center items-start flex-wrap w-full p-5 my-10 bg-neutral-200 dark:bg-neutral-800 text-primary rounded-xl mx-2 xl:mx-0">
+      <div className="flex flex-row justify-center items-start flex-wrap w-full p-5 my-10 bg-[#f2f2f2] dark:bg-neutral-800 text-primary rounded-xl mx-2 xl:mx-0">
         <div className="w-full lg:w-1/2 max-w-full h-[420px] relative">
           <Image src="/home/map2.png" className="rounded-xl aspect-video" fill={true} alt="category" />
         </div>

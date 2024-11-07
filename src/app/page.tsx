@@ -64,6 +64,42 @@ const Home = async () => {
       imageSrc: "/home/categories/8.jpg",
       title: "Oils"
     },
+
+    {
+      handle: "spices",
+      imageSrc: "/home/categories/1.jpg",
+      title: "Spices"
+    },
+    {
+      handle: "lentils-flour",
+      imageSrc: "/home/categories/2.jpg",
+      title: "Lentils & Flour"
+    },
+    {
+      handle: "drinks",
+      imageSrc: "/home/categories/3.jpg",
+      title: "Drinks"
+    },
+    {
+      handle: "coffee-tea",
+      imageSrc: "/home/categories/4.jpg",
+      title: "Coffee & Tea"
+    },
+    {
+      handle: "dairy",
+      imageSrc: "/home/categories/5.jpg",
+      title: "Dairy"
+    },
+    {
+      handle: "frozen",
+      imageSrc: "/home/categories/6.jpg",
+      title: "Frozen"
+    },
+    {
+      handle: "household-laundry",
+      imageSrc: "/home/categories/7.jpg",
+      title: "Household & Laundry"
+    },
   ];
 
   return (

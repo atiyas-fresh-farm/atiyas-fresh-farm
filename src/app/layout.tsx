@@ -48,7 +48,7 @@ export default async function RootLayout({
           <CartProvider cartPromise={cart}>
             <div className="flex flex-col justify-start items-start">
               <Header />
-              <div className="w-full min-h-screen flex flex-col justify-between">
+              <div className="w-full min-h-screen flex flex-col justify-between pt-36">
                 {children}
                 <Footer />
               </div>

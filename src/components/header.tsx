@@ -10,18 +10,18 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link";
 import Image from "next/image";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, CircleUserRoundIcon } from "lucide-react";
 import { CartSheet } from "@/components/cart/cart-sheet";
 
 
 const Header = () => {
 
-  const loggedin = false;
+  const loggedin = true;
 
   return (
-    <header className="w-full bg-background flex flex-col">
+    <header className="w-full bg-background flex flex-col items-center fixed z-50">
 
-      <div className="w-full h-20 px-8 grid grid-cols-6 items-center border-b z-10">
+      <div className="container h-24 grid grid-cols-6 items-center border-b z-10">
         <span className="col-span-3 md:col-span-1">
           <Link href="/">
             <Image src="/logo.png" width={150} height={60} alt="Atiyas Fresh Farm Logo" />
@@ -43,8 +43,10 @@ const Header = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarImage />
+                    <AvatarFallback>
+                      <CircleUserRoundIcon size={24}  />
+                    </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="mt-1" align="end">
@@ -56,7 +58,7 @@ const Header = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </> :
-            <div className="hidden">
+            <div>
               <Link href="/login">Login</Link>
               <Link href="/signup">Sign Up</Link>
             </div>
@@ -64,12 +66,12 @@ const Header = () => {
         </span>
       </div>
 
-      <div className="flex justify-center items-center h-12 bg-brand px-2 xl:px-0">
-        <div className="container h-full flex flex-row justify-start items-center text-stone-50 space-x-8">
-          <Link href="#categories"><p>All Categories</p></Link>
-          <Link href="/flyer"><p>Flyer</p></Link>
-          <Link href="/contact"><p>Contact</p></Link>
-          <Link href="/about"><p>About</p></Link>
+      <div className="w-full flex justify-center items-center h-12 bg-brand">
+        <div className="container h-full flex flex-row justify-start items-center text-stone-50 space-x-8 px-4 lg:px-0">
+          <Link href="/#explore-categories"><p className="font-semibold">All Categories</p></Link>
+          <Link href="/flyer"><p className="font-semibold">Flyer</p></Link>
+          <Link href="/contact"><p className="font-semibold">Contact</p></Link>
+          <Link href="/about"><p className="font-semibold">About</p></Link>
         </div>
       </div>
 

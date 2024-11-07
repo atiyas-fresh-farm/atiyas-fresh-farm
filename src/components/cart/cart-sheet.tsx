@@ -100,7 +100,7 @@ const CartSheet = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <ShoppingCartIcon size={24} className="text-neutral-950" />
+        <ShoppingCartIcon size={32} className="text-neutral-950" />
       </SheetTrigger>
       <SheetContent>
 

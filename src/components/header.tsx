@@ -24,7 +24,7 @@ const Header = () => {
       <div className="container h-24 grid grid-cols-6 items-center border-b z-10">
         <span className="col-span-3 md:col-span-1">
           <Link href="/">
-            <Image src="/logo.png" width={150} height={60} alt="Atiyas Fresh Farm Logo" />
+            <Image src="/logo.png" width={160} height={70} alt="Atiyas Fresh Farm Logo" />
           </Link>
         </span>
         <span className="hidden md:inline col-span-4">
@@ -32,9 +32,9 @@ const Header = () => {
         </span>
         <span className="col-span-3 md:col-span-1 flex flex-row justify-end items-center space-x-4">
           <span className="inline md:hidden p-2">
-            <SearchIcon size={24} className="text-neutral-950" />
+            <SearchIcon size={36} className="text-neutral-950" />
           </span>
-          <span className="p-2">
+          <span className="px-2">
             <CartSheet />
           </span>
           {
@@ -45,7 +45,7 @@ const Header = () => {
                   <Avatar>
                     <AvatarImage />
                     <AvatarFallback>
-                      <CircleUserRoundIcon size={24}  />
+                      <CircleUserRoundIcon size={36}  />
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>

@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <header className="w-full bg-background flex flex-col">
 
-      <div className="w-full h-20 px-6 grid grid-cols-6 items-center border-b z-10">
+      <div className="w-full h-20 px-8 grid grid-cols-6 items-center border-b z-10">
         <span className="col-span-3 md:col-span-1">
           <Link href="/">
             <Image src="/logo.png" width={150} height={60} alt="Atiyas Fresh Farm Logo" />

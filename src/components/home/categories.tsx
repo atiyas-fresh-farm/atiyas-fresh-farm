@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { H2 } from "@/components/ui/typography";
+import { H2, H3 } from "@/components/ui/typography";
 
 const Categories = (
   { title, categories }:
   {
     title: string,
-    categories: Array<{ handle: string, imageSrc: StaticImport|string, altText: string }>
+    categories: Array<{ handle: string, imageSrc: StaticImport|string, title: string }>
   }
 ) => {
   return (
@@ -17,8 +17,11 @@ const Categories = (
         {
           // TODO: different sizes for different categories
           categories.map((category, index) => (
-            <div key={category.handle + index} className="w-52 h-72 relative rounded-md m-2">
-              <Image src={category.imageSrc} fill={true} alt={category.altText} />
+            <div key={category.handle + index} className="flex flex-col justify-center items-center mb-4">
+              <div className="w-72 h-72 relative rounded-md m-2">
+                <Image src={category.imageSrc} className="rounded-xl" fill={true} alt={category.title} />
+              </div>
+              <H3>{category.title}</H3>
             </div>
           ))
         }

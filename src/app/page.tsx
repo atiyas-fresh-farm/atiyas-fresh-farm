@@ -25,62 +25,51 @@ const Home = async () => {
   ];
   const categories = [
     {
-      handle: "atta-rice-oil-daal",
-      imageSrc: "/home/categories/category-atta-rice-oil-daal.png",
-      altText: "Atta, Rice, Oil & Daal"
+      handle: "bakery",
+      imageSrc: "/home/categories/1.jpg",
+      title: "Bakery"
     },
     {
-      handle: "fruits-vegetables",
-      imageSrc: "/home/categories/category-fruit-veg.png",
-      altText: "Fruits & Vegetables"
-    },
-    {
-      handle: "masala-dry-fruits",
-      imageSrc: "/home/categories/category-masala-dry-fruits.png",
-      altText: "Masala & Dry Fruits"
-    },
-    {
-      handle: "apparel-lifestyle",
-      imageSrc: "/home/categories/category-apparel-lifestyle.png",
-      altText: "Apparel & Lifestyle"
-    },
-    {
-      handle: "jewellery-accessories",
-      imageSrc: "/home/categories/category-jewellery-accessories.jpeg",
-      altText: "Jewellery & Accessories"
+      handle: "biscuits-cookies-rusk",
+      imageSrc: "/home/categories/2.jpg",
+      title: "Biscuits, Cookies, Rusk"
     },
     {
       handle: "packaged-food",
-      imageSrc: "/home/categories/category-packed-food.png",
-      altText: "Packaged Food"
+      imageSrc: "/home/categories/3.jpg",
+      title: "Packaged Food"
     },
     {
-      handle: "toys-sports",
-      imageSrc: "/home/categories/category-toys-sport.png",
-      altText: "Toys & Sports"
+      handle: "munchies",
+      imageSrc: "/home/categories/4.jpg",
+      title: "Munchies"
     },
     {
-      handle: "sweets",
-      imageSrc: "/home/categories/category-sweets.jpeg",
-      altText: "Sweets"
+      handle: "dessert",
+      imageSrc: "/home/categories/5.jpg",
+      title: "Dessert"
     },
     {
-      handle: "ice-creams-more",
-      imageSrc: "/home/categories/category-ice-creams-more.png",
-      altText: "Ice Creams & More"
+      handle: "rice-atta",
+      imageSrc: "/home/categories/6.jpg",
+      title: "Rice & Atta"
     },
     {
-      handle: "frozen-food",
-      imageSrc: "/home/categories/category-frozen-food.png",
-      altText: "Frozen Food"
-    }
+      handle: "essentials",
+      imageSrc: "/home/categories/7.jpg",
+      title: "Essentials"
+    },
+    {
+      handle: "oils",
+      imageSrc: "/home/categories/8.jpg",
+      title: "Oils"
+    },
   ];
 
   return (
     <div className="w-full flex justify-center">
       <main className="container flex flex-col justify-start items-start pt-10">
         <Hero imageSrc={FruitsBanner} altText="Hero banner" />
-        <SpecialSections images={specialSectionImages} />
         <Categories title="Explore Categories" categories={categories} />
         <OurStore />
       </main>

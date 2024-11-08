@@ -66,7 +66,7 @@ const Header = () => {
         </span>
       </div>
 
-      <div className="w-full flex justify-center items-center h-12 bg-brand">
+      <div className="w-full flex justify-center items-center h-12 bg-lime-700">
         <div className="container h-full flex flex-row justify-start items-center text-stone-50 space-x-8 px-4 lg:px-0">
           <Link href="/#explore-categories"><p className="font-semibold">All Categories</p></Link>
           <Link href="/flyer"><p className="font-semibold">Flyer</p></Link>

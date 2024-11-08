@@ -37,7 +37,7 @@ const ProductPage = async ({ params }: { params: ParamsType }) => {
             <Small>
               Home / {params.category.charAt(0).toUpperCase() + params.category.slice(1)} / {product?.title}
             </Small>
-            <H2>{product?.title}</H2>
+            <H2 className="mt-2">{product?.title}</H2>
             <H4>${product?.priceRange.maxVariantPrice.amount}</H4>
             {
               product &&

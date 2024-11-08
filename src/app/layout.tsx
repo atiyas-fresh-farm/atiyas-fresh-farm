@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Noto_Sans } from 'next/font/google';
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
@@ -9,16 +9,8 @@ import { getCart } from "@/lib/shopify";
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
+const notoSans = Noto_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: "Atiyas Fresh Farm",
@@ -37,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${notoSans.className} antialiased`}
       >
         <ThemeProvider
           attribute="class"

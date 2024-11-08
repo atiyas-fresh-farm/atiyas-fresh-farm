@@ -5,7 +5,7 @@ import { H4, Large, P } from "@/components/ui/typography";
 
 const Footer = () => {
   return (
-    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-brand/50">
+    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-lime-700 text-white">
       <div className="container flex flex-col justify-center items-center px-4 xl:px-0 py-8">
 
         <div className="w-full grid grid-cols-3 justify-center items-start px-4">
@@ -39,12 +39,6 @@ const ColumnOne = () => {
         </Link>
         <Link href="/">
           <FacebookIcon className="text-neutral-700 dark:text-neutral-50" size={24} />
-        </Link>
-        <Link href="/">
-          <TwitterIcon className="text-neutral-700 dark:text-neutral-50" size={24} />
-        </Link>
-        <Link href="/">
-          <LinkedinIcon className="text-neutral-700 dark:text-neutral-50" size={24} />
         </Link>
       </div>
     </div>

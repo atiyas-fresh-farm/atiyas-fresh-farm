@@ -1,6 +1,7 @@
 import { Hero } from "@/components/home/hero";
 import { Categories } from "@/components/home/categories";
 import { OurStore } from "@/components/home/our-store";
+import { Reviews } from "@/components/home/reviews";
 
 import FruitsBanner from "/public/home/fruits-banner.jpeg";
 
@@ -91,6 +92,7 @@ const Home = async () => {
         <Hero imageSrc={FruitsBanner} altText="Hero banner" />
         <Categories title="Explore Categories" categories={categories} />
         <OurStore />
+        <Reviews />
       </main>
     </div>
   );

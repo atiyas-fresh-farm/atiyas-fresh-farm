@@ -1,28 +1,11 @@
 import { Hero } from "@/components/home/hero";
-import { SpecialSections } from "@/components/home/special-section";
 import { Categories } from "@/components/home/categories";
 import { OurStore } from "@/components/home/our-store";
-//import { shopifyClient } from "@/lib/shopify/client";
 
 import FruitsBanner from "/public/home/fruits-banner.jpeg";
-import Section1 from "/public/home/section-1.png";
-import Section2 from "/public/home/section-2.png";
-import Section3 from "/public/home/section-3.png";
-import Section4 from "/public/home/section-4.png";
-import Section5 from "/public/home/section-5.png";
-
 
 const Home = async () => {
 
-  const specialSectionImages = [
-    {src: Section1, alt: "section 1"},
-    {src: Section2, alt: "section 2"},
-    {src: Section3, alt: "section 3"},
-    {src: Section4, alt: "section 4"},
-    {src: Section5, alt: "section 5"},
-    {src: Section3, alt: "section 3"},
-    {src: Section4, alt: "section 4"}
-  ];
   const categories = [
     {
       handle: "bakery",

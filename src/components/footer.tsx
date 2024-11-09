@@ -5,7 +5,7 @@ import { H4, Large, P } from "@/components/ui/typography";
 
 const Footer = () => {
   return (
-    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-lime-700 text-white">
+    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-[#5e922e] text-white">
       <div className="container flex flex-col justify-center items-center px-4 xl:px-0 py-8">
 
         <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:items-start">

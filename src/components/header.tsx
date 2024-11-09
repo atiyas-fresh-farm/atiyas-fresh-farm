@@ -86,7 +86,7 @@ const Header = () => {
 
 const SubHeader = () => {
   return (
-    <div className="w-full flex justify-center items-center h-12 bg-lime-700">
+    <div className="w-full flex justify-center items-center h-12 bg-[#5e922e]">
       <div className="container h-full flex flex-row justify-between items-center text-stone-50 px-4 lg:px-0">
         <span className="flex flex-row space-x-8">
           <Link href="/#explore-categories"><p className="font-semibold">All Categories</p></Link>

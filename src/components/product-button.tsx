@@ -70,7 +70,7 @@ const AddToCart = ({ className, product, rounded="bottom" }: { className?: strin
         ) : (
           <Button
             className={`
-              w-full p-2 bg-lime-700 hover:bg-lime-600 text-primary-foreground
+              w-full p-2 bg-[#5e922e] hover:bg-lime-600 text-primary-foreground
               ${rounded==="full" ? `rounded-t-md` : `rounded-t-none`} rounded-b-md
               ${className}
             `}

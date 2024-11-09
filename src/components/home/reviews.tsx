@@ -42,12 +42,12 @@ const Reviews = () => {
     }
   ];
 
+  //TODO: add autoplay plugin
+  //plugins={[plugin.current]}
   return (
     <div id="our-store" className="flex flex-col justify-center items-center w-full my-16">
       <H2>Customer Reviews</H2>
-      <Carousel className="w-full mt-8"
-        plugins={[plugin.current]}
-      >
+      <Carousel className="w-full mt-8">
         <CarouselContent>
           {
             reviews.map((review, index) => (

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -17,6 +19,7 @@ import {
 } from "@/components/ui/tabs"
 import { getAuthorizationUrl, getAccessToken } from "./actions";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 
 type SignupParams = {
@@ -24,16 +27,27 @@ type SignupParams = {
   state?: string;
 }
 
-const Signup = async ({ searchParams }: { searchParams: SignupParams }) => {
+const Signup = ({ searchParams }: { searchParams: SignupParams }) => {
 
-  const authorizationUrl = await getAuthorizationUrl();
-  
-  const code = searchParams?.code;
-  if (code) {
-    const accessToken = await getAccessToken(code);
-    console.log(accessToken);
-  }
+  const [authorizationUrl, setAuthorizationUrl] = useState<string>("#");
 
+  useEffect(() => {
+    // get the authorization URL
+    (async () => {
+      const authorizationUrl = await getAuthorizationUrl();
+      setAuthorizationUrl(authorizationUrl);
+    })();
+    console.log(authorizationUrl);
+  }, []);
+
+  useEffect(() => {
+    // get the access token
+    const code = searchParams?.code;
+    if (code) {
+      const accessToken = getAccessToken(code);
+      console.log(accessToken);
+    }
+  }, []);
 
   return (
     <div className="w-full flex justify-center">

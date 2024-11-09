@@ -17,7 +17,7 @@ import {
 } from '@/lib/shopify/customer';
 
 
-const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app";
+const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app/authentication";
 
 // TODO: directly redirect to the authorization URL
 export async function getAuthorizationUrl(): Promise<string>  {

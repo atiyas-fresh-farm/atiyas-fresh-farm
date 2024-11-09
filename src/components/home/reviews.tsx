@@ -8,6 +8,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { P, Large, H2 } from "@/components/ui/typography";
 import { StarFull, StarHalf, StarEmpty } from "@/components/ui/icons";
+import Autoplay from "embla-carousel-autoplay";
 
 const Reviews = () => {
 
@@ -32,13 +33,19 @@ const Reviews = () => {
   return (
     <div id="our-store" className="flex flex-col justify-center items-center w-full my-16">
       <H2>Customer Reviews</H2>
-      <Carousel className="w-full mt-8">
+      <Carousel className="w-full mt-8"
+        plugins={[
+          Autoplay({
+            delay: 5000,
+          }),
+        ]}
+      >
         <CarouselContent>
           {
             reviews.map((review, index) => (
               <CarouselItem key={index}>
                 <div className="h-full w-full flex justify-center items-center">
-                  <Card className="w-1/2">
+                  <Card className="w-full lg:w-1/2">
                     <CardContent className="flex flex-col h-96 w-full items-center justify-center p-6">
                       <ReviewStars rating={review.rating} />
                       <P className="text-center">{review.review}</P>

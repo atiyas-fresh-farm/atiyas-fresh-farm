@@ -1,5 +1,3 @@
-"use client"
-
 import {
   Carousel,
   CarouselContent,
@@ -10,14 +8,14 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { P, Large, H2 } from "@/components/ui/typography";
 import { StarFull, StarHalf, StarEmpty } from "@/components/ui/icons";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+/*import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";*/
 
 const Reviews = () => {
 
-  const plugin = useRef(
+  /*const plugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
-  )
+  )*/
 
   const reviews = [
     {
@@ -43,6 +41,7 @@ const Reviews = () => {
   ];
 
   //TODO: add autoplay plugin
+  //"use client"
   //plugins={[plugin.current]}
   return (
     <div id="our-store" className="flex flex-col justify-center items-center w-full my-16">

@@ -45,8 +45,8 @@ const Reviews = () => {
             </div>
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="hidden xl:inline-flex" />
+        <CarouselNext className="hidden xl:inline-flex" />
       </Carousel>
     </div>
   );

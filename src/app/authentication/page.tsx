@@ -15,9 +15,14 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { getAuthorizationUrl } from "@/lib/shopify/customer";
+import Link from "next/link";
 
 
-const Signup = () => {
+const Signup = async () => {
+
+  const authorizationUrl = await getAuthorizationUrl();
+
   return (
     <div className="w-full flex justify-center">
       <main className="container h-full flex flex-col justify-center items-center pt-10">
@@ -45,7 +50,9 @@ const Signup = () => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button>Create Account</Button>
+                <Link href={authorizationUrl}>
+                  <Button>Create Account</Button>
+                </Link>
               </CardFooter>
             </Card>
           </TabsContent>

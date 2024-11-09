@@ -30,7 +30,7 @@ const Footer = () => {
 
           <div className="w-full h-full flex flex-col lg:flex-row lg:space-x-16 items-center lg:items-start justify-end">
 
-            <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
+            <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4 hover:text-[#4b7525]">
               <H4>Navigation Links</H4>
               <Link href="/">Home</Link>
               <Link href="/categories">Categories</Link>

@@ -48,17 +48,17 @@ const Home = async () => {
       imageSrc: "/home/categories/8.jpg",
       title: "Oils"
     },
-
     {
       handle: "spices",
-      imageSrc: "/home/categories/1.jpg",
+      imageSrc: "/home/categories/9.jpg",
       title: "Spices"
     },
     {
       handle: "lentils-flour",
-      imageSrc: "/home/categories/2.jpg",
+      imageSrc: "/home/categories/10.jpg",
       title: "Lentils & Flour"
     },
+    
     {
       handle: "drinks",
       imageSrc: "/home/categories/3.jpg",

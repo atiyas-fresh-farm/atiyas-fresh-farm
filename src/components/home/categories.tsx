@@ -18,7 +18,7 @@ const Categories = (
         {
           categories.map((category, index) => (
             <Link href={`/${category.handle}`} key={category.handle + index} className="flex flex-col justify-center items-center mb-4">
-              <div className="w-72 h-72 relative rounded-md m-2">
+              <div className="w-64 h-64 relative rounded-md m-2">
                 <Image src={category.imageSrc} className="rounded-xl" fill={true} alt={category.title} />
               </div>
               <H3>{category.title}</H3>

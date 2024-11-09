@@ -34,6 +34,11 @@ const Reviews = () => {
       name: "Sameeha",
       review: "Always had a good experience shopping in here. Friendly staff, and good deals.",
       rating: 5
+    },
+    {
+      name: "Sameeha",
+      review: "Always had a good experience shopping in here. Friendly staff, and good deals.",
+      rating: 5
     }
   ];
 
@@ -46,7 +51,7 @@ const Reviews = () => {
         <CarouselContent>
           {
             reviews.map((review, index) => (
-              <CarouselItem key={index}>
+              <CarouselItem className="basis-1/2" key={index}>
                 <div className="h-full w-full flex justify-center items-center">
                   <Card className="w-full lg:w-1/2">
                     <CardContent className="flex flex-col h-96 w-full items-center justify-center p-6">

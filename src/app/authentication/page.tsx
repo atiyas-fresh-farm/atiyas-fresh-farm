@@ -15,13 +15,25 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { getAuthorizationUrl } from "@/lib/shopify/customer";
+import { getAuthorizationUrl, getAccessToken } from "./actions";
 import Link from "next/link";
 
 
-const Signup = async () => {
+type SignupParams = {
+  code: string;
+  state?: string;
+}
+
+const Signup = async ({ searchParams }: { searchParams: SignupParams }) => {
 
   const authorizationUrl = await getAuthorizationUrl();
+  
+  const code = searchParams?.code;
+  if (code) {
+    const accessToken = await getAccessToken(code);
+    console.log(accessToken);
+  }
+
 
   return (
     <div className="w-full flex justify-center">

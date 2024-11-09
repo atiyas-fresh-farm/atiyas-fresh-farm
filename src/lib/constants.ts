@@ -23,9 +23,15 @@ export const sorting: SortFilterItem[] = [
 export const TAGS = {
   collections: 'collections',
   products: 'products',
-  cart: 'cart'
+  cart: 'cart',
+  customer: 'customer'
 };
 
 export const HIDDEN_PRODUCT_TAG = 'nextjs-frontend-hidden';
 export const DEFAULT_OPTION = 'Default Title';
 export const SHOPIFY_GRAPHQL_API_ENDPOINT = '/api/2023-01/graphql.json';
+
+export const SHOPIFY_SHOP_ID = '90291601706';
+export const SHOPIFY_CUSTOMER_AUTHORIZATION_ENDPOINT = `https://shopify.com/authentication/${SHOPIFY_SHOP_ID}/oauth/authorize`
+export const SHOPIFY_CUSTOMER_TOKEN_ENDPOINT = `https://shopify.com/authentication/${SHOPIFY_SHOP_ID}/oauth/token`
+export const SHOPIFY_CUSTOMER_LOGOUT_ENDPOINT = `https://shopify.com/authentication/${SHOPIFY_SHOP_ID}/logout`

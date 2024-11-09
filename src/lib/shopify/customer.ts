@@ -1,3 +1,73 @@
+// TODO: import queries and mutations from the graphql file
+
+/*import { isShopifyError } from '@/lib/type-guards';
+
+type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
+const endpoint = 'https://shopify.com/<shop-id>/account/customer/api/2024-01/graphql';
+
+export async function shopfiyCustomerFetch<T>({
+  cache = 'force-cache',
+  headers,
+  query,
+  tags,
+  variables
+}: {
+  cache?: RequestCache;
+  headers?: HeadersInit;
+  query: string;
+  tags?: string[];
+  variables?: ExtractVariables<T>;
+}) {
+
+  try {
+
+    const result = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: {access_token},
+        ...headers
+      },
+      body: JSON.stringify({
+        operationName: 'SomeQuery',
+        ...(query && { query }),
+        ...(variables && { variables })
+      }),
+      cache,
+      ...(tags && { next: { tags } })
+    });
+
+    const body = await result.json();
+
+    if (body.errors) {
+      throw body.errors[0];
+    }
+
+    return {
+      status: result.status,
+      body
+    };
+  } catch (e) {
+    if (isShopifyError(e)) {
+      throw {
+        cause: e.cause?.toString() || 'unknown',
+        status: e.status || 500,
+        message: e.message,
+        query
+      };
+    }
+
+    throw {
+      error: e,
+      query
+    };
+  }
+        
+}
+*/
+
+
+// Helper functions for Shopify Customer Authentication
 
 export async function generateState(): Promise<string> {
   const timestamp = Date.now().toString();
@@ -16,7 +86,6 @@ export async function generateNonce(length: number) {
 
   return nonce;
 }
-
 
 export async function generateCodeVerifier() {
   const rando = generateRandomCode();
@@ -48,56 +117,4 @@ function convertBufferToString(hash: ArrayBuffer) {
   const uintArray = new Uint8Array(hash);
   const numberArray = Array.from(uintArray);
   return String.fromCharCode(...numberArray);
-}
-
-
-export async function getAuthorizationUrl(): Promise<string>  {
-
-  const state = await generateState();
-  const nonce = await generateNonce(16);
-
-  const clientId = process.env.SHOPIFY_CUSTOMER_CLIENT_ID ?? "";
-  const authorizationEndpoint = process.env.SHOPIFY_CUSTOMER_AUTHORIZATION_ENDPOINT ?? "";
-  const authorizationRequestUrl = new URL(authorizationEndpoint);
-
-  authorizationRequestUrl.searchParams.append(
-    'scope',
-    'openid email customer-account-api:full'
-  );
-  authorizationRequestUrl.searchParams.append(
-    'client_id',
-    clientId
-  );
-  authorizationRequestUrl.searchParams.append(
-    'response_type',
-    'code'
-  );
-  authorizationRequestUrl.searchParams.append(
-    'redirect_uri',
-    `https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app`
-  );
-  authorizationRequestUrl.searchParams.append(
-    'state',
-    state
-  );
-  authorizationRequestUrl.searchParams.append(
-    'nonce',
-    nonce
-  );
-
-  // Public client
-  const verifier = await generateCodeVerifier();
-  const challenge = await generateCodeChallenge(verifier);
-  localStorage.setItem('code-verifier', verifier);
-
-  authorizationRequestUrl.searchParams.append(
-    'code_challenge',
-    challenge
-  );
-  authorizationRequestUrl.searchParams.append(
-    'code_challenge_method',
-    'S256'
-  );
-  
-  return authorizationRequestUrl.toString();
 }

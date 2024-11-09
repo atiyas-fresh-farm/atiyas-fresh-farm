@@ -396,15 +396,6 @@ export async function getProducts({
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
 }
 
-/**
- * TODO:
- * define Shopifysubcategories type
- * define subcategories type
- * reshape subcategories
- * reshape CollectionSubcategories
- * create new tags for subcategories [metaobjects]
- */
-
 // Get all the subcategories for all categories
 export async function getCategories(): Promise<Category[]> {
   const res = await shopifyFetch<ShopifyCategoriesOperation>({

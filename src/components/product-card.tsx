@@ -24,7 +24,8 @@ const ProductCard = ({ category, product }:
   } = product;
   
   return (
-    <div className="w-40 md:w-48 mx-1 md:mx-3 mb-6 rounded-md shadow-neutral-200 shadow-lg hover:shadow-neutral-300 hover:shadow-xl">
+    <div className="w-40 md:w-48 mx-1 md:mx-3 mb-6 rounded-md
+      transition-shadow shadow-neutral-200 shadow-md hover:shadow-neutral-300 hover:shadow-lg">
       <Link href={`/${category}/${handle}`}>
         <div className="w-full aspect-square rounded-t-md relative">
           <Image src={image ? image.url : '/file-image.svg'} className="rounded-t-md" fill={true} alt={title} />

@@ -1,4 +1,4 @@
-"use client"
+//"use client"
 
 import {
   Carousel,
@@ -10,14 +10,14 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { P, Large, H2 } from "@/components/ui/typography";
 import { StarFull, StarHalf, StarEmpty } from "@/components/ui/icons";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+//import Autoplay from "embla-carousel-autoplay";
+//import { useRef } from "react";
 
 const Reviews = () => {
 
-  const plugin = useRef(
+  /*const plugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
-  )
+  )*/
 
   const reviews = [
     {
@@ -42,12 +42,13 @@ const Reviews = () => {
     }
   ];
 
+
+  //TODO: Fix autoplay
+  //plugins={[plugin.current]}
   return (
     <div id="our-store" className="flex flex-col justify-center items-center w-full my-16">
       <H2>Customer Reviews</H2>
-      <Carousel className="w-full mt-8"
-        plugins={[plugin.current]}
-      >
+      <Carousel className="w-full mt-8">
         <CarouselContent>
           {
             reviews.map((review, index) => (

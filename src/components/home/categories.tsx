@@ -13,7 +13,7 @@ const Categories = (
   return (
     <div id="explore-categories" className="mb-10 px-2 xl:px-0">
 
-      <H2>{title}</H2>
+      <H2 className="w-full text-center">{title}</H2>
       <div className="w-full flex flex-row flex-wrap justify-center items-center my-4">
         {
           categories.map((category, index) => (

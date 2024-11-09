@@ -3,7 +3,6 @@ import { Categories } from "@/components/home/categories";
 import { OurStore } from "@/components/home/our-store";
 import { Reviews } from "@/components/home/reviews";
 
-import FruitsBanner from "/public/home/fruits-banner.jpeg";
 
 const Home = async () => {
 
@@ -58,7 +57,7 @@ const Home = async () => {
       imageSrc: "/home/categories/10.jpg",
       title: "Lentils & Flour"
     },
-    
+
     {
       handle: "drinks",
       imageSrc: "/home/categories/3.jpg",
@@ -88,8 +87,8 @@ const Home = async () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-10">
-        <Hero imageSrc={FruitsBanner} altText="Hero banner" />
+      <main className="container flex flex-col justify-start items-start pt-8">
+        <Hero />
         <Categories title="Explore Categories" categories={categories} />
         <OurStore />
         <Reviews />

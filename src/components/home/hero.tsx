@@ -8,16 +8,25 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-const Hero = ({imageSrc, altText="hero banner"}: {imageSrc: StaticImport|string, altText: string}) => {
+type HeroProps = Array<{
+  src: StaticImport|string,
+  alt: string
+}>
+
+//TODO: make the props required
+const Hero = ({ images }: { images?: HeroProps }) => {
+
+  console.log(images);
+
   return (
-    <div className="w-full h-[650px] max-h-screen border mb-14">
-      <Carousel className="w-full h-[650px]">
+    <div className="w-full h-[350px] lg:h-[650px] max-h-screen border mb-12">
+      <Carousel className="w-full h-[350px] lg:h-[650px]">
         <CarouselContent>
-          <CarouselItem className="w-full h-[650px] max-h-screen relative">
-            <Image src="/home/home-banner.png" fill={true} objectFit="cover" alt={altText} />
+          <CarouselItem className="w-full h-[350px] lg:h-[650px] max-h-screen relative">
+            <Image src="/home/welcome-banner.png" fill={true} objectFit="cover" alt="Welcome banner" />
           </CarouselItem>
-          <CarouselItem className="w-full h-[650px] max-h-screen relative">
-            <Image src={imageSrc} fill={true} alt={altText} />
+          <CarouselItem className="w-full h-[350px] lg:h-[650px] max-h-screen relative">
+            <Image src="/home/home-banner.png" fill={true} objectFit="cover" alt="Home banner" />
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious className="hidden xl:inline-flex" />

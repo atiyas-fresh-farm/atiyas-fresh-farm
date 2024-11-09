@@ -12,7 +12,7 @@ const Footer = () => {
 
           <div className="w-96 flex flex-col justify-start items-center lg:items-start space-y-8">
             <Link href="/">
-              <Image src="/logo-white.png" width={200} height={90} alt="Atiyas Fresh Farm Logo" />
+              <Image src="/logo-white-black.png" width={200} height={90} alt="Atiyas Fresh Farm Logo" />
             </Link>
             <P className="text-center lg:text-left">
               Atiya&apos;s Fresh Farm is a fresh addition in the mosaic of the Canadian Grocery world with a presence 22,000 Sq.

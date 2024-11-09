@@ -28,12 +28,12 @@ const Reviews = () => {
     {
       name: "Mujeeb",
       review: "One of the best and clean store I found so far. Staff at Atiya's were super friendly and helpful. If you are looking for Hyderabadi spices, Asli ghee, cookies and or other stuff I think this is the place to be.",
-      rating: 3.5
+      rating: 5
     },
     {
       name: "Sameeha",
       review: "Always had a good experience shopping in here. Friendly staff, and good deals.",
-      rating: 3
+      rating: 5
     }
   ];
 

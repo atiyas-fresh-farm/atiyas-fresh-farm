@@ -12,6 +12,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { SearchIcon, CircleUserRoundIcon } from "lucide-react";
 import { CartSheet } from "@/components/cart/cart-sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 
 
 const Header = () => {
@@ -65,17 +78,47 @@ const Header = () => {
           }
         </span>
       </div>
+      <SubHeader />
 
-      <div className="w-full flex justify-center items-center h-12 bg-lime-700">
-        <div className="container h-full flex flex-row justify-start items-center text-stone-50 space-x-8 px-4 lg:px-0">
+    </header>
+  );
+}
+
+const SubHeader = () => {
+  return (
+    <div className="w-full flex justify-center items-center h-12 bg-lime-700">
+      <div className="container h-full flex flex-row justify-between items-center text-stone-50 px-4 lg:px-0">
+        <span className="flex flex-row space-x-8">
           <Link href="/#explore-categories"><p className="font-semibold">All Categories</p></Link>
           <Link href="/flyer"><p className="font-semibold">Flyer</p></Link>
           <Link href="/contact"><p className="font-semibold">Contact</p></Link>
           <Link href="/about"><p className="font-semibold">About</p></Link>
-        </div>
-      </div>
+        </span>
+        <span>
+          <Dialog>
+            <DialogTrigger><p className="font-semibold">Delivery coverage</p></DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Check Delivery Coverage</DialogTitle>
+                <DialogDescription>
+                  Enter your postal code to check if we delivery to your address.
+                </DialogDescription>
+              </DialogHeader>
 
-    </header>
+              <div className="grid gap-4 py-4">
+                <div className="grid w-full items-center gap-1.5">
+                  <Label htmlFor="PostalCode">Postal Code</Label>
+                  <Input type="text" id="PostalCode" placeholder="Postal Code" />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button type="submit">Submit</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </span>
+      </div>
+    </div>
   );
 }
 

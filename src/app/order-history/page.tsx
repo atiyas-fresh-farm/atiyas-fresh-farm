@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import Link from 'next/link';
+import { getOrders } from '@/lib/shopify/customer';
 
 interface OrderType {
   id: string,
@@ -20,6 +21,8 @@ interface OrderType {
 
 
 const OrderHistory = () => {
+
+
 
   const orders: Array<OrderType> = [
     {

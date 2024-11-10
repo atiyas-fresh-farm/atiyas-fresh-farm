@@ -2,6 +2,7 @@
 
 import { isShopifyError } from '@/lib/type-guards';
 import { SHOPIFY_SHOP_ID } from '@/lib/constants';
+import { getOrdersQuery } from './queries/order';
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
@@ -134,7 +135,12 @@ function convertBufferToString(hash: ArrayBuffer) {
  * Queries and Mutations for the Shopify Customer API
  */
 
-export async function getUser(accessToken: string): Promise<unknown> {
+export async function getUser(accessToken: string|undefined): Promise<unknown> {
+
+  if (!accessToken) {
+    throw new Error('Missing access token');
+  }
+
   const query = `
     query GetUser {
       customer {
@@ -155,3 +161,31 @@ export async function getUser(accessToken: string): Promise<unknown> {
 
   return res;
 }
+
+export async function getOrders(accessToken: string|undefined): Promise<unknown> {
+  if (!accessToken) {
+    throw new Error('Missing access token');
+  }
+
+  const res = await shopfiyCustomerFetch<unknown>({
+    query: getOrdersQuery,
+    accessToken
+  });
+
+  return res;
+}
+
+/**
+ * get user details
+ *  - personal details
+ *  - addresses
+ *  - payment details
+ * 
+ * get orders list for the user
+ * 
+ * get order details given a specific order id
+ *  - order details
+ * 
+ * get checkout details
+ * get cart details
+ */

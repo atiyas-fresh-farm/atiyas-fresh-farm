@@ -1,3 +1,5 @@
+"use client";
+
 import { H2 } from '@/components/ui/typography';
 import {
   Table,

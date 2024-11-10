@@ -30,19 +30,21 @@ type SignupParams = {
 const Signup = ({ searchParams }: { searchParams: SignupParams }) => {
 
   const [authorizationUrl, setAuthorizationUrl] = useState<string>("#");
+  const code = searchParams?.code;
 
   useEffect(() => {
     // get the authorization URL
-    (async () => {
-      const authorizationUrl = await getAuthorizationUrl();
-      setAuthorizationUrl(authorizationUrl);
-    })();
-    console.log(authorizationUrl);
+    if (!code) {
+      (async () => {
+        const authorizationUrl = await getAuthorizationUrl();
+        setAuthorizationUrl(authorizationUrl);
+      })();
+      console.log(authorizationUrl);
+    }
   }, []);
 
   useEffect(() => {
     // get the access token
-    const code = searchParams?.code;
     if (code) {
       (async () => {
         const accessToken = await getAccessToken(code);

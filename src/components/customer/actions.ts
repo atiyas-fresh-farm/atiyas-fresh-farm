@@ -16,11 +16,18 @@ import {
   generateCodeChallenge
 } from '@/lib/shopify/customer';
 
+interface CustomerTokenType {
+  accessToken: string;
+  expiresIn: number;
+  idToken: string;
+  refreshToken: string;
+}
 
-const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app/authentication";
+
+const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app";
 
 // Redirects the user to the Shopify Authorization URL
-export async function redirectToAuthorizationUrl(): Promise<string>  {
+export async function redirectToAuthorizationUrl(): Promise<void> {
 
   const state = await generateState();
   const nonce = await generateNonce(16);
@@ -73,7 +80,7 @@ export async function redirectToAuthorizationUrl(): Promise<string>  {
 }
 
 // Uses the code that Shopify sends to the redirect URI to get an access token
-export async function getAccessTokenAndSetCookie(code: string) {
+export async function getAccessTokenAndSetCookie(code: string): Promise<CustomerTokenType | string> {
 
   const clientId = process.env.SHOPIFY_CUSTOMER_CLIENT_ID!;
   const tokenEndpoint = SHOPIFY_CUSTOMER_TOKEN_ENDPOINT;

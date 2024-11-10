@@ -17,41 +17,16 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { getAuthorizationUrl, getAccessToken } from "./actions";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { redirectToAuthorizationUrl } from "@/components/customer/actions";
 
 
+/*
 type SignupParams = {
   code: string;
   state?: string;
-}
+}*/
 
-const Signup = ({ searchParams }: { searchParams: SignupParams }) => {
-
-  const [authorizationUrl, setAuthorizationUrl] = useState<string>("#");
-  const code = searchParams?.code;
-
-  useEffect(() => {
-    // get the authorization URL
-    if (!code) {
-      (async () => {
-        const authorizationUrl = await getAuthorizationUrl();
-        setAuthorizationUrl(authorizationUrl);
-      })();
-      console.log(authorizationUrl);
-    }
-  }, []);
-
-  useEffect(() => {
-    // get the access token
-    if (code) {
-      (async () => {
-        const accessToken = await getAccessToken(code);
-        console.log(accessToken);
-      })();
-    }
-  }, []);
+const Signup = () => {
 
   return (
     <div className="w-full flex justify-center">
@@ -80,9 +55,11 @@ const Signup = ({ searchParams }: { searchParams: SignupParams }) => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Link href={authorizationUrl}>
-                  <Button>Create Account</Button>
-                </Link>
+                <Button onClick={
+                  async () => {
+                    await redirectToAuthorizationUrl();
+                  }
+                }>Create Account</Button>
               </CardFooter>
             </Card>
           </TabsContent>

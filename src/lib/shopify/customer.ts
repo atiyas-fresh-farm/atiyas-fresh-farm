@@ -141,7 +141,9 @@ export async function getUser(accessToken: string): Promise<unknown> {
         id
         firstName
         lastName
-        emailAddress
+        emailAddress {
+          emailAddress
+        }
       }
     }
   `;

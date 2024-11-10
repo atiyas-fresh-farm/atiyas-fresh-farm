@@ -1,31 +1,37 @@
 // TODO: import queries and mutations from the graphql file
 
-/*import { isShopifyError } from '@/lib/type-guards';
+import { isShopifyError } from '@/lib/type-guards';
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 const endpoint = 'https://shopify.com/<shop-id>/account/customer/api/2024-01/graphql';
 
+
+
+/**
+ * Primary fetch function for Shopify Customer API
+ */
 export async function shopfiyCustomerFetch<T>({
   cache = 'force-cache',
   headers,
   query,
   tags,
-  variables
+  variables,
+  accessToken
 }: {
   cache?: RequestCache;
   headers?: HeadersInit;
   query: string;
   tags?: string[];
   variables?: ExtractVariables<T>;
+  accessToken: string;
 }) {
 
   try {
-
     const result = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: {access_token},
+        'Authorization': accessToken,
         ...headers
       },
       body: JSON.stringify({
@@ -64,11 +70,12 @@ export async function shopfiyCustomerFetch<T>({
   }
         
 }
-*/
 
 
-// Helper functions for Shopify Customer Authentication
 
+/*
+ * Helper functions for Shopify Customer Authentication
+ */
 export async function generateState(): Promise<string> {
   const timestamp = Date.now().toString();
   const randomString = Math.random().toString(36).substring(2);
@@ -117,4 +124,28 @@ function convertBufferToString(hash: ArrayBuffer) {
   const uintArray = new Uint8Array(hash);
   const numberArray = Array.from(uintArray);
   return String.fromCharCode(...numberArray);
+}
+
+
+
+/**
+ * Queries and Mutations for the Shopify Customer API
+ */
+
+export async function getUser(accessToken: string): Promise<unknown> {
+  const query = `
+    query GetUser {
+      customer {
+        id
+        firstName
+        lastName
+        email
+      }
+    }
+  `;
+
+  return shopfiyCustomerFetch({
+    query,
+    accessToken
+  });
 }

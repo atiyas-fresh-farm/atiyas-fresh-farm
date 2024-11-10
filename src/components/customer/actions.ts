@@ -13,7 +13,8 @@ import {
   generateState,
   generateNonce,
   generateCodeVerifier,
-  generateCodeChallenge
+  generateCodeChallenge,
+  getUser
 } from '@/lib/shopify/customer';
 import {
   CustomerToken,
@@ -200,8 +201,26 @@ export async function getLogoutUrl(): Promise<string> {
 export async function redirectToLogout(): Promise<void> {
   redirect(await getLogoutUrl());
 }
-// TODO: Implement logout
 
+
+export async function getUserDetails(): Promise<unknown> {
+
+  const customerTokenString = (await cookies()).get('customerToken')?.value;
+  const { accessToken } = JSON.parse(customerTokenString!) as CustomerToken;
+
+  //TODO: check if the token is expired. If so, refresh it
+
+  if (!customerTokenString) return "Customer Access Token not set";
+
+  try {
+    const userDetails = await getUser(accessToken);
+    //revalidateTag(TAGS.customer);
+    return userDetails;
+  } catch (e) {
+    console.error(e);
+    return 'Error adding item to cart';
+  }
+}
 // getUserDetails()
 // getOrders()
 // getOrder(orderId: string)

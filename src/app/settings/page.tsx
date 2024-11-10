@@ -11,11 +11,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { getUserDetails } from "@/components/customer/actions";
 
 const Settings = () => {
 
   useEffect(() => {
-    
+    (async () => {
+      console.log(await getUserDetails());
+    })();
   });
 
   const sections = [

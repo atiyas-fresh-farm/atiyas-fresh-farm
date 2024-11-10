@@ -33,6 +33,8 @@ export default async function RootLayout({
   // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart(cartId);
 
+  console.log(searchParams?.code);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body

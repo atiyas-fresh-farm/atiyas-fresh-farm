@@ -57,6 +57,10 @@ export async function redirectToAuthorizationUrl(): Promise<void> {
     'nonce',
     nonce
   );
+  authorizationRequestUrl.searchParams.append(
+    'prompt',
+    'none'
+  );
 
   // Public client
   const verifier = await generateCodeVerifier();

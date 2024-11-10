@@ -36,7 +36,7 @@ const UserButton = () => {
       }
       setLogoutUrl(await getLogoutUrl());
     })();
-  }, []);
+  });
 
   return (
     <div>

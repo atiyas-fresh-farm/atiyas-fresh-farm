@@ -54,6 +54,7 @@ const CartSheet = () => {
         <SheetFooter>
           <div className="w-full flex flex-col justify-center items-center">
             <CartCalculation cost={cart?.cost} className="w-full" />
+            {/* add "?logged_in=true" to the checkout url */}
             <Link href={cart ? cart.checkoutUrl : "#"}><Button className="w-full">Proceed to Checkout</Button></Link>
           </div>
         </SheetFooter>

@@ -63,6 +63,13 @@ export type Category = Omit<ShopifyCategory, 'fields'> & {
   subcategories: string[];
 };
 
+export type CustomerToken = {
+  accessToken: string;
+  expiresIn: number;
+  idToken: string;
+  refreshToken: string;
+};
+
 export type SEO = {
   title: string;
   description: string;
@@ -110,6 +117,13 @@ export type ShopifyProduct = {
   images: Connection<Image>;
   seo: SEO;
   tags: string[];
+};
+
+export type ShopifyCustomerToken = {
+  access_token: string;
+  expires_in: number;
+  id_token: string;
+  refresh_token: string;
 };
 
 

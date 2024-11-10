@@ -4,7 +4,7 @@ import {
   //TAGS,
   SHOPIFY_CUSTOMER_AUTHORIZATION_ENDPOINT,
   SHOPIFY_CUSTOMER_TOKEN_ENDPOINT,
-  //SHOPIFY_CUSTOMER_LOGOUT_ENDPOINT
+  SHOPIFY_CUSTOMER_LOGOUT_ENDPOINT
 } from '@/lib/constants';
 //import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
@@ -15,13 +15,10 @@ import {
   generateCodeVerifier,
   generateCodeChallenge
 } from '@/lib/shopify/customer';
-
-interface CustomerTokenType {
-  accessToken: string;
-  expiresIn: number;
-  idToken: string;
-  refreshToken: string;
-}
+import {
+  CustomerToken,
+  ShopifyCustomerToken
+} from "@/lib/shopify/types";
 
 
 const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app";
@@ -80,7 +77,7 @@ export async function redirectToAuthorizationUrl(): Promise<void> {
 }
 
 // Uses the code that Shopify sends to the redirect URI to get an access token
-export async function getAccessTokenAndSetCookie(code: string): Promise<CustomerTokenType | string> {
+export async function getAccessTokenAndSetCookie(code: string): Promise<CustomerToken | "Missing code verifier"> {
 
   const clientId = process.env.SHOPIFY_CUSTOMER_CLIENT_ID!;
   const tokenEndpoint = SHOPIFY_CUSTOMER_TOKEN_ENDPOINT;
@@ -96,7 +93,7 @@ export async function getAccessTokenAndSetCookie(code: string): Promise<Customer
 
   // Public Client
   const codeVerifier = (await cookies()).get('codeVerifier')?.value;
-  if (!codeVerifier) return 'Missing code verifier';
+  if (!codeVerifier) return "Missing code verifier";
   body.append('code_verifier', codeVerifier);
 
   const headers = {
@@ -110,15 +107,8 @@ export async function getAccessTokenAndSetCookie(code: string): Promise<Customer
     headers: headers,
     body,
   });
-
-  interface AccessTokenResponse {
-    access_token: string;
-    expires_in: number;
-    id_token: string;
-    refresh_token: string;
-  }
   
-  const { access_token, expires_in, id_token, refresh_token } = await response.json() as AccessTokenResponse;
+  const { access_token, expires_in, id_token, refresh_token } = await response.json() as ShopifyCustomerToken;
   const customerAccessToken = {
     accessToken: access_token,
     expiresIn: expires_in,
@@ -131,7 +121,77 @@ export async function getAccessTokenAndSetCookie(code: string): Promise<Customer
 }
 
 // TODO: Implement token refresh
+export async function refreshToken(): Promise<CustomerToken> {
 
+  // TODO: check if the token is expired
+
+  const customerTokenString = (await cookies()).get('customerToken')?.value;
+  const { idToken, refreshToken } = JSON.parse(customerTokenString!);
+
+  const tokenEndpoint = SHOPIFY_CUSTOMER_TOKEN_ENDPOINT;
+  const clientId = process.env.SHOPIFY_CUSTOMER_CLIENT_ID!;
+  const body = new URLSearchParams();
+
+  body.append('grant_type', 'refresh_token');
+  body.append('client_id', clientId);
+  body.append('refresh_token', refreshToken);
+
+  const headers = {
+    'content-type': 'application/x-www-form-urlencoded',
+    // Confidential Client
+    'Authorization': 'Basic `<credentials>`'
+  }
+
+  const response = await fetch(tokenEndpoint, {
+    method: 'POST',
+    headers: headers,
+    body,
+  });
+
+  const {access_token, expires_in, refresh_token} =
+    await response.json() as Omit<ShopifyCustomerToken, 'id_token'>;
+  const customerAccessToken = {
+    accessToken: access_token,
+    expiresIn: expires_in,
+    idToken,
+    refreshToken: refresh_token
+  };
+
+  (await cookies()).set('customerToken', JSON.stringify(customerAccessToken!));
+
+  return customerAccessToken;
+}
+
+export async function getLogoutUrl(): Promise<string> {
+  
+  const customerTokenString = (await cookies()).get('customerToken')?.value;
+
+  if (!customerTokenString) return "Customer Access Token not set"
+
+  const { idToken } = JSON.parse(customerTokenString!);
+
+  const logoutEndpoint = SHOPIFY_CUSTOMER_LOGOUT_ENDPOINT;
+  const logoutURL = new URL(logoutEndpoint);
+
+  logoutURL.searchParams.append(
+    'id_token_hint',
+    idToken
+  );
+
+  /*
+    If you want to redirect the user to a specific page after logout
+    logoutURL.searchParams.append(
+      'post_logout_redirect_uri',
+      redirectUri
+    );
+  */
+
+  return logoutURL.toString();
+}
+
+export async function redirectToLogout(): Promise<void> {
+  redirect(await getLogoutUrl());
+}
 // TODO: Implement logout
 
 // getUserDetails()

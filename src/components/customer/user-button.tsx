@@ -22,7 +22,7 @@ const UserButton = () => {
     if (searchParams.has('code')) {
       //TODO: check if a cookie is already set. If not, then set a new cookie
       (async () => {
-        console.log(getAccessTokenAndSetCookie(searchParams.get('code')?.toString() ?? ""))
+        console.log(await getAccessTokenAndSetCookie(searchParams.get('code')?.toString() ?? ""))
       })();
     }
   }, []);

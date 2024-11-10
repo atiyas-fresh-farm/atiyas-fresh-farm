@@ -16,7 +16,7 @@ type HeroProps = Array<{
 //TODO: make the props required
 const Hero = ({ images }: { images?: HeroProps }) => {
 
-  console.log(images);
+  console.log(images ?? "");
 
   return (
     <div className="w-full h-[350px] lg:h-[650px] max-h-screen border mb-12">

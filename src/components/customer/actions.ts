@@ -218,7 +218,7 @@ export async function getUserDetails(): Promise<unknown> {
     return userDetails;
   } catch (e) {
     console.error(e);
-    return 'Error adding item to cart';
+    return 'Error retrieving user details';
   }
 }
 // getUserDetails()

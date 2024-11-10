@@ -144,8 +144,10 @@ export async function getUser(accessToken: string): Promise<unknown> {
     }
   `;
 
-  return shopfiyCustomerFetch({
+  const res = await shopfiyCustomerFetch<unknown>({
     query,
     accessToken
   });
+
+  return res;
 }

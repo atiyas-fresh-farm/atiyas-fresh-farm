@@ -10,12 +10,11 @@ export const getOrderQuery = /* GraphQL */ `
 `;
 
 export const getOrdersQuery = /* GraphQL */ `
-  query getOrders($last: Int = 50) {
+  query getOrders($first: Int = 50) {
     customer {
 
-      orders(last: $last) {
+      orders(first: $first) {
         edges {
-          cursor
           node {
             ...order
           }

@@ -237,7 +237,7 @@ export async function getOrdersList(): Promise<unknown> {
     return ordersList;
   } catch (e) {
     console.error(e);
-    return 'Error retrieving user details';
+    return 'Error retrieving orders list';
   }
 }
 // getUserDetails()

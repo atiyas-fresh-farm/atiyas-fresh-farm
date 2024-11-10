@@ -8,7 +8,7 @@ import {
 } from '@/lib/constants';
 //import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
-//import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import {
   generateState,
   generateNonce,
@@ -19,8 +19,8 @@ import {
 
 const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app/authentication";
 
-// TODO: directly redirect to the authorization URL
-export async function getAuthorizationUrl(): Promise<string>  {
+// Redirects the user to the Shopify Authorization URL
+export async function redirectToAuthorizationUrl(): Promise<string>  {
 
   const state = await generateState();
   const nonce = await generateNonce(16);
@@ -57,7 +57,7 @@ export async function getAuthorizationUrl(): Promise<string>  {
   // Public client
   const verifier = await generateCodeVerifier();
   const challenge = await generateCodeChallenge(verifier);
-  (await cookies()).set('code-verifier', verifier!);
+  (await cookies()).set('codeVerifier', verifier!);
   //localStorage.setItem('code-verifier', verifier);
 
   authorizationRequestUrl.searchParams.append(
@@ -69,11 +69,11 @@ export async function getAuthorizationUrl(): Promise<string>  {
     'S256'
   );
   
-  return authorizationRequestUrl.toString();
+  redirect(authorizationRequestUrl.toString());
 }
 
-
-export async function getAccessToken(code: string) {
+// Uses the code that Shopify sends to the redirect URI to get an access token
+export async function getAccessTokenAndSetCookie(code: string) {
 
   const clientId = process.env.SHOPIFY_CUSTOMER_CLIENT_ID!;
   const tokenEndpoint = SHOPIFY_CUSTOMER_TOKEN_ENDPOINT;
@@ -88,12 +88,9 @@ export async function getAccessToken(code: string) {
   body.append('code', code);
 
   // Public Client
-  const codeVerifier = (await cookies()).get('code-verifier')?.value;
-  console.log(`codeVerifier \n` + codeVerifier);
+  const codeVerifier = (await cookies()).get('codeVerifier')?.value;
   if (!codeVerifier) return 'Missing code verifier';
   body.append('code_verifier', codeVerifier);
-  //const codeVerifier = localStorage.getItem('code-verifier') ?? "";
-  //body.append('code_verifier', codeVerifier);
 
   const headers = {
     'content-type': 'application/x-www-form-urlencoded',
@@ -114,6 +111,22 @@ export async function getAccessToken(code: string) {
     refresh_token: string;
   }
   
-  return await response.json() as AccessTokenResponse;
-              
+  const { access_token, expires_in, id_token, refresh_token } = await response.json() as AccessTokenResponse;
+  const customerAccessToken = {
+    accessToken: access_token,
+    expiresIn: expires_in,
+    idToken: id_token,
+    refreshToken: refresh_token
+  };
+  (await cookies()).set('customerToken', JSON.stringify(customerAccessToken!));
+
+  return customerAccessToken;
 }
+
+// TODO: Implement token refresh
+
+// TODO: Implement logout
+
+// getUserDetails()
+// getOrders()
+// getOrder(orderId: string)

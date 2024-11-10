@@ -23,8 +23,7 @@ import {
 
 const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app";
 
-// Redirects the user to the Shopify Authorization URL
-export async function redirectToAuthorizationUrl(): Promise<void> {
+export async function getAuthorizationUrl(): Promise<string> {
 
   const state = await generateState();
   const nonce = await generateNonce(16);
@@ -77,7 +76,12 @@ export async function redirectToAuthorizationUrl(): Promise<void> {
     'S256'
   );
   
-  redirect(authorizationRequestUrl.toString());
+  return authorizationRequestUrl.toString();
+}
+
+// Redirects the user to the Shopify Authorization URL
+export async function redirectToAuthorizationUrl(): Promise<void> {
+  redirect(await getAuthorizationUrl());
 }
 
 // Uses the code that Shopify sends to the redirect URI to get an access token

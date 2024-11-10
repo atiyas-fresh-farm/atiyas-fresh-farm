@@ -14,7 +14,8 @@ import {
   generateNonce,
   generateCodeVerifier,
   generateCodeChallenge,
-  getUser
+  getUser,
+  getOrders
 } from '@/lib/shopify/customer';
 import {
   CustomerToken,
@@ -207,7 +208,6 @@ export async function getUserDetails(): Promise<unknown> {
 
   const customerTokenString = (await cookies()).get('customerToken')?.value;
   const { accessToken } = JSON.parse(customerTokenString!) as CustomerToken;
-  console.log(accessToken);
 
   //TODO: check if the token is expired. If so, refresh it
 
@@ -217,6 +217,24 @@ export async function getUserDetails(): Promise<unknown> {
     const userDetails = await getUser(accessToken);
     //revalidateTag(TAGS.customer);
     return userDetails;
+  } catch (e) {
+    console.error(e);
+    return 'Error retrieving user details';
+  }
+}
+
+export async function getOrdersList(): Promise<unknown> {
+  const customerTokenString = (await cookies()).get('customerToken')?.value;
+  const { accessToken } = JSON.parse(customerTokenString!) as CustomerToken;
+
+  //TODO: check if the token is expired. If so, refresh it
+
+  if (!customerTokenString) return "Customer Access Token not set";
+
+  try {
+    const ordersList = await getOrders(accessToken);
+    //revalidateTag(TAGS.customer);
+    return ordersList;
   } catch (e) {
     console.error(e);
     return 'Error retrieving user details';

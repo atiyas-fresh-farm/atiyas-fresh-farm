@@ -9,7 +9,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import Link from 'next/link';
-import { getOrders } from '@/lib/shopify/customer';
+import { getOrdersList } from '@/components/customer/actions';
+import { useEffect } from 'react';
 
 interface OrderType {
   id: string,
@@ -22,6 +23,14 @@ interface OrderType {
 
 const OrderHistory = () => {
 
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const orders = await getOrdersList();
+      console.log(orders);
+    }
+
+    fetchOrders();
+  }, []);
 
 
   const orders: Array<OrderType> = [

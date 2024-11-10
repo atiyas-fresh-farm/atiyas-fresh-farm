@@ -21,72 +21,6 @@ import Link from 'next/link';
 
 const CartSheet = () => {
 
-  /*
-  const cart = [
-    {
-      count: 2,
-      product: {
-        title: "Mosambi 100g - Apple Shimla",
-        imageURL: "/fruits-vegetables/mosambi.jpeg",
-        altText: "Mosambi",
-        price: 2.3
-      }
-    },
-    {
-      count: 5,
-      product: {
-        title: "Apple Shimla 1pc",
-        imageURL: "/fruits-vegetables/apple-shimla.jpeg",
-        altText: "apples",
-        price: 1.8
-      }
-    },
-    {
-      count: 1,
-      product: {
-        title: "Dragon Fruits 1pc",
-        imageURL: "/fruits-vegetables/drangon-fruit.jpeg",
-        altText: "Dragon Fruit",
-        price: 4.12
-      }
-    },
-    {
-      count: 2,
-      product: {
-        title: "Garlic 100g",
-        imageURL: "/fruits-vegetables/garlic.jpeg",
-        altText: "Garlic",
-        price: 2.3
-      }
-    },
-    {
-      count: 5,
-      product: {
-        title: "Apple Shimla 1pc",
-        imageURL: "/fruits-vegetables/apple-shimla.jpeg",
-        altText: "apples",
-        price: 1.8
-      }
-    },
-    {
-      count: 1,
-      product: {
-        title: "Dragon Fruits 1pc",
-        imageURL: "/fruits-vegetables/drangon-fruit.jpeg",
-        altText: "Dragon Fruit",
-        price: 4.12
-      }
-    },
-    {
-      count: 2,
-      product: {
-        title: "Garlic 100g",
-        imageURL: "/fruits-vegetables/garlic.jpeg",
-        altText: "Garlic",
-        price: 2.3
-      }
-    },
-  ];*/
   const { cart } = useCart();
 
   useEffect(() => {
@@ -94,8 +28,6 @@ const CartSheet = () => {
       createCartAndSetCookie();
     }
   }, [cart]);
-
-  //console.log(NextCart);
 
   return (
     <Sheet>
@@ -112,11 +44,6 @@ const CartSheet = () => {
         </SheetHeader>
 
         <ScrollArea className="h-3/4 flex flex-col justify-start items-start overflow-y-auto">
-          {/* {
-            NextCart.map((row, i) => (
-
-            ))
-          } */}
           {
             cart?.lines.map((line) => (
               <CartRowSm key={line.merchandise.id} row={line} />

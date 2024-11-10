@@ -44,8 +44,10 @@ const Signup = ({ searchParams }: { searchParams: SignupParams }) => {
     // get the access token
     const code = searchParams?.code;
     if (code) {
-      const accessToken = getAccessToken(code);
-      console.log(accessToken);
+      (async () => {
+        const accessToken = await getAccessToken(code);
+        console.log(accessToken);
+      })();
     }
   }, []);
 

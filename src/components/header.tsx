@@ -1,16 +1,7 @@
-import { ThemeToggleSubMenu } from "@/components/theme-toggle";
 import { SearchBar } from "@/components/search/search-bar";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link";
 import Image from "next/image";
-import { SearchIcon, CircleUserRoundIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import {
   Dialog,
@@ -24,10 +15,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { UserButton } from "@/components/customer/user-button";
 
 
 
-const Header = () => {
+const Header = ({ customerAccessCode }: { customerAccessCode: string|null }) => {
 
   const loggedin = true;
 
@@ -52,25 +44,8 @@ const Header = () => {
           </span>
           {
             loggedin ?
-            <>
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Avatar>
-                    <AvatarImage />
-                    <AvatarFallback>
-                      <CircleUserRoundIcon size={36}  />
-                    </AvatarFallback>
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="mt-1" align="end">
-                  <ThemeToggleSubMenu />
-                  <DropdownMenuSeparator />
-                  <Link href="/order-history"><DropdownMenuItem>Order History</DropdownMenuItem></Link>
-                  <Link href="/settings"><DropdownMenuItem>Settings</DropdownMenuItem></Link>
-                  <Link href="/logoff"><DropdownMenuItem>Log off</DropdownMenuItem></Link>                
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </> :
+              <UserButton customerAccessCode={customerAccessCode} />
+             :
             <div>
               <Link href="/login">Login</Link>
               <Link href="/signup">Sign Up</Link>

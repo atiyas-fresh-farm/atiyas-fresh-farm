@@ -2,14 +2,8 @@ import { Hero } from "@/components/home/hero";
 import { Categories } from "@/components/home/categories";
 import { OurStore } from "@/components/home/our-store";
 import { Reviews } from "@/components/home/reviews";
-import { getAccessTokenAndSetCookie } from "@/components/customer/actions";
 
-interface AuthenticationParams {
-  code: string;
-  state?: string;
-}
-
-const Home = async ({ searchParams }: { searchParams: AuthenticationParams }) => {
+const Home = async () => {
 
   const categories = [
     {
@@ -89,9 +83,6 @@ const Home = async ({ searchParams }: { searchParams: AuthenticationParams }) =>
       title: "Household & Laundry"
     },
   ];
-
-  const code = searchParams?.code;
-  if (code) console.log(await getAccessTokenAndSetCookie(code));
 
   return (
     <div className="w-full flex justify-center">

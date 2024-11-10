@@ -17,10 +17,17 @@ export const metadata: Metadata = {
   description: "Indian grocery store in the heart of Scarborough",
 };
 
+interface AuthenticationParams {
+  code: string;
+  state?: string;
+}
+
 export default async function RootLayout({
   children,
+  searchParams
 }: Readonly<{
   children: React.ReactNode;
+  searchParams: AuthenticationParams;
 }>) {
   const cartId = (await cookies()).get('cartId')?.value;
   // Don't await the fetch, pass the Promise to the context provider
@@ -39,7 +46,7 @@ export default async function RootLayout({
         >
           <CartProvider cartPromise={cart}>
             <div className="flex flex-col justify-start items-start">
-              <Header />
+              <Header customerAccessCode={searchParams?.code ?? null} />
               <div className="w-full min-h-screen flex flex-col justify-between pt-36">
                 {children}
                 <Footer />

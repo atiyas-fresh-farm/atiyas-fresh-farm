@@ -19,7 +19,7 @@ import { UserButton } from "@/components/customer/user-button";
 
 
 
-const Header = ({ customerAccessCode }: { customerAccessCode: string|null }) => {
+const Header = () => {
 
   const loggedin = true;
 
@@ -44,7 +44,7 @@ const Header = ({ customerAccessCode }: { customerAccessCode: string|null }) => 
           </span>
           {
             loggedin ?
-              <UserButton customerAccessCode={customerAccessCode} />
+              <UserButton />
              :
             <div>
               <Link href="/login">Login</Link>

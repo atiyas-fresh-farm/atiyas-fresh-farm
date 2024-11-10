@@ -11,18 +11,21 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CircleUserRoundIcon } from "lucide-react";
 import Link from "next/link";
-import { useEffect } from "react";
 import { getAccessTokenAndSetCookie } from "@/components/customer/actions";
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
-const UserButton = ({ customerAccessCode }: { customerAccessCode: string|null }) => {
+const UserButton = () => {
 
+  const searchParams = useSearchParams();
   useEffect(() => {
-    (async () => {
-      if (customerAccessCode) {
-        console.log(await getAccessTokenAndSetCookie(customerAccessCode));
-      }
-    })();
-  }, [customerAccessCode]);
+    if (searchParams.has('code')) {
+      //TODO: check if a cookie is already set. If not, then set a new cookie
+      (async () => {
+        console.log(getAccessTokenAndSetCookie(searchParams.get('code')?.toString() ?? ""))
+      })();
+    }
+  }, []);
 
   return (
     <div>

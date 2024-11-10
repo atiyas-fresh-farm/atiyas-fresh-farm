@@ -89,6 +89,7 @@ export async function getAccessToken(code: string) {
 
   // Public Client
   const codeVerifier = (await cookies()).get('code-verifier')?.value;
+  console.log(`codeVerifier \n` + codeVerifier);
   if (!codeVerifier) return 'Missing code verifier';
   body.append('code_verifier', codeVerifier);
   //const codeVerifier = localStorage.getItem('code-verifier') ?? "";

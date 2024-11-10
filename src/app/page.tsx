@@ -3,7 +3,7 @@ import { Categories } from "@/components/home/categories";
 import { OurStore } from "@/components/home/our-store";
 import { Reviews } from "@/components/home/reviews";
 
-const Home = async () => {
+const Home = () => {
 
   const categories = [
     {

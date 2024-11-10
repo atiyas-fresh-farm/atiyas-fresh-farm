@@ -1,9 +1,11 @@
 // TODO: import queries and mutations from the graphql file
 
 import { isShopifyError } from '@/lib/type-guards';
+import { SHOPIFY_SHOP_ID } from '@/lib/constants';
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
-const endpoint = 'https://shopify.com/<shop-id>/account/customer/api/2024-01/graphql';
+
+const endpoint = `https://shopify.com/${SHOPIFY_SHOP_ID}/account/customer/api/2024-01/graphql`;
 
 
 

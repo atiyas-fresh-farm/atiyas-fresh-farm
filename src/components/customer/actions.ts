@@ -207,6 +207,7 @@ export async function getUserDetails(): Promise<unknown> {
 
   const customerTokenString = (await cookies()).get('customerToken')?.value;
   const { accessToken } = JSON.parse(customerTokenString!) as CustomerToken;
+  console.log(accessToken);
 
   //TODO: check if the token is expired. If so, refresh it
 

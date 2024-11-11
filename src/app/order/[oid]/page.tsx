@@ -2,12 +2,15 @@ import { MoveLeft } from "lucide-react";
 import { H2, P } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { CartCalculation } from "@/components/cart/cart-calculation";
+import { getOrderDetails } from "@/components/customer/actions";
 import Link from "next/link";
 
 
-const Order = ({ params }: { params: { oid: string } }) => {
+const Order = async ({ params }: { params: { oid: string } }) => {
 
   console.log(params);
+  const orderId = `gid://shopify/Order/${params.oid}`;
+  console.log(await getOrderDetails(orderId));
   const products = [
     {
       count: 2,

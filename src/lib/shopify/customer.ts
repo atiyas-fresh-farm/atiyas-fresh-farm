@@ -2,7 +2,7 @@
 
 import { isShopifyError } from '@/lib/type-guards';
 import { SHOPIFY_SHOP_ID } from '@/lib/constants';
-import { getOrdersQuery } from './queries/order';
+import { getOrderQuery, getOrdersQuery } from './queries/order';
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
@@ -170,6 +170,31 @@ export async function getOrders(accessToken: string|undefined): Promise<unknown>
   const res = await shopfiyCustomerFetch<unknown>({
     query: getOrdersQuery,
     accessToken
+  });
+
+  return res;
+}
+
+export async function getOrder(orderId: string, accessToken: string|undefined): Promise<unknown> {
+  if (!accessToken) {
+    throw new Error('Missing access token');
+  }
+
+  type getOrderOperation = {
+    data: {
+      order: any;
+    };
+    variables: {
+      orderId: string;
+    };
+  };
+
+  const res = await shopfiyCustomerFetch<getOrderOperation>({
+    query: getOrderQuery,
+    accessToken,
+    variables: {
+      orderId
+    }
   });
 
   return res;

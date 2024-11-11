@@ -1,8 +1,8 @@
 import orderFragment from "../fragments/order";
 
 export const getOrderQuery = /* GraphQL */ `
-  query getOrder($id: ID!) {
-    order(id: $id) {
+  query getOrder($orderId: ID!) {
+    order(id: $orderId) {
       ...order
     }
   }

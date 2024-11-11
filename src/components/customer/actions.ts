@@ -15,7 +15,8 @@ import {
   generateCodeVerifier,
   generateCodeChallenge,
   getUser,
-  getOrders
+  getOrders,
+  getOrder
 } from '@/lib/shopify/customer';
 import {
   CustomerToken,
@@ -240,6 +241,25 @@ export async function getOrdersList(): Promise<unknown> {
     return 'Error retrieving orders list';
   }
 }
+
+export async function getOrderDetails(orderId: string): Promise<unknown> {
+  const customerTokenString = (await cookies()).get('customerToken')?.value;
+  const { accessToken } = JSON.parse(customerTokenString!) as CustomerToken;
+
+  //TODO: check if the token is expired. If so, refresh it
+
+  if (!customerTokenString) return "Customer Access Token not set";
+
+  try {
+    const ordersList = await getOrder(orderId, accessToken);
+    //revalidateTag(TAGS.customer);
+    return ordersList;
+  } catch (e) {
+    console.error(e);
+    return 'Error retrieving orders list';
+  }
+}
+
 // getUserDetails()
 // getOrders()
 // getOrder(orderId: string)

@@ -1,5 +1,5 @@
 import { Large } from "@/components/ui/typography";
-import { Badge } from "@/components/ui/badge";
+//import { Badge } from "@/components/ui/badge";
 import { Money } from "@/lib/shopify/types";
 
 const CartCalculation = ({ className, cost }:
@@ -27,7 +27,7 @@ const CartCalculation = ({ className, cost }:
       <div className="col-span-1 col-start-2 row-span-4 flex justify-end"><Large>${cost?.totalAmount.amount}</Large></div>
 
       <div className="col-span-1 col-start-2 row-span-4 flex justify-end">
-        <Badge>Saving $11.23</Badge>
+        
       </div>
 
     </div>

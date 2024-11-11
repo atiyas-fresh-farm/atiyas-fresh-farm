@@ -61,12 +61,12 @@ const Header = () => {
 
 const SubHeader = () => {
   return (
-    <div className="w-full flex justify-center items-center h-12 bg-[#5e922e]">
+    <div className="w-full flex justify-center items-center h-12 bg-brand">
       <div className="container h-full flex flex-row justify-between items-center text-stone-50 px-4 lg:px-0">
         <span className="flex flex-row space-x-8">
           <Link href="/#explore-categories"><p className="font-semibold">All Categories</p></Link>
           <Link href="/flyer"><p className="font-semibold">Flyer</p></Link>
-          <Link href="/contact"><p className="font-semibold">Contact</p></Link>
+          <Link href="/#contact"><p className="font-semibold">Contact</p></Link>
           <Link href="/about"><p className="font-semibold">About</p></Link>
         </span>
         <span>

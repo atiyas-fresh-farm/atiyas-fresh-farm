@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/hero";
 import { Categories } from "@/components/home/categories";
 import { OurStore } from "@/components/home/our-store";
 import { Reviews } from "@/components/home/reviews";
+import { WhyUs } from "@/components/home/why-us";
 
 const Home = () => {
 
@@ -56,31 +57,30 @@ const Home = () => {
       imageSrc: "/home/categories/10.jpg",
       title: "Lentils & Flour"
     },
-
     {
       handle: "drinks",
-      imageSrc: "/home/categories/3.jpg",
+      imageSrc: "/home/categories/11.jpg",
       title: "Drinks"
     },
     {
       handle: "coffee-tea",
-      imageSrc: "/home/categories/4.jpg",
+      imageSrc: "/home/categories/12.jpg",
       title: "Coffee & Tea"
     },
     {
+      handle: "household-laundry",
+      imageSrc: "/home/categories/13.jpg",
+      title: "Household & Laundry"
+    },
+    {
       handle: "dairy",
-      imageSrc: "/home/categories/5.jpg",
+      imageSrc: "/home/categories/14.jpg",
       title: "Dairy"
     },
     {
       handle: "frozen",
-      imageSrc: "/home/categories/6.jpg",
+      imageSrc: "/home/categories/15.jpg",
       title: "Frozen"
-    },
-    {
-      handle: "household-laundry",
-      imageSrc: "/home/categories/7.jpg",
-      title: "Household & Laundry"
     },
   ];
 
@@ -91,6 +91,7 @@ const Home = () => {
         <Categories title="Explore Categories" categories={categories} />
         <OurStore />
         <Reviews />
+        <WhyUs />
       </main>
     </div>
   );

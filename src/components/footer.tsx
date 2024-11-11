@@ -96,28 +96,37 @@ const Footer = () => {
 
           <div className="w-full h-full flex flex-col lg:flex-row lg:space-x-16 items-center lg:items-start justify-end">
 
-            <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
-              {
-                categories.splice(0, 5).map((category, index) => (
-                  <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
-                    {category.title}
-                  </Link>
-                ))
-              }
-            </div>
-            <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
-              <Link className={textHoverEffect} href="/">Home</Link>
-              <Link className={textHoverEffect} href="/categories">Categories</Link>
-              <Link className={textHoverEffect} href="/flyer">Flyer</Link>
-              <Link className={textHoverEffect} href="/about">About</Link>
-              <Link className={textHoverEffect} href="/contact">Contact</Link>
-            </div>
-            <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
-              <Link className={textHoverEffect} href="/">Home</Link>
-              <Link className={textHoverEffect} href="/categories">Categories</Link>
-              <Link className={textHoverEffect} href="/flyer">Flyer</Link>
-              <Link className={textHoverEffect} href="/about">About</Link>
-              <Link className={textHoverEffect} href="/contact">Contact</Link>
+            <div className="flex flex-col justify-start items-center mt-16 lg:mt-4">
+              <H4>Categories</H4>
+              <div className="flex flex-col lg:flex-row lg:space-x-16 items-center lg:items-start justify-end">
+                <div className="flex flex-col justify-start items-center lg:items-start mt-4 space-y-4">
+                  {
+                    categories.slice(0, 5).map((category, index) => (
+                      <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
+                        {category.title}
+                      </Link>
+                    ))
+                  }
+                </div>
+                <div className="flex flex-col justify-start items-center lg:items-start mt-4 space-y-4">
+                  {
+                    categories.slice(5, 10).map((category, index) => (
+                      <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
+                        {category.title}
+                      </Link>
+                    ))
+                  }
+                </div>
+                <div className="flex flex-col justify-start items-center lg:items-start mt-4 space-y-4">
+                {
+                    categories.slice(10, 15).map((category, index) => (
+                      <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
+                        {category.title}
+                      </Link>
+                    ))
+                  }
+                </div>
+              </div>
             </div>
             <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
               <H4>Contact Details</H4>

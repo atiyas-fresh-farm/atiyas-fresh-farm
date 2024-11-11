@@ -182,7 +182,7 @@ export async function getOrder(orderId: string, accessToken: string|undefined): 
 
   type getOrderOperation = {
     data: {
-      order: any;
+      order: unknown;
     };
     variables: {
       orderId: string;

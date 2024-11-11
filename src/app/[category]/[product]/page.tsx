@@ -1,9 +1,10 @@
-import { H2, H4, Large, Small, P } from "@/components/ui/typography";
+import { H2, H4, Large, Small } from "@/components/ui/typography";
 import { ProductCard } from "@/components/product-card";
 import { AddToCart } from '@/components/product-button';
 import { Product } from "@/lib/shopify/types";
 import { getProduct, getProductRecommendations } from "@/lib/shopify";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ParamsType {
   category: string;
@@ -45,9 +46,19 @@ const ProductPage = async ({ params }: { params: ParamsType }) => {
                 <AddToCart rounded="full" product={product} />
               </div>
             }
-            <div className="mt-4">
-              <Large>Product Description</Large>
-              <P>{product?.description}</P>
+            <div className="mt-8">
+              <Large>Share Via</Large>
+              <div className="flex flex-row justify-start items-center space-x-8 mt-4">
+                <Link href="/">
+                  <Image src="/icons/fb.png" width={40} height={40} alt="Facebook icon" />
+                </Link>
+                <Link href="/">
+                  <Image src="/icons/insta.svg" width={40} height={40} alt="Facebook icon" />
+                </Link>
+                <Link href="/">
+                  <Image src="/icons/wa-dark-green.svg" width={40} height={40} alt="Facebook icon" />
+                </Link>
+              </div>
             </div>
           </div>
 

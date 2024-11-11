@@ -64,7 +64,7 @@ const SubHeader = () => {
     <div className="w-full flex justify-center items-center h-12 bg-brand">
       <div className="container h-full flex flex-row justify-between items-center text-stone-50 px-4 lg:px-0">
         <span className="flex flex-row space-x-8">
-          <Link href="/#explore-categories"><p className="font-semibold">All Categories</p></Link>
+          <Link href="/#explore-categories"><p className="font-semibold hover:text-brand/50">All Categories</p></Link>
           <Link href="/flyer"><p className="font-semibold">Flyer</p></Link>
           <Link href="/#contact"><p className="font-semibold">Contact</p></Link>
           <Link href="/about"><p className="font-semibold">About</p></Link>

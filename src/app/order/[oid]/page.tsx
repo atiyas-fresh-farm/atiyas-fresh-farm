@@ -42,6 +42,9 @@ const Order = async ({ params }: { params: { oid: string } }) => {
       amount: number;
     };
   };
+
+  // **************************
+  //TODO: the values are being printed properly on the server, but for some reason the client is not able to get the values
   const orderDetails = await getOrderDetails(orderId) as OrderDetailsType;
   //console.log(await getOrderDetails(orderId));
   const products = [

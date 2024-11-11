@@ -1,4 +1,5 @@
 import { ProductCard } from "@/components/product-card";
+import { Large } from "@/components/ui/typography";
 import { getCollectionProducts, getCollectionSubcategories } from "@/lib/shopify";
 import { Product } from "@/lib/shopify/types";
 import Link from "next/link";
@@ -15,6 +16,9 @@ interface CategoryProps {
 
 const Category = async ({ params, searchParams }: CategoryProps) => {
 
+  const categories = ["Bakery","Biscuits, Cookies, Rusk","Packaged Food","Munchies","Dessert","Rice & Atta","Essentials","Oils","Spices","Lentils & Flour","Drinks","Coffee & Tea","Household & Laundry","Dairy","Frozen"];
+  const currentCategory = params.category.charAt(0).toUpperCase() + params.category.slice(1);
+
   const products = await getCollectionProducts({
     collection: params.category,
     reverse: false,
@@ -27,6 +31,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
       <main className="container flex flex-row justify-start items-start">
 
         <div className="w-18 md:min-w-64 h-full border-r pt-6">
+          <Large className="mb-4">{currentCategory}</Large>
           <Link href={`/${params.category}`}>
             <div className={`
               w-full h-14 flex flex-row justify-center md:justify-start items-center
@@ -48,6 +53,16 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
                 `}>
                   {subcategory}
                 </div>
+              </Link>
+            ))
+          }
+
+          <hr /><br />
+
+          {
+            categories.filter(cat => cat !== currentCategory).map((category: string) => (
+              <Link key={category} href={`/${category.toString()}`}>
+                <Large className="mb-4 text-neutral-500 hover:text-primary">{category}</Large>
               </Link>
             ))
           }

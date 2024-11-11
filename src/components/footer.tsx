@@ -4,8 +4,74 @@ import { InstagramIcon, FacebookIcon } from "lucide-react";
 import { H4, Large, P } from "@/components/ui/typography";
 
 const Footer = () => {
+
+  const textHoverEffect = "text-neutral-200 hover:text-neutral-50 dark:text-neutral-50 dark:hover:text-neutral-300";
+  const categories = [
+    {
+      handle: "bakery",
+      title: "Bakery"
+    },
+    {
+      handle: "biscuits-cookies-rusk",
+      title: "Biscuits, Cookies, Rusk"
+    },
+    {
+      handle: "packaged-food",
+      title: "Packaged Food"
+    },
+    {
+      handle: "munchies",
+      title: "Munchies"
+    },
+    {
+      handle: "dessert",
+      title: "Dessert"
+    },
+    {
+      handle: "rice-atta",
+      title: "Rice & Atta"
+    },
+    {
+      handle: "essentials",
+      title: "Essentials"
+    },
+    {
+      handle: "oils",
+      title: "Oils"
+    },
+    {
+      handle: "spices",
+      title: "Spices"
+    },
+    {
+      handle: "lentils-flour",
+      title: "Lentils & Flour"
+    },
+
+    {
+      handle: "drinks",
+      title: "Drinks"
+    },
+    {
+      handle: "coffee-tea",
+      title: "Coffee & Tea"
+    },
+    {
+      handle: "dairy",
+      title: "Dairy"
+    },
+    {
+      handle: "frozen",
+      title: "Frozen"
+    },
+    {
+      handle: "household-laundry",
+      title: "Household & Laundry"
+    },
+  ];
+
   return (
-    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-lime-700 text-white">
+    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-lime-700 text-neutral-50">
       <div className="container flex flex-col justify-center items-center px-4 xl:px-0 py-8">
 
         <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:items-start">
@@ -31,12 +97,27 @@ const Footer = () => {
           <div className="w-full h-full flex flex-col lg:flex-row lg:space-x-16 items-center lg:items-start justify-end">
 
             <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
-              <H4>Navigation Links</H4>
-              <Link href="/">Home</Link>
-              <Link href="/categories">Categories</Link>
-              <Link href="/flyer">Flyer</Link>
-              <Link href="/about">About</Link>
-              <Link href="/contact">Contact</Link>
+              {
+                categories.splice(0, 5).map((category, index) => (
+                  <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
+                    {category.title}
+                  </Link>
+                ))
+              }
+            </div>
+            <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
+              <Link className={textHoverEffect} href="/">Home</Link>
+              <Link className={textHoverEffect} href="/categories">Categories</Link>
+              <Link className={textHoverEffect} href="/flyer">Flyer</Link>
+              <Link className={textHoverEffect} href="/about">About</Link>
+              <Link className={textHoverEffect} href="/contact">Contact</Link>
+            </div>
+            <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
+              <Link className={textHoverEffect} href="/">Home</Link>
+              <Link className={textHoverEffect} href="/categories">Categories</Link>
+              <Link className={textHoverEffect} href="/flyer">Flyer</Link>
+              <Link className={textHoverEffect} href="/about">About</Link>
+              <Link className={textHoverEffect} href="/contact">Contact</Link>
             </div>
             <div className="flex flex-col justify-start items-center lg:items-start mt-16 lg:mt-4 space-y-4">
               <H4>Contact Details</H4>

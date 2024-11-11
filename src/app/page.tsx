@@ -57,30 +57,29 @@ const Home = async () => {
       imageSrc: "/home/categories/10.jpg",
       title: "Lentils & Flour"
     },
-
     {
       handle: "drinks",
-      imageSrc: "/home/categories/3.jpg",
+      imageSrc: "/home/categories/11.jpg",
       title: "Drinks"
     },
     {
       handle: "coffee-tea",
-      imageSrc: "/home/categories/4.jpg",
+      imageSrc: "/home/categories/12.jpg",
       title: "Coffee & Tea"
     },
     {
       handle: "dairy",
-      imageSrc: "/home/categories/5.jpg",
+      imageSrc: "/home/categories/13.jpg",
       title: "Dairy"
     },
     {
       handle: "frozen",
-      imageSrc: "/home/categories/6.jpg",
+      imageSrc: "/home/categories/14.jpg",
       title: "Frozen"
     },
     {
       handle: "household-laundry",
-      imageSrc: "/home/categories/7.jpg",
+      imageSrc: "/home/categories/15.jpg",
       title: "Household & Laundry"
     },
   ];

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { InstagramIcon, FacebookIcon } from "lucide-react"; 
+import { InstagramIcon, FacebookIcon } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons";
 import { H4, Large, P } from "@/components/ui/typography";
 
 const Footer = () => {
@@ -57,16 +58,16 @@ const Footer = () => {
       title: "Coffee & Tea"
     },
     {
+      handle: "household-laundry",
+      title: "Household & Laundry"
+    },
+    {
       handle: "dairy",
       title: "Dairy"
     },
     {
       handle: "frozen",
       title: "Frozen"
-    },
-    {
-      handle: "household-laundry",
-      title: "Household & Laundry"
     },
   ];
 
@@ -86,18 +87,21 @@ const Footer = () => {
             </P>
             <div className="flex flex-row justify-start items-center space-x-8">
               <Link href="/">
+                <FacebookIcon className="text-neutral-50 dark:text-neutral-50" size={24} />
+              </Link>
+              <Link href="/">
                 <InstagramIcon className="text-neutral-50 dark:text-neutral-50" size={24} />
               </Link>
               <Link href="/">
-                <FacebookIcon className="text-neutral-50 dark:text-neutral-50" size={24} />
+                <WhatsAppIcon />
               </Link>
             </div>
           </div>
 
           <div className="col-span-1 flex flex-col justify-start items-center mt-16 lg:mt-4 px-2">
             <H4>Categories</H4>
-            <div className="flex flex-col lg:flex-row items-center lg:items-start justify-end">
-              <div className="flex flex-col justify-start items-center text-center mt-4 space-y-4">
+            <div className="flex flex-col lg:flex-row items-center space-x-6 lg:items-start justify-end">
+              <div className="flex flex-col justify-start items-start mt-4 space-y-4">
                 {
                   categories.slice(0, 5).map((category, index) => (
                     <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
@@ -106,7 +110,7 @@ const Footer = () => {
                   ))
                 }
               </div>
-              <div className="flex flex-col justify-start items-center text-center mt-4 space-y-4">
+              <div className="flex flex-col justify-start items-start mt-4 space-y-4">
                 {
                   categories.slice(5, 10).map((category, index) => (
                     <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
@@ -115,7 +119,7 @@ const Footer = () => {
                   ))
                 }
               </div>
-              <div className="flex flex-col justify-start items-center text-center mt-4 space-y-4">
+              <div className="flex flex-col justify-start items-start mt-4 space-y-4">
               {
                 categories.slice(10, 15).map((category, index) => (
                   <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>

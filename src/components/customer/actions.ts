@@ -233,9 +233,9 @@ export async function getOrdersList(): Promise<unknown> {
   if (!customerTokenString) return "Customer Access Token not set";
 
   try {
-    const ordersList = await getOrders(accessToken);
+    const orderDetails = await getOrders(accessToken);
     //revalidateTag(TAGS.customer);
-    return ordersList;
+    return orderDetails;
   } catch (e) {
     console.error(e);
     return 'Error retrieving orders list';

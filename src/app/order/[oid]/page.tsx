@@ -10,7 +10,8 @@ const Order = async ({ params }: { params: { oid: string } }) => {
 
   console.log(params);
   const orderId = `gid://shopify/Order/${params.oid}`;
-  console.log(await getOrderDetails(orderId));
+  const orderDetails = await getOrderDetails(orderId);
+  //console.log(await getOrderDetails(orderId));
   const products = [
     {
       count: 2,
@@ -68,6 +69,11 @@ const Order = async ({ params }: { params: { oid: string } }) => {
         </Link>
         <H2>Order Details</H2>
         
+
+        {
+          <p>{orderDetails?.toString()}</p>
+        }
+
         <div className="w-full flex flex-col justify-start items-start mt-4">
           <p>Order id: {order.id}</p>
           <p>Order date: {order.date}</p>

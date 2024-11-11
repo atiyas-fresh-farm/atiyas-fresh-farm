@@ -71,7 +71,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-lime-700 text-neutral-50">
+    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-brand text-neutral-50">
       <div className="container flex flex-col justify-center items-center px-4 xl:px-0 py-8">
 
         <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:items-start">

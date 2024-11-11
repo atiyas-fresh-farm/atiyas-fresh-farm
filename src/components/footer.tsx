@@ -72,7 +72,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full h-full flex flex-col justify-center items-center border-t bg-brand text-neutral-50">
+    <footer id="footer" className="w-full h-full flex flex-col justify-center items-center border-t bg-brand text-neutral-50">
       <div className="container flex flex-col justify-center items-center px-4 xl:px-0 py-8">
 
         <div className="w-full grid grid-rows-3 lg:grid-rows-1 lg:grid-cols-3 justify-between items-center lg:items-start">
@@ -131,7 +131,7 @@ const Footer = () => {
             </div>
           </div>
           
-          <div className="col-span-1 flex flex-col justify-start items-center lg:items-end">
+          <div id="contact" className="col-span-1 flex flex-col justify-start items-center lg:items-end">
             <div className="mt-16 lg:mt-4 space-y-4">
               <H4>Contact Details</H4>
               <P>+1 416-901-1333</P>

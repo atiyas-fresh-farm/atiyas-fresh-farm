@@ -91,7 +91,7 @@ const SubHeader = () => {
         <span className="flex flex-row space-x-8">
           <Link href="/#explore-categories"><p className="font-semibold">All Categories</p></Link>
           <Link href="/flyer"><p className="font-semibold">Flyer</p></Link>
-          <Link href="/contact"><p className="font-semibold">Contact</p></Link>
+          <Link href="/#contact"><p className="font-semibold">Contact</p></Link>
           <Link href="/about"><p className="font-semibold">About</p></Link>
         </span>
         <span>

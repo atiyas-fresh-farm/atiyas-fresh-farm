@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/hero";
 import { Categories } from "@/components/home/categories";
 import { OurStore } from "@/components/home/our-store";
 import { Reviews } from "@/components/home/reviews";
+import { WhyUs } from "@/components/home/why-us";
 
 
 const Home = async () => {
@@ -68,19 +69,19 @@ const Home = async () => {
       title: "Coffee & Tea"
     },
     {
-      handle: "dairy",
+      handle: "household-laundry",
       imageSrc: "/home/categories/13.jpg",
+      title: "Household & Laundry"
+    },
+    {
+      handle: "dairy",
+      imageSrc: "/home/categories/14.jpg",
       title: "Dairy"
     },
     {
       handle: "frozen",
-      imageSrc: "/home/categories/14.jpg",
-      title: "Frozen"
-    },
-    {
-      handle: "household-laundry",
       imageSrc: "/home/categories/15.jpg",
-      title: "Household & Laundry"
+      title: "Frozen"
     },
   ];
 
@@ -91,6 +92,7 @@ const Home = async () => {
         <Categories title="Explore Categories" categories={categories} />
         <OurStore />
         <Reviews />
+        <WhyUs />
       </main>
     </div>
   );

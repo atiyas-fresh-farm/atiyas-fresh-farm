@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import {
   Carousel,
   CarouselContent,
@@ -8,15 +7,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-type HeroProps = Array<{
-  src: StaticImport|string,
-  alt: string
-}>
-
 //TODO: make the props required
-const Hero = ({ images }: { images?: HeroProps }) => {
-
-  console.log(images ?? "");
+const Hero = () => {
 
   return (
     <div className="w-full h-[350px] lg:h-[650px] max-h-screen border mb-12">

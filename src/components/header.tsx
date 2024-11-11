@@ -63,15 +63,15 @@ const SubHeader = () => {
   return (
     <div className="w-full flex justify-center items-center h-12 bg-brand">
       <div className="container h-full flex flex-row justify-between items-center text-stone-50 px-4 lg:px-0">
-        <span className="flex flex-row space-x-8">
-          <Link href="/#explore-categories"><p className="font-semibold hover:text-brand/50">All Categories</p></Link>
-          <Link href="/flyer"><p className="font-semibold">Flyer</p></Link>
-          <Link href="/#contact"><p className="font-semibold">Contact</p></Link>
-          <Link href="/about"><p className="font-semibold">About</p></Link>
+        <span className="flex flex-row space-x-4">
+          <Link href="/#explore-categories"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">All Categories</p></Link>
+          <Link href="/flyer"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Flyer</p></Link>
+          <Link href="/#contact"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Contact</p></Link>
+          <Link href="/#footer"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">About</p></Link>
         </span>
         <span>
           <Dialog>
-            <DialogTrigger><p className="font-semibold">Delivery coverage</p></DialogTrigger>
+            <DialogTrigger><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Delivery coverage</p></DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Check Delivery Coverage</DialogTitle>

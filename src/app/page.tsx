@@ -21,7 +21,7 @@ import Category14 from "/public/home/categories/14.jpg";
 import Category15 from "/public/home/categories/15.jpg";
 
 
-const Home = async () => {
+const Home = () => {
 
   const categories = [
     {

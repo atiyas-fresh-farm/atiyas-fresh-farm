@@ -251,8 +251,6 @@ export async function getOrderDetails(orderId: string): Promise<unknown> {
   if (!customerTokenString) return "Customer Access Token not set";
 
   try {
-    console.log(orderId);
-    console.log(accessToken);
     const ordersList = await getOrder(orderId, accessToken);
     //revalidateTag(TAGS.customer);
     return ordersList;

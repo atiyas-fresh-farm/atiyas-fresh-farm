@@ -8,9 +8,41 @@ import Link from "next/link";
 
 const Order = async ({ params }: { params: { oid: string } }) => {
 
-  console.log(params);
   const orderId = `gid://shopify/Order/${params.oid}`;
-  const orderDetails = await getOrderDetails(orderId);
+
+  type OrderDetailsType = {
+    billingAddress: unknown;
+    cancelledAt: Date;
+    cancelReason: string;
+    confirmationNumber: string;
+    createdAt: Date;
+    edited: boolean;
+    financialStatus: string;
+    fulfillments: unknown;
+    id: string;
+    lineItems: unknown;
+    name: string;
+    number: number;
+    paymentInformation: unknown;
+    poNumber: number;
+    processedAt: Date;
+    shippingAddress: unknown;
+    shippingLine: unknown;
+    statusPageUrl: string;
+    subtotal: {
+      amount: number;
+    };
+    totalPrice: {
+      amount: number;
+    };
+    totalShipping: {
+      amount: number;
+    };
+    totalTax: {
+      amount: number;
+    };
+  };
+  const orderDetails = await getOrderDetails(orderId) as OrderDetailsType;
   //console.log(await getOrderDetails(orderId));
   const products = [
     {
@@ -69,10 +101,9 @@ const Order = async ({ params }: { params: { oid: string } }) => {
         </Link>
         <H2>Order Details</H2>
         
-
-        {
-          <p>{orderDetails?.toString()}</p>
-        }
+        <p>{orderDetails?.id}</p>
+        {orderDetails?.lineItems?.toString()}
+        {orderDetails?.totalPrice?.amount}
 
         <div className="w-full flex flex-col justify-start items-start mt-4">
           <p>Order id: {order.id}</p>

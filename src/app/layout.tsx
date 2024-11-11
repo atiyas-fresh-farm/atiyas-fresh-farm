@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
@@ -49,6 +50,7 @@ export default async function RootLayout({
             <Toaster closeButton />
           </CartProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

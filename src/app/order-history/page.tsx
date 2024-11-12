@@ -143,11 +143,14 @@ const OrderHistory = () => {
           <TableBody>
             
             {
-              orders?.map((order) => {
+              orders?.map((order, i) => {
                 const itemList = order.lineItems.map(lineItem => lineItem.name).toString();
+                const orderIdArray = order.id.match(/[^/]+$/);
+                //TODO
+                const orderId = orderIdArray ? orderIdArray[0] : i;
                 return (
-                  <TableRow key={order.id}>
-                    <TableCell className="font-medium">{order.id}</TableCell>
+                  <TableRow key={orderId}>
+                    <TableCell className="font-medium">{orderId}</TableCell>
                     <TableCell className="font-medium">{order.createdAt.toString()}</TableCell>
                     <TableCell>{itemList}</TableCell>
                     <TableCell>{order.lineItems.length}</TableCell>

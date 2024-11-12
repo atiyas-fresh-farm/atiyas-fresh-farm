@@ -151,7 +151,7 @@ const OrderHistory = () => {
                 return (
                   <TableRow key={orderId}>
                     <TableCell className="font-medium">{orderId}</TableCell>
-                    <TableCell className="font-medium">{order.createdAt.toString()}</TableCell>
+                    <TableCell className="font-medium">{order.createdAt.toString().slice(0, 10)}</TableCell>
                     <TableCell>{itemList}</TableCell>
                     <TableCell>{order.lineItems.length}</TableCell>
                     <TableCell>${order.totalPrice.amount}</TableCell>

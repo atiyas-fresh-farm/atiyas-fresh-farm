@@ -59,10 +59,12 @@ export async function getAuthorizationUrl(): Promise<string> {
     'nonce',
     nonce
   );
+  /*
+  Set this if the user is logged in and you do not want them to see the shopify signin screen
   authorizationRequestUrl.searchParams.append(
     'prompt',
     'none'
-  );
+  );*/
 
   // Public client
   const verifier = await generateCodeVerifier();

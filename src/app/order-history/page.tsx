@@ -12,29 +12,30 @@ import {
 } from "@/components/ui/table"
 import Link from 'next/link';
 import { getOrdersList } from '@/components/customer/actions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Order } from '@/lib/shopify/types';
 
+/*
 interface OrderType {
   id: string,
   date: string,
   items: string,
   count: number,
   price: number,
-}
-
+}*/
 
 const OrderHistory = () => {
 
+  const [orders, setOrders] = useState<Array<Order> | null>(null);
   useEffect(() => {
     const fetchOrders = async () => {
-      const orders = await getOrdersList();
-      console.log(orders);
+      const orderList = await getOrdersList() as Order[];
+      setOrders(orderList);
     }
-
     fetchOrders();
   }, []);
 
-
+  /*
   const orders: Array<OrderType> = [
     {
       id: "981357",
@@ -120,7 +121,7 @@ const OrderHistory = () => {
       count: 8,
       price: 301.02,
     }
-  ];
+  ];*/
 
   return (
     <div className="w-full flex justify-center">
@@ -142,18 +143,21 @@ const OrderHistory = () => {
           <TableBody>
             
             {
-              orders.map((order) => (
-                <TableRow key={order.id}>
-                  <TableCell className="font-medium">{order.id}</TableCell>
-                  <TableCell className="font-medium">{order.date}</TableCell>
-                  <TableCell>{order.items}</TableCell>
-                  <TableCell>{order.count}</TableCell>
-                  <TableCell>${order.price}</TableCell>
-                  <TableCell className="text-right underline">
-                    <Link href={`/order/${order.id}`}>View Details</Link>
-                  </TableCell>
-                </TableRow>
-              ))
+              orders?.map((order) => {
+                const itemList = order.lineItems.map(lineItem => lineItem.name).toString();
+                return (
+                  <TableRow key={order.id}>
+                    <TableCell className="font-medium">{order.id}</TableCell>
+                    <TableCell className="font-medium">{order.createdAt.toLocaleTimeString()}</TableCell>
+                    <TableCell>{itemList}</TableCell>
+                    <TableCell>{order.lineItems.length}</TableCell>
+                    <TableCell>${order.totalPrice.amount}</TableCell>
+                    <TableCell className="text-right underline">
+                      <Link href={`/order/${order.id}`}>View Details</Link>
+                    </TableCell>
+                  </TableRow>
+                )
+              })
             }
 
           </TableBody>

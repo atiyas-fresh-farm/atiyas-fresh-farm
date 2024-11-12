@@ -148,7 +148,7 @@ const OrderHistory = () => {
                 return (
                   <TableRow key={order.id}>
                     <TableCell className="font-medium">{order.id}</TableCell>
-                    <TableCell className="font-medium">{order.createdAt.toISOString()}</TableCell>
+                    <TableCell className="font-medium">{order.createdAt.toString()}</TableCell>
                     <TableCell>{itemList}</TableCell>
                     <TableCell>{order.lineItems.length}</TableCell>
                     <TableCell>${order.totalPrice.amount}</TableCell>

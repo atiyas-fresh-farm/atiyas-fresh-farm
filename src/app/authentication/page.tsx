@@ -17,7 +17,9 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { redirectToAuthorizationUrl } from "@/components/customer/actions";
+import { getAuthorizationUrl } from "@/components/customer/actions";
+import Link from "next/link";
+import { useRef, useEffect } from "react";
 
 
 /*
@@ -27,6 +29,14 @@ type SignupParams = {
 }*/
 
 const Signup = () => {
+
+  const authorizationUrl = useRef("");
+
+  useEffect(() => {
+    (async () => {
+      authorizationUrl.current = await getAuthorizationUrl();
+    })();
+  }, []);
 
   return (
     <div className="w-full flex justify-center">
@@ -55,11 +65,11 @@ const Signup = () => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button onClick={
-                  async () => {
-                    await redirectToAuthorizationUrl();
-                  }
-                }>Create Account</Button>
+                <Link href={authorizationUrl.current}>
+                  <Button>
+                    Create Account
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           </TabsContent>

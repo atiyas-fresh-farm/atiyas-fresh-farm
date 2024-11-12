@@ -3,6 +3,10 @@
 import { isShopifyError } from '@/lib/type-guards';
 import { SHOPIFY_SHOP_ID } from '@/lib/constants';
 import { getOrderQuery, getOrdersQuery } from './queries/order';
+import {
+  Connection,
+  ShopifyOrder
+} from "@/lib/shopify/types";
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
@@ -132,6 +136,46 @@ function convertBufferToString(hash: ArrayBuffer) {
 
 
 /**
+ * Reshape shopify data for local usage
+ */
+
+const removeEdgesAndNodes = <T>(array: Connection<T>): T[] => {
+  return array.edges.map((edge) => edge?.node);
+};
+
+function reshapeOrder(order: ShopifyOrder) {
+  if (!order) {
+    return undefined;
+  }
+
+  const { fulfillments, lineItems, ...rest } = order;
+
+  return {
+    ...rest,
+    fulfillments: removeEdgesAndNodes(fulfillments),
+    lineItems: removeEdgesAndNodes(lineItems)
+  };
+}
+
+function reshapeOrders(orders: ShopifyOrder[]) {
+  const reshapedOrders = [];
+
+  for (const order of orders) {
+    if (order) {
+      const reshapedOrder = reshapeOrder(order);
+
+      if (reshapedOrder) {
+        reshapedOrders.push(reshapedOrder);
+      }
+    }
+  }
+
+  return reshapedOrders;
+}
+
+
+
+/**
  * Queries and Mutations for the Shopify Customer API
  */
 
@@ -172,7 +216,7 @@ export async function getOrders(accessToken: string|undefined): Promise<unknown>
     accessToken
   });
 
-  return res;
+  return reshapeOrders(removeEdgesAndNodes(res.body.data.customer.orders));
 }
 
 export async function getOrder(orderId: string, accessToken: string|undefined): Promise<unknown> {
@@ -197,6 +241,7 @@ export async function getOrder(orderId: string, accessToken: string|undefined): 
     }
   });
 
+  //return reshapeOrder(res);
   return res;
 }
 

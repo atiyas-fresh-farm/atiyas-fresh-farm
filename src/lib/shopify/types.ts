@@ -13,6 +13,8 @@ export type Fields = {
   value: string;
 };
 
+export type FinancialStatus = "AUTHORIZED"|"EXPIRED"|"PAID"|"PARTIALLY_PAID"|"PARTIALLY_REFUNDED"|"PENDING"|"REFUNDED"|"VOIDED";
+
 export type Cart = Omit<ShopifyCart, 'lines'> & {
   lines: CartItem[];
 };
@@ -62,6 +64,18 @@ export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
 export type Category = Omit<ShopifyCategory, 'fields'> & {
   subcategories: string[];
 };
+
+// TODO: create types
+export type Order = Omit<ShopifyOrder, 'fulfillments' | 'lineItems'> & {
+  fulfillments: Fulfillment[];
+  lineItems: LineItem[];
+};
+
+export type Fulfillment = ShopifyFulfillment;
+
+export type CustomerAddress = ShopifyCustomerAddress;
+
+export type LineItem = ShopifyLineItem;
 
 export type CustomerToken = {
   accessToken: string;
@@ -117,6 +131,78 @@ export type ShopifyProduct = {
   images: Connection<Image>;
   seo: SEO;
   tags: string[];
+};
+
+export type ShopifyCustomerAddress = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  company: string;
+  phoneNumber: string;
+  address1: string;
+  address2: string;
+  city: string;
+  province: string;
+  country: string;
+  zip: string;
+};
+
+export type ShopifyLineItem = {
+  id: string;
+  name: string;
+  price: Money;
+  quantity: number;
+  totalDiscount: Money;
+  totalPrice: Money;
+  currentTotalPrice: Money;
+  image: Image;
+  productId: string;
+  variantId: string;
+};
+
+export type ShopifyFulfillment = {
+  createdAt: Date;
+  estimatedDeliveryAt: Date;
+  id: string;
+  isPickedUp: boolean;
+  status: "CANCELLED"|"ERROR"|"FAILURE"|"SUCCESS"|"OPEN"|"PENDING";
+  updatedAt: Date;
+};
+
+// TODO: change type Date to DateTime
+// extract enum types and add comments for each type
+export type ShopifyOrder = {
+  billingAddress: ShopifyCustomerAddress;
+  cancelledAt: Date;
+  cancelReason: "CUSTOMER"|"DECLINED"|"FRAUD"|"INVENTORY"|"OTHER"|"STAFF";
+  confirmationNumber: string;
+  createdAt: Date;
+  edited: boolean;
+  financialStatus: FinancialStatus;
+  fulfillments: Connection<ShopifyFulfillment>;
+  id: string;
+  lineItems: Connection<ShopifyLineItem>;
+  name: string;
+  number: number;
+  paymentInformation: {
+    paymentCollectionUrl: string;
+    paymentStatus: FinancialStatus;
+    totalOutstandingAmount: Money;
+    totalPaidAmount: Money;
+  };
+  poNumber: string;
+  processedAt: Date;
+  shippingAddress: ShopifyCustomerAddress;
+  shippingLine: {
+    handle: string
+    originalPrice: Money;
+    title: string;
+  };
+  statusPageUrl: string;
+  subtotal: Money;
+  totalPrice: Money;
+  totalShipping: Money;
+  totalTax: Money;
 };
 
 export type ShopifyCustomerToken = {

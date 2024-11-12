@@ -156,7 +156,7 @@ const OrderHistory = () => {
                     <TableCell>{order.lineItems.length}</TableCell>
                     <TableCell>${order.totalPrice.amount}</TableCell>
                     <TableCell className="text-right underline">
-                      <Link href={`/order/${order.id}`}>View Details</Link>
+                      <Link href={`/order/${orderId}`}>View Details</Link>
                     </TableCell>
                   </TableRow>
                 )

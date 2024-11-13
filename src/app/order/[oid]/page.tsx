@@ -3,6 +3,7 @@ import { H2, P } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { CartCalculation } from "@/components/cart/cart-calculation";
 import { getOrderDetails } from "@/components/customer/actions";
+import { ShopifyOrder } from "@/lib/shopify/types";
 import Link from "next/link";
 
 
@@ -10,42 +11,9 @@ const Order = async ({ params }: { params: { oid: string } }) => {
 
   const orderId = `gid://shopify/Order/${params.oid}`;
 
-  type OrderDetailsType = {
-    billingAddress: unknown;
-    cancelledAt: Date;
-    cancelReason: string;
-    confirmationNumber: string;
-    createdAt: Date;
-    edited: boolean;
-    financialStatus: string;
-    fulfillments: unknown;
-    id: string;
-    lineItems: unknown;
-    name: string;
-    number: number;
-    paymentInformation: unknown;
-    poNumber: number;
-    processedAt: Date;
-    shippingAddress: unknown;
-    shippingLine: unknown;
-    statusPageUrl: string;
-    subtotal: {
-      amount: number;
-    };
-    totalPrice: {
-      amount: number;
-    };
-    totalShipping: {
-      amount: number;
-    };
-    totalTax: {
-      amount: number;
-    };
-  };
-
   // **************************
   //TODO: the values are being printed properly on the server, but for some reason the client is not able to get the values
-  const orderDetails = await getOrderDetails(orderId) as OrderDetailsType;
+  const orderDetails = await getOrderDetails(orderId) as ShopifyOrder;
   //console.log(await getOrderDetails(orderId));
   const products = [
     {

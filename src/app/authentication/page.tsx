@@ -15,13 +15,13 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
+import { WEBSITE_URL } from "@/lib/constants";
 import Link from "next/link";
 
 
 const Signup = async () => {
 
-  const websiteUrl = `http://localhost:3000`;
-  const res = await fetch(`${websiteUrl}/api/authentication`);
+  const res = await fetch(`${WEBSITE_URL}/api/authentication`);
   const authorizationUrl = await res.text();
 
   return (

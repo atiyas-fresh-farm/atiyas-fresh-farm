@@ -1,5 +1,3 @@
-"use client";
-
 import { H2 } from '@/components/ui/typography';
 import {
   Table,
@@ -12,116 +10,12 @@ import {
 } from "@/components/ui/table"
 import Link from 'next/link';
 import { getOrdersList } from '@/components/customer/actions';
-import { useEffect, useState } from 'react';
 import { Order } from '@/lib/shopify/types';
 
-/*
-interface OrderType {
-  id: string,
-  date: string,
-  items: string,
-  count: number,
-  price: number,
-}*/
 
-const OrderHistory = () => {
+const OrderHistory = async () => {
 
-  const [orders, setOrders] = useState<Array<Order> | null>(null);
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const orderList = await getOrdersList() as Order[];
-      setOrders(orderList);
-    }
-    fetchOrders();
-  }, []);
-
-  /*
-  const orders: Array<OrderType> = [
-    {
-      id: "981357",
-      date: "Oct 28, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 12,
-      price: 351.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    },
-    {
-      id: "648463",
-      date: "Sep 05, 2024",
-      items: "Aashirvaad Atta, Bananas, ...",
-      count: 8,
-      price: 301.02,
-    }
-  ];*/
+  const orders = await getOrdersList() as Order[];
 
   return (
     <div className="w-full flex justify-center">

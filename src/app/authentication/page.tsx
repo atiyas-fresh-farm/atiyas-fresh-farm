@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -19,24 +17,11 @@ import {
 } from "@/components/ui/tabs"
 import { getAuthorizationUrl } from "@/components/customer/actions";
 import Link from "next/link";
-import { useRef, useEffect } from "react";
 
 
-/*
-type SignupParams = {
-  code: string;
-  state?: string;
-}*/
+const Signup = async () => {
 
-const Signup = () => {
-
-  const authorizationUrl = useRef("");
-
-  useEffect(() => {
-    (async () => {
-      authorizationUrl.current = await getAuthorizationUrl();
-    })();
-  }, []);
+  const authorizationUrl = await getAuthorizationUrl();
 
   return (
     <div className="w-full flex justify-center">
@@ -65,7 +50,7 @@ const Signup = () => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Link href={authorizationUrl.current}>
+                <Link href={authorizationUrl}>
                   <Button>
                     Create Account
                   </Button>

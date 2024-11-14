@@ -10,50 +10,6 @@ const Cart = () => {
 
   const { cart } = useCart();
 
-  /*
-  const cart = [
-    {
-      count: 2,
-      product: {
-        title: "Mosambi 100g",
-        imageURL: "/fruits-vegetables/mosambi.jpeg",
-        altText: "Mosambi",
-        price: 2.3
-      },
-      isDeleted: false,
-    },
-    {
-      count: 5,
-      product: {
-        title: "Apple Shimla 1pc",
-        imageURL: "/fruits-vegetables/apple-shimla.jpeg",
-        altText: "apples",
-        price: 1.8
-      },
-      isDeleted: false,
-    },
-    {
-      count: 1,
-      product: {
-        title: "Dragon Fruits 1pc",
-        imageURL: "/fruits-vegetables/drangon-fruit.jpeg",
-        altText: "Dragon Fruit",
-        price: 4.12
-      },
-      isDeleted: false,
-    },
-    {
-      count: 2,
-      product: {
-        title: "Garlic 100g",
-        imageURL: "/fruits-vegetables/garlic.jpeg",
-        altText: "Garlic",
-        price: 2.3
-      },
-      isDeleted: false,
-    }
-  ];*/
-
   return (
     <div className="w-full flex justify-center">
       <main className="container flex flex-col justify-start items-start py-10 px-2 lg:px-0">

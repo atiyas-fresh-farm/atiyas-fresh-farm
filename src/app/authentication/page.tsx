@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -6,22 +6,23 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/ui/tabs"
-import { getAuthorizationUrl } from "@/components/customer/actions";
+} from "@/components/ui/tabs";
 import Link from "next/link";
 
 
 const Signup = async () => {
 
-  const authorizationUrl = await getAuthorizationUrl();
+  const websiteUrl = `http://localhost:3000`;
+  const res = await fetch(`${websiteUrl}/api/authentication`);
+  const authorizationUrl = await res.text();
 
   return (
     <div className="w-full flex justify-center">

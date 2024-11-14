@@ -206,7 +206,6 @@ export async function redirectToLogout(): Promise<void> {
   redirect(await getLogoutUrl());
 }
 
-
 export async function getUserDetails(): Promise<unknown> {
 
   const customerTokenString = (await cookies()).get('customerToken')?.value;
@@ -261,7 +260,3 @@ export async function getOrderDetails(orderId: string): Promise<unknown> {
     return 'Error retrieving orders list';
   }
 }
-
-// getUserDetails()
-// getOrders()
-// getOrder(orderId: string)

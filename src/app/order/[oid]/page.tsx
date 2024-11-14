@@ -35,7 +35,7 @@ const Order = async ({ params }: { params: { oid: string } }) => {
   // **************************
   //TODO: the values are being printed properly on the server, but for some reason the client is not able to get the values
   const orderDetails = await getOrderDetails(orderId) as ShopifyOrder;
-  //console.log(await getOrderDetails(orderId));
+  console.log(orderDetails);
   const products = [
     {
       count: 2,

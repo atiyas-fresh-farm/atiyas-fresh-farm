@@ -1,6 +1,5 @@
 import { MoveLeft } from "lucide-react";
-import { H2, P } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
+import { H2 } from "@/components/ui/typography";
 import { CartRow } from "@/components/cart/cart-row";
 import { CartCalculation } from "@/components/cart/cart-calculation";
 import { getOrderDetails } from "@/components/customer/actions";
@@ -17,6 +16,12 @@ const Order = async ({ params }: { params: { oid: string } }) => {
     return (
       <H2>no such order exists</H2>
     );
+  }
+
+  const cost = {
+    subtotalAmount: order.subtotal,
+    totalAmount: order.totalPrice,
+    totalTaxAmount: order.totalTax
   }
 
   return (
@@ -53,20 +58,14 @@ const Order = async ({ params }: { params: { oid: string } }) => {
                   featuredImage: line.image,
                 }
               }
-            }
-            return (
-              <CartRow key={line.id} editable={false} row={lineItem} />
-            )
+            };
+            return <CartRow key={line.id} editable={false} row={lineItem} />;
+
           })
         }
 
         <div className="w-full flex flex-row justify-end items-center mt-8">
-          <CartCalculation />
-        </div>
-
-        <div className="w-full flex flex-row justify-between items-center mt-4 mb-8">
-          <P>Clear Cart</P>
-          <Button>Checkout</Button>
+          <CartCalculation cost={cost} />
         </div>
 
       </main>

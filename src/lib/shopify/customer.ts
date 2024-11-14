@@ -242,7 +242,7 @@ export async function getOrder(orderId: string, accessToken: string|undefined): 
   });
 
   //return reshapeOrder(res);
-  return res;
+  return reshapeOrder(res.body.data.order);
 }
 
 /**

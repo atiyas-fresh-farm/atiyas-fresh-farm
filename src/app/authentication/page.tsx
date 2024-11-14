@@ -23,6 +23,7 @@ const Signup = async () => {
 
   const res = await fetch(`${WEBSITE_URL}/api/authentication`);
   const authorizationUrl = await res.text();
+  console.log(authorizationUrl);
 
   return (
     <div className="w-full flex justify-center">

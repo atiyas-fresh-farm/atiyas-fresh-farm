@@ -64,7 +64,7 @@ const Order = async ({ params }: { params: { oid: string } }) => {
           })
         }
 
-        <div className="w-full flex flex-row justify-end items-center mt-8">
+        <div className="w-full flex flex-row justify-end items-center my-8">
           <CartCalculation cost={cost} />
         </div>
 

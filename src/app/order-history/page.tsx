@@ -146,7 +146,6 @@ const OrderHistory = () => {
               orders?.map((order, i) => {
                 const itemList = order.lineItems.map(lineItem => lineItem.name).toString();
                 const orderIdArray = order.id.match(/[^/]+$/);
-                //TODO
                 const orderId = orderIdArray ? orderIdArray[0] : i;
                 return (
                   <TableRow key={orderId}>

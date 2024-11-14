@@ -1,6 +1,7 @@
 import { MoveLeft } from "lucide-react";
 import { H2, P } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
+import { CartRow } from "@/components/cart/cart-row";
 import { CartCalculation } from "@/components/cart/cart-calculation";
 import { getOrderDetails } from "@/components/customer/actions";
 import { Order as OrderType } from "@/lib/shopify/types";
@@ -10,10 +11,13 @@ import Link from "next/link";
 const Order = async ({ params }: { params: { oid: string } }) => {
 
   const orderId = `gid://shopify/Order/${params.oid}`;
+  const order = await getOrderDetails(orderId) as OrderType;
 
-  // **************************
-  //TODO: the values are being printed properly on the server, but for some reason the client is not able to get the values
-  const orderDetails = await getOrderDetails(orderId) as OrderType;
+  if (!order) {
+    return (
+      <p>no such order exists</p>
+    );
+  }
 
   return (
     <div className="w-full flex justify-center">
@@ -25,14 +29,36 @@ const Order = async ({ params }: { params: { oid: string } }) => {
         <H2>Order Details</H2>
 
         <div className="w-full flex flex-col justify-start items-start mt-4">
-          <p>Order id: {orderDetails?.id}</p>
-          <p>Order date: {orderDetails.createdAt.toString().slice(0, 10)}</p>
-          <p>Total cost: ${orderDetails?.totalPrice?.amount}</p>
+          <p>Order id: {orderId}</p>
+          <p>Order date: {order.createdAt.toString().slice(0, 10)}</p>
+          <p>Total cost: ${order?.totalPrice?.amount}</p>
         </div>
 
-        {orderDetails?.lineItems?.map((product) => (
-          <span key={product.name}>{product.name}</span>
-        ))}
+        {
+          order?.lineItems?.map((line) => {
+
+            const lineItem = {
+              id: line.productId,
+              quantity: line.quantity,
+              cost: {
+                totalAmount: line.totalPrice,
+              },
+              merchandise: {
+                id: line.variantId,
+                title: line.name,
+                product: {
+                  id: line.productId,
+                  handle: line.name,
+                  title: line.name,
+                  featuredImage: line.image,
+                }
+              }
+            }
+            return (
+              <CartRow key={line.id} editable={false} row={lineItem} />
+            )
+          })
+        }
 
         <div className="w-full flex flex-row justify-end items-center mt-8">
           <CartCalculation />

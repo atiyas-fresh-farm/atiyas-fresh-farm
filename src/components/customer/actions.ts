@@ -99,7 +99,7 @@ export async function getAccessTokenAndSetCookie(code: string): Promise<Customer
   body.append('client_id', clientId);
   body.append(
     'redirect_uri',
-    redirectUri,
+    WEBSITE_URL,
   );
   body.append('code', code);
 

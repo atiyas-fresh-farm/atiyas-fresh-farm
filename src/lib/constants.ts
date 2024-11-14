@@ -35,3 +35,5 @@ export const SHOPIFY_SHOP_ID = '90291601706';
 export const SHOPIFY_CUSTOMER_AUTHORIZATION_ENDPOINT = `https://shopify.com/authentication/${SHOPIFY_SHOP_ID}/oauth/authorize`
 export const SHOPIFY_CUSTOMER_TOKEN_ENDPOINT = `https://shopify.com/authentication/${SHOPIFY_SHOP_ID}/oauth/token`
 export const SHOPIFY_CUSTOMER_LOGOUT_ENDPOINT = `https://shopify.com/authentication/${SHOPIFY_SHOP_ID}/logout`
+
+export const WEBSITE_URL = 'https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app';

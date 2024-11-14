@@ -4,7 +4,8 @@ import {
   //TAGS,
   SHOPIFY_CUSTOMER_AUTHORIZATION_ENDPOINT,
   SHOPIFY_CUSTOMER_TOKEN_ENDPOINT,
-  SHOPIFY_CUSTOMER_LOGOUT_ENDPOINT
+  SHOPIFY_CUSTOMER_LOGOUT_ENDPOINT,
+  WEBSITE_URL
 } from '@/lib/constants';
 //import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
@@ -23,8 +24,6 @@ import {
   ShopifyCustomerToken
 } from "@/lib/shopify/types";
 
-
-const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app";
 
 export async function getAuthorizationUrl(): Promise<string> {
 
@@ -49,7 +48,7 @@ export async function getAuthorizationUrl(): Promise<string> {
   );
   authorizationRequestUrl.searchParams.append(
     'redirect_uri',
-    redirectUri
+    WEBSITE_URL
   );
   authorizationRequestUrl.searchParams.append(
     'state',

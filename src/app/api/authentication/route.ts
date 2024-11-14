@@ -1,4 +1,4 @@
-import { SHOPIFY_CUSTOMER_AUTHORIZATION_ENDPOINT } from '@/lib/constants';
+import { SHOPIFY_CUSTOMER_AUTHORIZATION_ENDPOINT, WEBSITE_URL } from '@/lib/constants';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server'
 import {
@@ -8,8 +8,6 @@ import {
   generateCodeChallenge,
 } from '@/lib/shopify/customer';
 
-
-const redirectUri = "https://atiyas-fresh-farm-git-dev-atiyas-fresh-farm-52cce129.vercel.app";
 
 export async function GET() {
   
@@ -34,7 +32,7 @@ export async function GET() {
   );
   authorizationRequestUrl.searchParams.append(
     'redirect_uri',
-    redirectUri
+    WEBSITE_URL
   );
   authorizationRequestUrl.searchParams.append(
     'state',

@@ -15,7 +15,7 @@ const Order = async ({ params }: { params: { oid: string } }) => {
 
   if (!order) {
     return (
-      <p>no such order exists</p>
+      <H2>no such order exists</H2>
     );
   }
 
@@ -29,7 +29,7 @@ const Order = async ({ params }: { params: { oid: string } }) => {
         <H2>Order Details</H2>
 
         <div className="w-full flex flex-col justify-start items-start mt-4">
-          <p>Order id: {orderId}</p>
+          <p>Order id: {params.oid}</p>
           <p>Order date: {order.createdAt.toString().slice(0, 10)}</p>
           <p>Total cost: ${order?.totalPrice?.amount}</p>
         </div>
@@ -48,7 +48,7 @@ const Order = async ({ params }: { params: { oid: string } }) => {
                 title: line.name,
                 product: {
                   id: line.productId,
-                  handle: line.name,
+                  handle: "",
                   title: line.name,
                   featuredImage: line.image,
                 }

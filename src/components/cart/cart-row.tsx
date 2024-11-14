@@ -3,20 +3,6 @@ import { CartItem } from "@/lib/shopify/types";
 import Image from "next/image";
 //import Link from "next/link";
 
-/*
-interface CartRowType {
-  index: number
-  count: number
-  product: {
-    title: string
-    imageURL: string
-    altText: string
-    price: number
-  },
-  editable?: boolean
-  deleteRow?: (i: number) => void
-}*/
-
 const CartRow = ({ row, editable=true }: { row: CartItem, editable?: boolean }) => {
 
   const image = row.merchandise.product.featuredImage;

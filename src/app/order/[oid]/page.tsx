@@ -2,9 +2,30 @@ import { MoveLeft } from "lucide-react";
 import { H2, P } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { CartCalculation } from "@/components/cart/cart-calculation";
-import { getOrderDetails } from "@/components/customer/actions";
-import { ShopifyOrder } from "@/lib/shopify/types";
+//import { getOrderDetails } from "@/components/customer/actions";
+import { getOrder } from "@/lib/shopify/customer";
+import { ShopifyOrder, CustomerToken } from "@/lib/shopify/types";
+import { cookies } from 'next/headers';
 import Link from "next/link";
+
+
+async function getOrderDetails(orderId: string): Promise<unknown> {
+  const customerTokenString = (await cookies()).get('customerToken')?.value;
+  const { accessToken } = JSON.parse(customerTokenString!) as CustomerToken;
+
+  //TODO: check if the token is expired. If so, refresh it
+
+  if (!customerTokenString) return "Customer Access Token not set";
+
+  try {
+    const orderDetails = await getOrder(orderId, accessToken);
+    //revalidateTag(TAGS.customer);
+    return orderDetails;
+  } catch (e) {
+    console.error(e);
+    return 'Error retrieving orders list';
+  }
+}
 
 
 const Order = async ({ params }: { params: { oid: string } }) => {

@@ -11,12 +11,14 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CircleUserRoundIcon } from "lucide-react";
 import Link from "next/link";
-import { getAccessTokenAndSetCookie, getLogoutUrl } from "@/components/customer/actions";
+import { getAccessTokenAndSetCookie, getLogoutUrl, getAuthorizationUrl } from "@/components/customer/actions";
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const UserButton = () => {
 
+  const loggedIn = true;
+  const [ loginUrl, setLoginUrl ] = useState<string | null>(null);
   const [ logoutUrl, setLogoutUrl ] = useState<string | null>(null);
 
   const searchParams = useSearchParams();
@@ -34,10 +36,19 @@ const UserButton = () => {
          */
         console.log(await getAccessTokenAndSetCookie(searchParams.get('code')?.toString() ?? ""))
       }
+      setLoginUrl(await getAuthorizationUrl());
       setLogoutUrl(await getLogoutUrl());
     })();
   }, []);
 
+  if (!loggedIn) {
+    return (
+      <Link href={loginUrl!}>
+        <p>Log in</p>
+      </Link>
+    );
+  }
+  
   return (
     <div>
       <DropdownMenu>
@@ -59,6 +70,7 @@ const UserButton = () => {
       </DropdownMenu>
     </div>
   );
+      
 }
 
 export { UserButton };

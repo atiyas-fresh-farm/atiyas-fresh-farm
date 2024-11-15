@@ -21,9 +21,8 @@ import Link from "next/link";
 
 const Signup = async () => {
 
-  const res = await fetch(`${WEBSITE_URL}/api/authentication`);
-  const authorizationUrl = await res.text();
-  console.log(authorizationUrl);
+  const res = await fetch(`${WEBSITE_URL}/api/authentication`, {method: 'POST'});
+  console.log(res)
 
   return (
     <div className="w-full flex justify-center">

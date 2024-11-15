@@ -9,7 +9,7 @@ import {
 } from '@/lib/shopify/customer';
 
 
-export async function GET() {
+export async function POST() {
   
   const state = await generateState();
   const nonce = await generateNonce(16);
@@ -52,7 +52,7 @@ export async function GET() {
   // Public client
   const verifier = await generateCodeVerifier();
   const challenge = await generateCodeChallenge(verifier);
-  cookies().set('codeVerifier', verifier!);
+  (await cookies()).set('codeVerifier', verifier!);
   //localStorage.setItem('code-verifier', verifier);
 
   authorizationRequestUrl.searchParams.append(

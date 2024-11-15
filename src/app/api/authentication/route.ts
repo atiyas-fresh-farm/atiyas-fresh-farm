@@ -63,8 +63,12 @@ export async function GET() {
     'code_challenge_method',
     'S256'
   );
+
+  const url = authorizationRequestUrl.toString();
+  console.log(url)
   
-  return NextResponse.json(authorizationRequestUrl.toString(), {
+  // TODO: fix the response - getting html code currently
+  return NextResponse.json(url, {
     status: 200,
     headers: {
       'Content-Type': 'text/plain',

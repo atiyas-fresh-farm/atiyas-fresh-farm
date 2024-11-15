@@ -22,6 +22,7 @@ import Link from "next/link";
 const Signup = async () => {
 
   const res = await fetch(`${WEBSITE_URL}/api/authentication`, {method: 'POST'});
+  const authorizationUrl = await res.text();
   console.log(res)
 
   return (

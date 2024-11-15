@@ -17,7 +17,7 @@ import { useEffect, useState } from 'react';
 
 const UserButton = () => {
 
-  const loggedIn = true;
+  const loggedIn = false;
   const [ loginUrl, setLoginUrl ] = useState<string | null>(null);
   const [ logoutUrl, setLogoutUrl ] = useState<string | null>(null);
 

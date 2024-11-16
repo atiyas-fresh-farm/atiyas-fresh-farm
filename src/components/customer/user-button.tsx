@@ -19,7 +19,7 @@ const UserButton = () => {
 
   const [ loginUrl, setLoginUrl ] = useState<string | null>(null);
   const [ logoutUrl, setLogoutUrl ] = useState<string | null>(null);
-  const loggedIn = logoutUrl !== null;
+  const loggedIn = false;
 
   const searchParams = useSearchParams();
   useEffect(() => {

@@ -2,6 +2,7 @@ import { H4, Small } from '@/components/ui/typography';
 import { ProductCard } from "@/components/product-card";
 import { Product } from '@/lib/shopify/types';
 import { getProducts } from '@/lib/shopify';
+import Link from 'next/link';
 
 
 const Search = async ({ searchParams }: { searchParams?: { query?: string} }) => {
@@ -24,17 +25,25 @@ const Search = async ({ searchParams }: { searchParams?: { query?: string} }) =>
         <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 justify-start items-start mb-6">
           
           {
-            products.map((product: Product) => {
-              return (
-                <div key={product.handle} className="col-span-1 flex justify-center">
-                  <ProductCard
-                    key={product.handle}
-                    category={`bakery`}
-                    product={product}
-                  />
-                </div>
-              )
-            })
+            products.length !== 0 ?
+              products.map((product: Product) => {
+                return (
+                  <div key={product.handle} className="col-span-1 flex justify-center">
+                    <ProductCard
+                      key={product.handle}
+                      category={`bakery`}
+                      product={product}
+                    />
+                  </div>
+                )
+              }) :
+              <div className="col-span-7 w-full flex justify-center items-center text-center">
+                <H4>
+                  Start typing to search for products
+                  <br/> or <br />
+                  <Link href="/" className="underline">Click here to go home.</Link>
+                </H4>
+              </div>
           }
 
         </div>

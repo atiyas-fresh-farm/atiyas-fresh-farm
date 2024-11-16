@@ -1,5 +1,3 @@
-//"use client"
-
 import {
   Carousel,
   CarouselContent,
@@ -10,8 +8,8 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { P, Large, H2 } from "@/components/ui/typography";
 import { StarFull, StarHalf, StarEmpty } from "@/components/ui/icons";
-//import Autoplay from "embla-carousel-autoplay";
-//import { useRef } from "react";
+/*import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";*/
 
 const Reviews = () => {
 
@@ -42,8 +40,8 @@ const Reviews = () => {
     }
   ];
 
-
-  //TODO: Fix autoplay
+  //TODO: add autoplay plugin
+  //"use client"
   //plugins={[plugin.current]}
   return (
     <div id="our-store" className="flex flex-col justify-center items-center w-full my-16">
@@ -52,9 +50,9 @@ const Reviews = () => {
         <CarouselContent>
           {
             reviews.map((review, index) => (
-              <CarouselItem className="basis-1/2" key={index}>
+              <CarouselItem className="lg:basis-1/2" key={index}>
                 <div className="h-full w-full flex justify-center items-center">
-                  <Card className="w-full lg:w-1/2">
+                  <Card className="w-full">
                     <CardContent className="flex flex-col h-96 w-full items-center justify-center p-6">
                       <ReviewStars rating={review.rating} />
                       <P className="text-center">{review.review}</P>

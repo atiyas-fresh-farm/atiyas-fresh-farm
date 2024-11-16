@@ -1,4 +1,5 @@
 import { ProductCard } from "@/components/product-card";
+import { Large } from "@/components/ui/typography";
 import { getCollectionProducts, getCollectionSubcategories } from "@/lib/shopify";
 import { Product } from "@/lib/shopify/types";
 import Link from "next/link";
@@ -15,6 +16,70 @@ interface CategoryProps {
 
 const Category = async ({ params, searchParams }: CategoryProps) => {
 
+  const categories = [
+    {
+      handle: "bakery",
+      title: "Bakery"
+    },
+    {
+      handle: "biscuits-cookies-rusk",
+      title: "Biscuits, Cookies, Rusk"
+    },
+    {
+      handle: "packaged-food",
+      title: "Packaged Food"
+    },
+    {
+      handle: "munchies",
+      title: "Munchies"
+    },
+    {
+      handle: "dessert",
+      title: "Dessert"
+    },
+    {
+      handle: "rice-atta",
+      title: "Rice & Atta"
+    },
+    {
+      handle: "essentials",
+      title: "Essentials"
+    },
+    {
+      handle: "oils",
+      title: "Oils"
+    },
+    {
+      handle: "spices",
+      title: "Spices"
+    },
+    {
+      handle: "lentils-flour",
+      title: "Lentils & Flour"
+    },
+    {
+      handle: "drinks",
+      title: "Drinks"
+    },
+    {
+      handle: "coffee-tea",
+      title: "Coffee & Tea"
+    },
+    {
+      handle: "household-laundry",
+      title: "Household & Laundry"
+    },
+    {
+      handle: "dairy",
+      title: "Dairy"
+    },
+    {
+      handle: "frozen",
+      title: "Frozen"
+    },
+  ];
+  const currentCategory = categories.filter(cat => cat.handle === params.category)[0];
+
   const products = await getCollectionProducts({
     collection: params.category,
     reverse: false,
@@ -27,6 +92,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
       <main className="container flex flex-row justify-start items-start">
 
         <div className="w-18 md:min-w-64 h-full border-r pt-6">
+          <Large className="mb-4">{currentCategory.title}</Large>
           <Link href={`/${params.category}`}>
             <div className={`
               w-full h-14 flex flex-row justify-center md:justify-start items-center
@@ -48,6 +114,16 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
                 `}>
                   {subcategory}
                 </div>
+              </Link>
+            ))
+          }
+
+          <hr /><br />
+
+          {
+            categories.filter(cat => cat.handle !== params.category).map((category: {handle: string, title: string}) => (
+              <Link key={category.handle} href={`/${category.handle}`}>
+                <Large className="mb-4 text-neutral-500 hover:text-primary">{category.title}</Large>
               </Link>
             ))
           }

@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <header className="w-full bg-background flex flex-col items-center fixed z-50">
 
-      <div className="container h-24 grid grid-cols-6 items-center border-b z-10">
+      <div className="container h-24 grid grid-cols-6 items-center border-b z-10 px-4 lg:px-0">
         <span className="col-span-3 md:col-span-1">
           <Link href="/">
             <Image src="/logo.png" width={160} height={70} alt="Atiyas Fresh Farm Logo" />
@@ -61,17 +61,18 @@ const Header = () => {
 
 const SubHeader = () => {
   return (
-    <div className="w-full flex justify-center items-center h-12 bg-[#5e922e]">
+    <div className="w-full flex justify-center items-center h-12 bg-brand">
       <div className="container h-full flex flex-row justify-between items-center text-stone-50 px-4 lg:px-0">
-        <span className="flex flex-row space-x-8">
-          <Link href="/#explore-categories"><p className="font-semibold">All Categories</p></Link>
-          <Link href="/flyer"><p className="font-semibold">Flyer</p></Link>
-          <Link href="/contact"><p className="font-semibold">Contact</p></Link>
-          <Link href="/about"><p className="font-semibold">About</p></Link>
+
+        <span className="flex flex-row space-x-4">
+          <Link href="/"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Home</p></Link>
+          <Link href="/flyer"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Flyer</p></Link>
+          <Link href="/#contact"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Contact</p></Link>
+          <Link href="/#footer"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">About</p></Link>
         </span>
         <span>
           <Dialog>
-            <DialogTrigger><p className="font-semibold">Delivery coverage</p></DialogTrigger>
+            <DialogTrigger><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Delivery coverage</p></DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Check Delivery Coverage</DialogTitle>
@@ -92,6 +93,7 @@ const SubHeader = () => {
             </DialogContent>
           </Dialog>
         </span>
+
       </div>
     </div>
   );

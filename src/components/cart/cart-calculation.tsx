@@ -1,4 +1,5 @@
 import { Large } from "@/components/ui/typography";
+//import { Badge } from "@/components/ui/badge";
 import { Money } from "@/lib/shopify/types";
 
 const CartCalculation = ({ className, cost }:

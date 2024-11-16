@@ -17,9 +17,9 @@ import { useEffect, useState } from 'react';
 
 const UserButton = () => {
 
-  const loggedIn = false;
   const [ loginUrl, setLoginUrl ] = useState<string | null>(null);
   const [ logoutUrl, setLogoutUrl ] = useState<string | null>(null);
+  const loggedIn = logoutUrl !== null;
 
   const searchParams = useSearchParams();
   useEffect(() => {

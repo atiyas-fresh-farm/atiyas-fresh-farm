@@ -63,6 +63,7 @@ const SubHeader = () => {
   return (
     <div className="w-full flex justify-center items-center h-12 bg-brand">
       <div className="container h-full flex flex-row justify-between items-center text-stone-50 px-4 lg:px-0">
+
         <span className="flex flex-row space-x-4">
           <Link href="/"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Home</p></Link>
           <Link href="/flyer"><p className="font-semibold hover:bg-lime-700 rounded py-2 px-3">Flyer</p></Link>
@@ -92,6 +93,7 @@ const SubHeader = () => {
             </DialogContent>
           </Dialog>
         </span>
+
       </div>
     </div>
   );

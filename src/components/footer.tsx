@@ -6,7 +6,7 @@ import { H4, Large, P } from "@/components/ui/typography";
 
 const Footer = () => {
 
-  const textHoverEffect = "text-neutral-200 hover:text-neutral-50 dark:text-neutral-50 dark:hover:text-neutral-300";
+  //const textHoverEffect = "text-neutral-200 hover:text-neutral-50 dark:text-neutral-50 dark:hover:text-neutral-300";
   const categories = [
     {
       handle: "bakery",
@@ -101,28 +101,28 @@ const Footer = () => {
           <div className="col-span-1 flex flex-col justify-start items-center mt-16 lg:mt-4 px-2">
             <H4>Categories</H4>
             <div className="flex flex-col lg:flex-row items-center space-x-6 lg:items-start justify-end">
-              <div className="flex flex-col justify-start items-start mt-4 space-y-4">
+              <div className="flex flex-col justify-start items-center mt-4 space-y-4">
                 {
                   categories.slice(0, 5).map((category, index) => (
-                    <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
+                    <Link href={`/${category.handle}`} key={category.handle + index}>
                       {category.title}
                     </Link>
                   ))
                 }
               </div>
-              <div className="flex flex-col justify-start items-start mt-4 space-y-4">
+              <div className="flex flex-col justify-start items-center mt-4 space-y-4">
                 {
                   categories.slice(5, 10).map((category, index) => (
-                    <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
+                    <Link href={`/${category.handle}`} key={category.handle + index}>
                       {category.title}
                     </Link>
                   ))
                 }
               </div>
-              <div className="flex flex-col justify-start items-start mt-4 space-y-4">
+              <div className="flex flex-col justify-start items-center mt-4 space-y-4">
               {
                 categories.slice(10, 15).map((category, index) => (
-                  <Link className={textHoverEffect} href={`/${category.handle}`} key={category.handle + index}>
+                  <Link href={`/${category.handle}`} key={category.handle + index}>
                     {category.title}
                   </Link>
                 ))

@@ -41,8 +41,6 @@ const UserButton = () => {
     })();
   }, []);
 
-  console.log(loginUrl);
-
   if (!loggedIn) {
     return (
       <Link href={loginUrl ?? ""}>

@@ -1,3 +1,5 @@
+"use client"
+
 import { H2 } from '@/components/ui/typography';
 import {
   Table,
@@ -11,11 +13,20 @@ import {
 import Link from 'next/link';
 import { getOrdersList } from '@/components/customer/actions';
 import { Order } from '@/lib/shopify/types';
+import { useEffect, useState } from "react";
 
 
-const OrderHistory = async () => {
+const OrderHistory = () => {
 
-  const orders = await getOrdersList() as Order[];
+  const [orders, setOrders] = useState<Order[]|null>(null);
+  useEffect(() => {
+    const fetchOrders = async () => {
+      setOrders(await getOrdersList() as Order[]);
+      console.log(orders);
+    }
+
+    fetchOrders();
+  }, []);
 
   return (
     <div className="w-full flex justify-center">

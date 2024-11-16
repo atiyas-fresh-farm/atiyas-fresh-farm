@@ -24,6 +24,7 @@ const UserButton = () => {
   const searchParams = useSearchParams();
   useEffect(() => {
     (async () => {
+      //only set cookie if on home page??
       if (searchParams.has('code')) {
         // TODO: check if a cookie is already set. If not, then set a new cookie
         // TODO: save idToken and expiresIn on the client

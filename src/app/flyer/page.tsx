@@ -29,12 +29,12 @@ const Flyer = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container min-h-screen flex flex-col justify-start items-start pt-10 px-2 lg:px-0">
+      <main className="container min-h-screen flex flex-col justify-start items-start pt-10 px-4 xl:px-0">
         <div className="w-full flex flex-col md:flex-row flex-wrap justify-between">
           <H2>Flyer page</H2>
           <Button>Download the latest flyer</Button>
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-start items-start my-4">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-start items-start my-8 md:my-4">
           {
             flyers.map((flyer) => (
               <FlyerCard key={flyer.title} {...flyer} />
@@ -60,7 +60,8 @@ const FlyerCard = ({ title, imgSrc, imgAlt, fileSrc }:
       </CardHeader>
       <CardContent>
         <div className="relative aspect-[2/3] w-full">
-          <Image src={imgSrc} className="object-contain" fill={true} alt={imgAlt} />
+          <Image src={imgSrc} className="object-contain" fill={true} alt={imgAlt}
+            sizes="100vw, (min-width: 768px) 50vw, (min-width: 1024px) 25vw, (min-width: 1280px) 20vw" />
         </div>
         <div className="flex justify-between underline mt-2">
           <Link href={fileSrc} target="_blank">View</Link>

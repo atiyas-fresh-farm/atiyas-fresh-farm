@@ -31,7 +31,7 @@ const Search = async ({ searchParams }: { searchParams?: { query?: string} }) =>
                   <div key={product.handle} className="col-span-1 flex justify-center">
                     <ProductCard
                       key={product.handle}
-                      category={`bakery`}
+                      category={product.collections[0].handle}
                       product={product}
                     />
                   </div>

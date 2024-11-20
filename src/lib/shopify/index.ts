@@ -154,12 +154,13 @@ const reshapeProduct = (product: ShopifyProduct, filterHiddenProducts: boolean =
     return undefined;
   }
 
-  const { images, variants, ...rest } = product;
+  const { images, variants, collections, ...rest } = product;
 
   return {
     ...rest,
     variants: removeEdgesAndNodes(variants),
-    images: reshapeImages(images, product.title)
+    images: reshapeImages(images, product.title),
+    collections: removeEdgesAndNodes(collections)
   };
 };
 

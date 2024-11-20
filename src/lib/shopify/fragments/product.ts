@@ -23,6 +23,11 @@ const productFragment = /* GraphQL */ `
         }
       }
     }
+    compareAtPriceRange {
+      maxVariantPrice {
+        amount
+      }
+    }
     priceRange {
       maxVariantPrice {
         amount

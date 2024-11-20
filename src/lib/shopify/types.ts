@@ -131,6 +131,9 @@ export type ShopifyProduct = {
   description: string;
   variants: Connection<ProductVariant>;
   collections: Connection<ProductCollection>;
+  compareAtPriceRange: {
+    maxVariantPrice: Money;
+  };
   priceRange: {
     maxVariantPrice: Money;
   };

@@ -42,8 +42,8 @@ const Small = ({ children, className }: {children: ReactNode, className?: string
   </small>
 );
 
-const Muted = ({ children }: {children: ReactNode}) => (
-  <p className="text-sm text-muted-foreground">{ children }</p>
+const Muted = ({ children, className }: {children: ReactNode, className?: string}) => (
+  <p className={`text-sm text-muted-foreground ${className}`}>{ children }</p>
 );
 
 

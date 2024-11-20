@@ -1,4 +1,4 @@
-import { H2, H4, Large, Small } from "@/components/ui/typography";
+import { H2, H4, Large, Small, Muted } from "@/components/ui/typography";
 import { ProductCard } from "@/components/product-card";
 import { AddToCart } from '@/components/product-button';
 import { Product } from "@/lib/shopify/types";
@@ -23,6 +23,7 @@ const ProductPage = async ({ params }: { params: ParamsType }) => {
   const product = await getProduct(params.product);
   const recommendedProducts = product ? await getProductRecommendations(product?.id) : [];
   recommendedProducts.length = 7;
+  const prevPrice = product?.compareAtPriceRange.maxVariantPrice.amount;
 
   return (
     <div className="w-full flex justify-center">
@@ -40,6 +41,10 @@ const ProductPage = async ({ params }: { params: ParamsType }) => {
             </Small>
             <H2 className="mt-2">{product?.title}</H2>
             <H4>${product?.priceRange.maxVariantPrice.amount}</H4>
+            {
+              Number(prevPrice)!==0 &&
+              <Large className='line-through text-muted-foreground'>${prevPrice}</Large>
+            }
             {
               product &&
               <div className="w-full mt-4 md:mt-16">

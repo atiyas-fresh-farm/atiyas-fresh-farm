@@ -1,6 +1,6 @@
 "use client"
 
-import { H2 } from '@/components/ui/typography';
+import { H2, Large } from '@/components/ui/typography';
 import {
   Table,
   TableBody,
@@ -32,6 +32,11 @@ const OrderHistory = () => {
     <div className="w-full flex justify-center">
       <main className="container flex flex-col justify-start items-start pt-10 px-2 lg:px-0">
         <H2>Order History</H2>
+
+        {
+          !orders &&
+          <Large className="w-full text-center my-10">You have not placed any orders.</Large>
+        }
 
         <Table className="mb-16">
           <TableCaption>A list of your recent orders.</TableCaption>

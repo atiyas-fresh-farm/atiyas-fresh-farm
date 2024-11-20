@@ -16,9 +16,11 @@ const productFragment = /* GraphQL */ `
       }
     }
     collections(first: 50) {
-      nodes {
-        id
-        handle
+      edges {
+        node {
+          handle
+          title
+        }
       }
     }
     priceRange {

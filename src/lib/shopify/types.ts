@@ -52,13 +52,19 @@ export type ProductVariant = {
   id: string;
 };
 
+export type ProductCollection = {
+  handle: string;
+  title: string;
+};
+
 export type Money = {
   amount: string;
 };
 
-export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
+export type Product = Omit<ShopifyProduct, 'variants' | 'images' | 'collections'> & {
   variants: ProductVariant[];
   images: Image[];
+  collections: ProductCollection[];
 };
 
 export type Category = Omit<ShopifyCategory, 'fields'> & {
@@ -124,6 +130,7 @@ export type ShopifyProduct = {
   title: string;
   description: string;
   variants: Connection<ProductVariant>;
+  collections: Connection<ProductCollection>;
   priceRange: {
     maxVariantPrice: Money;
   };

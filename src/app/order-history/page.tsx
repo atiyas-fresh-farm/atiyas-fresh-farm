@@ -34,7 +34,7 @@ const OrderHistory = () => {
         <H2>Order History</H2>
 
         {
-          !orders &&
+          (!orders || orders?.length === 0) &&
           <Large className="w-full text-center my-10">You have not placed any orders.</Large>
         }
 

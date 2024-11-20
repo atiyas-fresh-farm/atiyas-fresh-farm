@@ -1,4 +1,4 @@
-import { H2, H4, Large, Small, Muted } from "@/components/ui/typography";
+import { H2, H4, Large, Small } from "@/components/ui/typography";
 import { ProductCard } from "@/components/product-card";
 import { AddToCart } from '@/components/product-button';
 import { Product } from "@/lib/shopify/types";

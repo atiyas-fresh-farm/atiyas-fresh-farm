@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
 		container: {
       padding: {
+				// Adding padding to container on large screens, so that the hero section has whitespace around it on smaller laptops
         lg: '4rem',
       },
     },

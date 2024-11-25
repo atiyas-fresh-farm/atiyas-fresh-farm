@@ -15,7 +15,7 @@ const Hero = () => {
       <Carousel className="w-full h-[350px] lg:h-[650px]">
         <CarouselContent>
           <CarouselItem className="w-full h-[350px] lg:h-[650px] max-h-[65vh] relative">
-            <Image src="/home/welcome-banner.png" fill={true} objectFit="cover" alt="Welcome banner" />
+            <Image src="/home/welcome-banner.png" style={{ objectFit: 'cover' }} fill={true} priority={true} alt="Welcome banner" />
           </CarouselItem>
           <CarouselItem className="w-full h-[350px] lg:h-[650px] max-h-[65vh] relative">
             <Image src="/home/home-banner.png" fill={true} objectFit="cover" alt="Home banner" />

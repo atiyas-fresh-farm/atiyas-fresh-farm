@@ -1,3 +1,5 @@
+"use client";
+
 import { ThemeToggleSubMenu } from "@/components/theme-toggle";
 import {
   DropdownMenu,
@@ -9,13 +11,24 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CircleUserRoundIcon } from "lucide-react";
 import Link from "next/link";
-import { getAuthorizationUrl } from "@/components/customer/actions";
+import { getAuthorizationUrl, getLogoutUrl } from "@/components/customer/actions";
+import { useEffect, useState } from 'react';
 
 const UserButton = async () => {
 
   const loggedIn = false;
-  const logoutUrl = null;
-  const loginUrl = await getAuthorizationUrl();
+  
+  const [ loginUrl, setLoginUrl ] = useState<string | null>(null);
+  const [ logoutUrl, setLogoutUrl ] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      setLoginUrl(await getAuthorizationUrl());
+      setLogoutUrl(await getLogoutUrl());
+    })();
+  }, []);
+  console.log(loginUrl);
+  
 
 
   if (!loggedIn) {

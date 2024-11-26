@@ -25,10 +25,6 @@ import {
 } from "@/lib/shopify/types";
 
 
-async function setCookie(name: string, value: string): Promise<void> {
-  (await cookies()).set(name, value);
-}
-
 export async function getAuthorizationUrl(): Promise<string> {
 
   const state = await generateState();
@@ -72,9 +68,7 @@ export async function getAuthorizationUrl(): Promise<string> {
   // Public client
   const verifier = await generateCodeVerifier();
   const challenge = await generateCodeChallenge(verifier);
-
-  // setCookie is a separate function so that it runs in the appropriate context where cookies are available
-  await setCookie('codeVerifier', verifier);
+  (await cookies()).set('codeVerifier', verifier!);
   //localStorage.setItem('code-verifier', verifier);
 
   authorizationRequestUrl.searchParams.append(

@@ -12,11 +12,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CircleUserRoundIcon } from "lucide-react";
 import Link from "next/link";
 import { getAuthorizationUrl, getLogoutUrl } from "@/components/customer/actions";
+import { useAuth } from "@/components/customer/auth-context";
 import { useEffect, useState } from 'react';
 
 const UserButton = () => {
 
-  const loggedIn = false;
+  const loggedIn = useAuth().isAuthenticated;
+  console.log(loggedIn);
   
   const [ loginUrl, setLoginUrl ] = useState<string | null>(null);
   const [ logoutUrl, setLogoutUrl ] = useState<string | null>(null);

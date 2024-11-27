@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider"
 import { CartProvider } from "@/components/cart/cart-context";
+import { AuthProvider } from "@/components/customer/auth-context";
 import { cookies } from 'next/headers';
 import { getCart } from "@/lib/shopify";
 import { Toaster } from "@/components/ui/sonner"
@@ -41,14 +42,16 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <CartProvider cartPromise={cart}>
-            <div className="flex flex-col justify-start items-start">
-              <Header />
-              <div className="w-full min-h-screen flex flex-col justify-between pt-36">
-                {children}
-                <Footer />
-              </div>
-            </div>
-            <Toaster closeButton />
+            <AuthProvider>
+                <div className="flex flex-col justify-start items-start">
+                  <Header />
+                  <div className="w-full min-h-screen flex flex-col justify-between pt-36">
+                    {children}
+                    <Footer />
+                  </div>
+                </div>
+                <Toaster closeButton />
+              </AuthProvider>
           </CartProvider>
         </ThemeProvider>
         <Analytics />

@@ -14,7 +14,7 @@ import Link from "next/link";
 import { getAuthorizationUrl, getLogoutUrl } from "@/components/customer/actions";
 import { useEffect, useState } from 'react';
 
-const UserButton = async () => {
+const UserButton = () => {
 
   const loggedIn = false;
   
@@ -27,9 +27,7 @@ const UserButton = async () => {
       setLogoutUrl(await getLogoutUrl());
     })();
   }, []);
-  console.log(loginUrl);
   
-
 
   if (!loggedIn) {
     return (

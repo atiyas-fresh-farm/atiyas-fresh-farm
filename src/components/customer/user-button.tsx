@@ -1,3 +1,5 @@
+"use client";
+
 import { ThemeToggleSubMenu } from "@/components/theme-toggle";
 import {
   DropdownMenu,
@@ -10,11 +12,21 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CircleUserRoundIcon } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/components/customer/auth-context";
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from "react";
 
 const UserButton = () => {
 
-  const { isAuthenticated, loginUrl, logoutUrl } = useAuth();
-
+  const { isAuthenticated, loginUrl, logoutUrl, accessToken, setAccessToken } = useAuth();
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    (async () => {
+      //only set cookie if on home page??
+      if (searchParams.has('code')) {
+        setAccessToken(searchParams.get('code')?.toString() ?? "");
+      }
+    })();
+  }, []);
 
   if (!isAuthenticated) {
     return (
@@ -23,6 +35,8 @@ const UserButton = () => {
       </Link>
     );
   }
+
+  console.log(accessToken);
   
   return (
     <div>

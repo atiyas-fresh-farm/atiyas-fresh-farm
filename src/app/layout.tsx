@@ -43,15 +43,15 @@ export default async function RootLayout({
         >
           <CartProvider cartPromise={cart}>
             <AuthProvider>
-                <div className="flex flex-col justify-start items-start">
-                  <Header />
-                  <div className="w-full min-h-screen flex flex-col justify-between pt-36">
-                    {children}
-                    <Footer />
-                  </div>
+              <div className="flex flex-col justify-start items-start">
+                <Header />
+                <div className="w-full min-h-screen flex flex-col justify-between pt-36">
+                  {children}
+                  <Footer />
                 </div>
-                <Toaster closeButton />
-              </AuthProvider>
+              </div>
+              <Toaster closeButton />
+            </AuthProvider>
           </CartProvider>
         </ThemeProvider>
         <Analytics />

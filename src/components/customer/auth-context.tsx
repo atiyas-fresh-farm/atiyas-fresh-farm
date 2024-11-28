@@ -8,7 +8,8 @@ type AuthContextType = {
   isAuthenticated: boolean;
   loginUrl: null|string;
   logoutUrl: null|string;
-  // accessToken: null|string;
+  accessToken: null|string;
+  setAccessToken: (accessToken: string) => void;
   // expiresIn: null|number;
   // idToken: null|string;
   // refreshToken: null|string;
@@ -17,9 +18,10 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   const [ loginUrl, setLoginUrl ] = useState<string | null>(null);
   const [ logoutUrl, setLogoutUrl ] = useState<string | null>(null);
+  const [ accessToken, setAccessToken ] = useState<string | null>(null);
   //const router = useRouter();
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loginUrl, logoutUrl }}>
+    <AuthContext.Provider value={{ isAuthenticated, loginUrl, logoutUrl, accessToken, setAccessToken }}>
       {children}
     </AuthContext.Provider>
   );

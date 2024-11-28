@@ -13,17 +13,20 @@ import { CircleUserRoundIcon } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/components/customer/auth-context";
 import { useSearchParams } from 'next/navigation';
+import { getAccessTokenAndSetCookie } from "@/components/customer/actions";
 import { useEffect } from "react";
 
 const UserButton = () => {
 
-  const { isAuthenticated, loginUrl, logoutUrl, accessToken, setAccessToken } = useAuth();
+  const { isAuthenticated, loginUrl, logoutUrl, setAccessToken } = useAuth();
   const searchParams = useSearchParams();
   useEffect(() => {
     (async () => {
       //only set cookie if on home page??
       if (searchParams.has('code')) {
-        setAccessToken(searchParams.get('code')?.toString() ?? "");
+        const customerToken = await getAccessTokenAndSetCookie(searchParams.get('code')?.toString() ?? "");
+        setAccessToken(typeof customerToken == "string" ? customerToken : customerToken.accessToken);
+        console.log(customerToken);
       }
     })();
   }, []);
@@ -35,8 +38,6 @@ const UserButton = () => {
       </Link>
     );
   }
-
-  console.log(accessToken);
   
   return (
     <div>

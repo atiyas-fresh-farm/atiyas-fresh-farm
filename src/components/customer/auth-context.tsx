@@ -1,23 +1,31 @@
 'use client'
 
+import { getAuthorizationUrl, getLogoutUrl } from "@/components/customer/actions";
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+//import { useRouter } from 'next/navigation';
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  login: () => void;
-  logout: () => void;
+  loginUrl: null|string;
+  logoutUrl: null|string;
+  // accessToken: null|string;
+  // expiresIn: null|number;
+  // idToken: null|string;
+  // refreshToken: null|string;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const router = useRouter();
+  const [ loginUrl, setLoginUrl ] = useState<string | null>(null);
+  const [ logoutUrl, setLogoutUrl ] = useState<string | null>(null);
+  //const router = useRouter();
 
   useEffect(() => {
     // Check if the user is authenticated on component mount
     checkAuthStatus();
+    getAuthUrls();
   }, []);
 
   const checkAuthStatus = async () => {
@@ -34,23 +42,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const login = () => {
-    // Redirect to Shopify login
-    router.push('/api/auth/shopify');
-  };
-
-  const logout = async () => {
+  const getAuthUrls = async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-      setIsAuthenticated(false);
-      router.push('/');
+      setLoginUrl(await getAuthorizationUrl());
+      setLogoutUrl(await getLogoutUrl());
     } catch (error) {
-      console.error('Error logging out:', error);
+      console.error('Error getting auth URLs:', error);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, loginUrl, logoutUrl }}>
       {children}
     </AuthContext.Provider>
   );

@@ -18,14 +18,14 @@ import { useEffect } from "react";
 
 const UserButton = () => {
 
-  const { isAuthenticated, loginUrl, logoutUrl, setAccessToken } = useAuth();
+  const { isAuthenticated, loginUrl, logoutUrl, setCustomerToken } = useAuth();
   const searchParams = useSearchParams();
   useEffect(() => {
     (async () => {
       //only set cookie if on home page??
       if (searchParams.has('code')) {
         const customerToken = await getAccessTokenAndSetCookie(searchParams.get('code')?.toString() ?? "");
-        setAccessToken(typeof customerToken == "string" ? customerToken : customerToken.accessToken);
+        if (typeof customerToken != "string") setCustomerToken(customerToken);
         console.log(customerToken);
       }
     })();

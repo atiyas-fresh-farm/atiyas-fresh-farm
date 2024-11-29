@@ -24,9 +24,9 @@ const config: Config = {
 					DEFAULT: '100%',
 					sm: '640px', // Override for small screens
 					md: '768px', // Custom max-width for medium screens
-					lg: '824px', // Custom max-width for large screens
-					xl: '1080px', // Custom max-width for extra-large screens
-					'2xl': '1236px', // Custom max-width for 2XL screens
+					lg: '80%', // Custom max-width for large screens
+					xl: '80%', // Custom max-width for extra-large screens
+					'2xl': '80%', // Custom max-width for 2XL screens
 				}
 			},
   		colors: {

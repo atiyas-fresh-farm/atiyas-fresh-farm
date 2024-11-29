@@ -127,7 +127,7 @@ export async function getAccessTokenAndSetCookie(code: string): Promise<Customer
     idToken: id_token,
     refreshToken: refresh_token
   };
-  (await cookies()).set('customerToken', JSON.stringify(customerAccessToken!));
+  (await cookies()).set('customerToken', JSON.stringify(customerAccessToken!), { maxAge: expires_in! });
 
   return customerAccessToken;
 }

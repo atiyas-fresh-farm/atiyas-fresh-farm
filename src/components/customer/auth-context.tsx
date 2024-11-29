@@ -2,6 +2,7 @@
 
 import { getAuthorizationUrl, getLogoutUrl } from "@/components/customer/actions";
 import { createContext, useContext, useState, useEffect } from 'react';
+import { cookies } from 'next/headers'
 //import { useRouter } from 'next/navigation';
 
 type customerTokenType = {
@@ -39,12 +40,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Check if the user is authenticated on component mount
     checkAuthStatus();
     getAuthUrls();
+
+    const interval = setInterval(checkAuthStatus, 600000); // Check every hour
+      return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch('/api/auth/check');
-      if (response.ok) {
+      const cookieStore = await cookies()
+      const hasCookie = cookieStore.has('customerToken')
+      if (hasCookie) {
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);

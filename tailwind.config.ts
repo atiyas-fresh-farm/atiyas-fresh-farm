@@ -10,12 +10,25 @@ const config: Config = {
   theme: {
 		container: {
 			//TODO: change max width for hero
-      padding: {
+      /*padding: {
 				// Adding padding to container on large screens, so that the hero section has whitespace around it on smaller laptops
         lg: '4rem',
       },
+			screens: {
+				lg: {max: '500px'},
+			},*/
     },
   	extend: {
+			container: {
+				screens: {
+					DEFAULT: '100%',
+					sm: '640px', // Override for small screens
+					md: '768px', // Custom max-width for medium screens
+					lg: '824px', // Custom max-width for large screens
+					xl: '1080px', // Custom max-width for extra-large screens
+					'2xl': '1236px', // Custom max-width for 2XL screens
+				}
+			},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

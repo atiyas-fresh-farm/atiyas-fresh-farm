@@ -31,10 +31,10 @@ const Header = () => {
   return (
     <header className="w-full bg-background flex flex-col items-center fixed z-50">
 
-      <div className="container h-24 grid grid-cols-6 items-center border-b z-10 px-4 xl:px-0">
+      <div className="container h-20 grid grid-cols-6 items-center border-b z-10 px-4 xl:px-0">
         <span className="col-span-3 lg:col-span-1">
           <Link href="/">
-            <Image src="/logo.png" width={160} height={70} alt="Atiyas Fresh Farm Logo" />
+            <Image src="/logo.png" width={140} height={60} alt="Atiyas Fresh Farm Logo" />
           </Link>
         </span>
         <span className="hidden lg:inline col-span-4">

@@ -13,7 +13,7 @@ import {
 const Hero = () => {
 
   return (
-    <div className="w-full h-[350px] lg:h-[650px] max-h-[65vh] border mb-12">
+    <div className="w-full h-[350px] lg:h-[500px] xl:h-[650px] max-h-[65vh] border mb-12">
       <Carousel className="w-full h-[350px] lg:h-[650px]">
         <CarouselContent>
           <CarouselItem className="w-full h-[350px] lg:h-[650px] max-h-[65vh] relative">

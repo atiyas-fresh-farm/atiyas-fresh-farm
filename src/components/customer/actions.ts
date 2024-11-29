@@ -132,6 +132,11 @@ export async function getAccessTokenAndSetCookie(code: string): Promise<Customer
   return customerAccessToken;
 }
 
+export async function deleteCustomerCookies(): Promise<void> {
+  (await cookies()).delete('codeVerifier');
+  (await cookies()).delete('customerToken');
+}
+
 export async function getAuthStatus(): Promise<boolean> {
   try {
     const cookieStore = await cookies();

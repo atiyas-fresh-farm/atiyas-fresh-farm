@@ -1,6 +1,6 @@
 'use client'
 
-import { getAuthorizationUrl, getLogoutUrl, getAuthStatus } from "@/components/customer/actions";
+import { getAuthorizationUrl, getLogoutUrl, getAuthStatus, deleteCustomerCookies } from "@/components/customer/actions";
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -71,7 +71,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsAuthenticated(true);
   }
 
-  const logoutCallback = () => {
+  const logoutCallback = async () => {
+    await deleteCustomerCookies();
     setAccessToken(null);
     setExpiresIn(null);
     setIdToken(null);

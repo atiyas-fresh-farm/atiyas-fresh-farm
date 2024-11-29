@@ -1,8 +1,7 @@
 'use client'
 
-import { getAuthorizationUrl, getLogoutUrl } from "@/components/customer/actions";
+import { getAuthorizationUrl, getLogoutUrl, getAuthStatus } from "@/components/customer/actions";
 import { createContext, useContext, useState, useEffect } from 'react';
-import { cookies } from 'next/headers'
 //import { useRouter } from 'next/navigation';
 
 type customerTokenType = {
@@ -47,13 +46,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const checkAuthStatus = async () => {
     try {
-      const cookieStore = await cookies()
-      const hasCookie = cookieStore.has('customerToken')
-      if (hasCookie) {
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
-      }
+      const authStatus = await getAuthStatus()
+      setIsAuthenticated(authStatus);
     } catch (error) {
       console.error('Error checking auth status:', error);
       setIsAuthenticated(false);

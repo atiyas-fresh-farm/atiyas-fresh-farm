@@ -132,6 +132,17 @@ export async function getAccessTokenAndSetCookie(code: string): Promise<Customer
   return customerAccessToken;
 }
 
+export async function getAuthStatus(): Promise<boolean> {
+  try {
+    const cookieStore = await cookies();
+    const hasCookie = cookieStore.has('customerToken');
+    return hasCookie;
+  } catch (error) {
+    console.error('Error checking auth status:', error);
+    return false;
+  }
+}
+
 // TODO: Implement token refresh
 export async function refreshToken(): Promise<CustomerToken> {
 

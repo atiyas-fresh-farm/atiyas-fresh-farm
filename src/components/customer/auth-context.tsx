@@ -40,7 +40,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     checkAuthStatus();
     getAuthUrls();
 
-    const interval = setInterval(checkAuthStatus, 600000); // Check every hour
+    const interval = setInterval(checkAuthStatus, 3600000); // Check every hour
     return () => clearInterval(interval); // Cleanup on unmount
   }, [isAuthenticated]);
 

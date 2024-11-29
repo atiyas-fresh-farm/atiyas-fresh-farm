@@ -34,7 +34,7 @@ const Flyer = () => {
           <H2>Flyer page</H2>
           <Button>Download the latest flyer</Button>
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-start items-start my-8 md:my-4">
+        <div className="w-full flex flex-col justify-start items-start my-8 md:my-4">
           {
             flyers.map((flyer) => (
               <FlyerCard key={flyer.title} {...flyer} />

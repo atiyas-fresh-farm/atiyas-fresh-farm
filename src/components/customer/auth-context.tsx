@@ -42,8 +42,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     getAuthUrls();
 
     const interval = setInterval(checkAuthStatus, 600000); // Check every hour
-      return () => clearInterval(interval); // Cleanup on unmount
-  }, []);
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [isAuthenticated]);
 
   const checkAuthStatus = async () => {
     try {

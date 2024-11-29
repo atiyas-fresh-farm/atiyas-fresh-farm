@@ -26,7 +26,7 @@ const config: Config = {
 					md: '768px', // Custom max-width for medium screens
 					lg: '768px', // Custom max-width for large screens
 					xl: '1280px', // Custom max-width for extra-large screens
-					'2xl': '1536px', // Custom max-width for 2XL screens
+					'2xl': '1336px', // Custom max-width for 2XL screens
 				}
 			},
   		colors: {

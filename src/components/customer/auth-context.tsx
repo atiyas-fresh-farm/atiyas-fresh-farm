@@ -2,7 +2,7 @@
 
 import { getAuthorizationUrl, getLogoutUrl, getAuthStatus } from "@/components/customer/actions";
 import { createContext, useContext, useState, useEffect } from 'react';
-//import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 type customerTokenType = {
   accessToken: string;
@@ -14,7 +14,7 @@ type customerTokenType = {
 type AuthContextType = {
   isAuthenticated: boolean;
   loginUrl: null|string;
-  logoutUrl: null|string;
+  logoutCallback: () => void;
   accessToken: null|string;
   expiresIn: null|number;
   idToken: null|string;
@@ -33,7 +33,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ idToken, setIdToken ] = useState<string | null>(null);
   const [ refreshToken, setRefreshToken ] = useState<string | null>(null);
 
-  //const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     // Check if the user is authenticated on component mount
@@ -71,8 +71,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsAuthenticated(true);
   }
 
+  const logoutCallback = () => {
+    setAccessToken(null);
+    setExpiresIn(null);
+    setIdToken(null);
+    setRefreshToken(null);
+    setIsAuthenticated(false);
+    router.push(logoutUrl!);
+  }
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loginUrl, logoutUrl, accessToken, expiresIn, idToken, refreshToken, setCustomerToken }}>
+    <AuthContext.Provider value={{ isAuthenticated, loginUrl, logoutCallback, accessToken, expiresIn, idToken, refreshToken, setCustomerToken }}>
       {children}
     </AuthContext.Provider>
   );

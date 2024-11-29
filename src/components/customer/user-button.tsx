@@ -18,7 +18,7 @@ import { useEffect } from "react";
 
 const UserButton = () => {
 
-  const { isAuthenticated, loginUrl, logoutUrl, setCustomerToken } = useAuth();
+  const { isAuthenticated, loginUrl, logoutCallback, setCustomerToken } = useAuth();
   const searchParams = useSearchParams();
   useEffect(() => {
     (async () => {
@@ -55,7 +55,7 @@ const UserButton = () => {
           <DropdownMenuSeparator />
           <Link href="/order-history"><DropdownMenuItem>Order History</DropdownMenuItem></Link>
           <Link href="/settings"><DropdownMenuItem>Settings</DropdownMenuItem></Link>
-          <Link href={logoutUrl ?? ""}><DropdownMenuItem>Log off</DropdownMenuItem></Link>                
+          <DropdownMenuItem onClick={logoutCallback}>Log off</DropdownMenuItem>                
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

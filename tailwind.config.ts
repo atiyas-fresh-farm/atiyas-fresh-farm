@@ -13,10 +13,10 @@ const config: Config = {
       /*padding: {
 				// Adding padding to container on large screens, so that the hero section has whitespace around it on smaller laptops
         lg: '4rem',
-      },*/
+      },
 			screens: {
-				lg: '768px',
-			}
+				lg: {max: '500px'},
+			},*/
     },
   	extend: {
   		colors: {

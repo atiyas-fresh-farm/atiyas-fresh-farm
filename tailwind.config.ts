@@ -10,10 +10,13 @@ const config: Config = {
   theme: {
 		container: {
 			//TODO: change max width for hero
-      padding: {
+      /*padding: {
 				// Adding padding to container on large screens, so that the hero section has whitespace around it on smaller laptops
         lg: '4rem',
-      },
+      },*/
+			screens: {
+				lg: '768px',
+			}
     },
   	extend: {
   		colors: {

@@ -1,7 +1,5 @@
 import { H2 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import Link from 'next/link';
 import Image from 'next/image';
 
 const Flyer = () => {
@@ -34,7 +32,7 @@ const Flyer = () => {
           <H2>Flyer page</H2>
           <Button>Download the latest flyer</Button>
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-start items-start my-8 md:my-4">
+        <div className="w-full flex flex-row flex-wrap justify-around lg:justify-between items-start my-8 md:my-4">
           {
             flyers.map((flyer) => (
               <FlyerCard key={flyer.title} {...flyer} />
@@ -46,7 +44,7 @@ const Flyer = () => {
   );
 }
 
-const FlyerCard = ({ title, imgSrc, imgAlt, fileSrc }:
+const FlyerCard = ({ imgSrc, imgAlt }:
 {
   title: string;
   imgSrc: string;
@@ -54,21 +52,10 @@ const FlyerCard = ({ title, imgSrc, imgAlt, fileSrc }:
   fileSrc: string;
 }) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{ title }</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="relative aspect-[2/3] w-full">
-          <Image src={imgSrc} className="object-contain" fill={true} alt={imgAlt}
-            sizes="100vw, (min-width: 768px) 50vw, (min-width: 1024px) 25vw, (min-width: 1280px) 20vw" />
-        </div>
-        <div className="flex justify-between underline mt-2">
-          <Link href={fileSrc} target="_blank">View</Link>
-          <Link href={fileSrc} download target="_blank">Download</Link>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="relative aspect-[2/3] h-[750px] max-h-[80vh] mb-5 max-w-full">
+        <Image src={imgSrc} className="object-contain" fill={true} alt={imgAlt}
+          sizes="100vw, (min-width: 768px) 50vw, (min-width: 1024px) 25vw, (min-width: 1280px) 20vw" />
+      </div>
   );
 }
 

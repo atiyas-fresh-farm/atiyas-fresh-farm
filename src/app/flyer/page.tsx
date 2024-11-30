@@ -1,7 +1,5 @@
 import { H2 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import Link from 'next/link';
 import Image from 'next/image';
 
 const Flyer = () => {
@@ -46,7 +44,7 @@ const Flyer = () => {
   );
 }
 
-const FlyerCard = ({ title, imgSrc, imgAlt, fileSrc }:
+const FlyerCard = ({ imgSrc, imgAlt }:
 {
   title: string;
   imgSrc: string;

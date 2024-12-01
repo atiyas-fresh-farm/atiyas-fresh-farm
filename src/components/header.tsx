@@ -42,7 +42,14 @@ const Header = () => {
         </span>
         <span className="col-span-3 lg:col-span-1 flex flex-row justify-end items-center space-x-4">
           <span className="inline lg:hidden p-2">
-            <SearchIcon size={36} className="text-neutral-950" />
+          <Dialog>
+            <DialogTrigger asChild>
+              <SearchIcon size={36} className="text-neutral-950" />
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px] top-0 translate-y-[0%]">
+              <SearchBar />
+            </DialogContent>
+          </Dialog>
           </span>
           <span className="px-2">
             <CartSheet />

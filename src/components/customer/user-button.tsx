@@ -34,7 +34,7 @@ const UserButton = () => {
   if (!isAuthenticated) {
     return (
       <Link href={loginUrl ?? ""}>
-        <p>Log in</p>
+        <p>Log in / Sign up</p>
       </Link>
     );
   }

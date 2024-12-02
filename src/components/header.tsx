@@ -26,8 +26,6 @@ import {
 
 const Header = () => {
 
-  const loggedin = true;
-
   return (
     <header className="w-full bg-background flex flex-col items-center fixed z-50">
 
@@ -47,15 +45,7 @@ const Header = () => {
           <span className="px-2">
             <CartSheet />
           </span>
-          {
-            loggedin ?
-              <UserButton />
-             :
-            <div>
-              <Link href="/login">Login</Link>
-              <Link href="/signup">Sign Up</Link>
-            </div>
-          }
+          <UserButton />
         </span>
       </div>
       <SubHeader />

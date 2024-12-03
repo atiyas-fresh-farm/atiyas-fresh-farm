@@ -21,6 +21,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { PageContainer } from "@/components/page-container";
 
 
 
@@ -31,7 +32,7 @@ const Header = () => {
   return (
     <header className="w-full bg-background flex flex-col items-center fixed z-50">
 
-      <div className="container h-20 grid grid-cols-6 items-center border-b z-10 px-4 xl:px-0">
+      <PageContainer className="h-20 grid grid-cols-6 items-center border-b z-10 px-4 xl:px-0">
         <span className="col-span-3 lg:col-span-1">
           <Link href="/">
             <Image src="/logo.png" width={140} height={60} alt="Atiyas Fresh Farm Logo" />
@@ -57,7 +58,7 @@ const Header = () => {
             </div>
           }
         </span>
-      </div>
+      </PageContainer>
       <SubHeader />
 
     </header>

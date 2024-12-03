@@ -3,6 +3,7 @@ import Image from "next/image";
 import { InstagramIcon, FacebookIcon } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { H4, Large, P } from "@/components/ui/typography";
+import { PageContainer } from "@/components/page-container";
 
 const Footer = () => {
 
@@ -73,7 +74,7 @@ const Footer = () => {
 
   return (
     <footer id="footer" className="w-full h-full flex flex-col justify-center items-center border-t bg-brand text-neutral-50">
-      <div className="container flex flex-col justify-center items-center px-4 xl:px-0 py-8">
+      <PageContainer className="flex flex-col justify-center items-center px-4 xl:px-0 py-8">
 
         <div className="w-full flex flex-col lg:grid lg:grid-cols-3 justify-between items-center lg:items-start">
 
@@ -150,7 +151,7 @@ const Footer = () => {
           <Large>&copy; Atiyas Fresh Farm Ltd.</Large>
         </div>
 
-      </div>
+      </PageContainer>
     </footer>
   );
 }

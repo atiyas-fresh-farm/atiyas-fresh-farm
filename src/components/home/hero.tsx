@@ -12,7 +12,7 @@ import {
 //TODO: make the props required
 const Hero = () => {
 
-  const heightStyling = `h-[250px] md:h-[400px] lg:h-[500px] xl:h-[650px] max-h-[65vh]`;
+  const heightStyling = `h-[250px] md:h-[400px] lg:h-[500px] xl:h-[650px] 2xl:h-[800px] max-h-[65vh]`;
 
   return (
     <div className={`w-full ${heightStyling} border mb-12`}>

@@ -8,26 +8,9 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-		container: {
-			//TODO: change max width for hero
-      /*padding: {
-				// Adding padding to container on large screens, so that the hero section has whitespace around it on smaller laptops
-        lg: '4rem',
-      },
-			screens: {
-				lg: {max: '500px'},
-			},*/
-    },
   	extend: {
-			container: {
-				screens: {
-					DEFAULT: '100%',
-					sm: '640px', // Override for small screens
-					md: '768px', // Custom max-width for medium screens
-					lg: '80vw', // Custom max-width for large screens
-					xl: '80vw', // Custom max-width for extra-large screens
-					'2xl': '80vw', // Custom max-width for 2XL screens
-				}
+			screens: {
+				'3xl': '2560px',
 			},
   		colors: {
   			background: 'hsl(var(--background))',

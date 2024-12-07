@@ -33,7 +33,12 @@ const CartSheet = () => {
     <Sheet>
       <SheetTrigger>
         <div className="relative">
-          <span className="rounded-full aspect-square w-4 text-xs bg-red-500 text-white absolute bottom-0 left-0">{ typeof cart !== "undefined" ? cart.lines.length : 0 }</span>
+          {
+            (typeof cart !== "undefined" && cart.lines.length!==0) &&
+            <span className="rounded-full aspect-square w-4 text-xs bg-red-500 text-white absolute bottom-0 left-0">
+              { cart.lines.length }
+            </span>
+          }
           <ShoppingCartIcon size={32} className="text-neutral-950" />
         </div>
       </SheetTrigger>

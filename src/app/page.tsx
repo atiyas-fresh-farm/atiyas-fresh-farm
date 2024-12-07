@@ -3,6 +3,7 @@ import { Categories } from "@/components/home/categories";
 import { OurStore } from "@/components/home/our-store";
 import { Reviews } from "@/components/home/reviews";
 import { WhyUs } from "@/components/home/why-us";
+import { PageContainer } from "@/components/page-container";
 
 import Category1 from "/public/home/categories/1.jpg";
 import Category2 from "/public/home/categories/2.jpg";
@@ -103,13 +104,13 @@ const Home = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-8">
+      <PageContainer className="flex flex-col justify-start items-start pt-8">
         <Hero />
         <Categories title="Explore Categories" categories={categories} />
         <OurStore />
         <Reviews />
         <WhyUs />
-      </main>
+      </PageContainer>
     </div>
   );
 }

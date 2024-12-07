@@ -64,7 +64,7 @@ const Header = () => {
 
 const SubHeader = () => {
   return (
-    <div className="w-full flex justify-center items-center min-h-12 bg-brand">
+    <div className="w-full flex justify-start sm:justify-center items-center min-h-12 bg-brand">
       <PageContainer className="h-full flex flex-row justify-between items-center text-stone-50 px-4 lg:px-0">
 
         <Collapsible className="w-full p-2 sm:hidden">

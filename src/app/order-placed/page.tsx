@@ -1,11 +1,12 @@
 import { H2, P } from "@/components/ui/typography";
 import { Badge } from "@/components/ui/badge";
+import { PageContainer } from "@/components/page-container";
 import Link from "next/link";
 
 const OrderPlaced = () => {
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-10 px-2 lg:px-0">
+      <PageContainer className="flex flex-col justify-start items-start pt-10 px-2 lg:px-0">
         <H2>Order Placed</H2>
         <div className="w-full flex flex-row flex-wrap justify-between items-center mb-4">
           <P>
@@ -18,7 +19,7 @@ const OrderPlaced = () => {
           <Link href="/" className="underline">Continue shopping</Link>
           <Link href="/order-history" className="underline">Order History</Link>
         </div>
-      </main>
+      </PageContainer>
     </div>
   );
 }

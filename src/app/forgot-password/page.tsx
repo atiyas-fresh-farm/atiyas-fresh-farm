@@ -9,12 +9,13 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { PageContainer } from "@/components/page-container";
 
 
 const ForgotPass = () => {
   return (
     <div className="w-full flex justify-center">
-      <main className="container h-full flex flex-col justify-center items-center pt-10">
+      <PageContainer className="h-full flex flex-col justify-center items-center pt-10">
         <Card>
           <CardHeader>
             <CardTitle>Forgot Password</CardTitle>
@@ -32,7 +33,7 @@ const ForgotPass = () => {
             <Button>Submit</Button>
           </CardFooter>
         </Card>
-      </main>
+      </PageContainer>
     </div>
   )
 }

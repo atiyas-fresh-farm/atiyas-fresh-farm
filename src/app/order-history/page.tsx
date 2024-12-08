@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table"
 import Link from 'next/link';
 import { getOrdersList } from '@/components/customer/actions';
+import { PageContainer } from "@/components/page-container";
 import { Order } from '@/lib/shopify/types';
 import { useEffect, useState } from "react";
 
@@ -30,7 +31,7 @@ const OrderHistory = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-10 px-2 lg:px-0">
+      <PageContainer className="flex flex-col justify-start items-start pt-10 px-2 lg:px-0">
         <H2>Order History</H2>
 
         {
@@ -75,7 +76,7 @@ const OrderHistory = () => {
           </TableBody>
         </Table>
 
-      </main>
+      </PageContainer>
     </div>
   );
 }

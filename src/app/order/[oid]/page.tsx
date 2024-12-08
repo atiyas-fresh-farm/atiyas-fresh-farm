@@ -2,6 +2,7 @@ import { MoveLeft } from "lucide-react";
 import { H2 } from "@/components/ui/typography";
 import { CartRow } from "@/components/cart/cart-row";
 import { CartCalculation } from "@/components/cart/cart-calculation";
+import { PageContainer } from "@/components/page-container";
 import { getOrderDetails } from "@/components/customer/actions";
 import { Order as OrderType } from "@/lib/shopify/types";
 import Link from "next/link";
@@ -26,7 +27,7 @@ const Order = async ({ params }: { params: { oid: string } }) => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-8 px-2 lg:px-0">
+      <PageContainer className="flex flex-col justify-start items-start pt-8 px-2 lg:px-0">
 
         <Link className="flex flex-row" href="/order-history">
           <MoveLeft className="mr-2" size={24} />back
@@ -68,7 +69,7 @@ const Order = async ({ params }: { params: { oid: string } }) => {
           <CartCalculation cost={cost} />
         </div>
 
-      </main>
+      </PageContainer>
     </div>
   );
 }

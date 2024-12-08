@@ -1,10 +1,11 @@
 import { Pencil, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PageContainer } from "@/components/page-container";
 import { H2, Large, Small, P } from '@/components/ui/typography';
 import {
   Card,
   CardContent,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 
@@ -12,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 const Checkout = () => {
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-10">
+      <PageContainer className="flex flex-col justify-start items-start pt-10">
 
         <section className="w-full flex flex-col justify-start items-start mb-10">
           <H2>Checkout</H2>
@@ -99,7 +100,7 @@ const Checkout = () => {
           <Button>Place Order</Button>
         </section>
 
-      </main>
+      </PageContainer>
     </div>
   );
 }

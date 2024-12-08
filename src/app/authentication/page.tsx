@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/tabs";
 import { WEBSITE_URL } from "@/lib/constants";
 import Link from "next/link";
+import { PageContainer } from "@/components/page-container";
 
 
 const Signup = async () => {
@@ -27,7 +28,7 @@ const Signup = async () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container h-full flex flex-col justify-center items-center pt-10">
+      <PageContainer className="h-full flex flex-col justify-center items-center pt-10">
         <Tabs defaultValue="account" className="w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="signup">Sign Up</TabsTrigger>
@@ -84,7 +85,7 @@ const Signup = async () => {
             </Card>
           </TabsContent>
         </Tabs>
-      </main>
+      </PageContainer>
     </div>
   )
 }

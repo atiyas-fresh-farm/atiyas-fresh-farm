@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CartRow } from "@/components/cart/cart-row";
 import { CartCalculation } from "@/components/cart/cart-calculation";
 import { useCart } from '@/components/cart/cart-context';
+import { PageContainer } from "@/components/page-container";
 
 const Cart = () => {
 
@@ -12,7 +13,7 @@ const Cart = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start py-10 px-2 lg:px-0">
+      <PageContainer className="flex flex-col justify-start items-start py-10 px-2 lg:px-0">
         <H2>Cart</H2>
         <Small>5 items</Small>
 
@@ -31,7 +32,7 @@ const Cart = () => {
           <Button>Checkout</Button>
         </div>
 
-      </main>
+      </PageContainer>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { H4, Small } from '@/components/ui/typography';
 import { ProductCard } from "@/components/product-card";
 import { Product } from '@/lib/shopify/types';
 import { getProducts } from '@/lib/shopify';
+import { PageContainer } from "@/components/page-container";
 import Link from 'next/link';
 
 
@@ -14,7 +15,7 @@ const Search = async ({ searchParams }: { searchParams?: { query?: string} }) =>
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-6">
+      <PageContainer className="flex flex-col justify-start items-start pt-6">
         <H4>
           {
             searchParams?.query ? `Search Results for "${searchParams.query}"` : `Start typing to search for products`
@@ -22,7 +23,7 @@ const Search = async ({ searchParams }: { searchParams?: { query?: string} }) =>
         </H4>
         <Small>Showing 1-20 of 100 results</Small>
         <br />
-        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 justify-start items-start mb-6">
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 gap-2 justify-start items-start mb-6">
           
           {
             products.length !== 0 ?
@@ -47,7 +48,7 @@ const Search = async ({ searchParams }: { searchParams?: { query?: string} }) =>
           }
 
         </div>
-      </main>
+      </PageContainer>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { ProductCard } from "@/components/product-card";
 import { Large } from "@/components/ui/typography";
 import { getCollectionProducts, getCollectionSubcategories } from "@/lib/shopify";
 import { Product } from "@/lib/shopify/types";
+import { PageContainer } from "@/components/page-container";
 import Link from "next/link";
 
 interface CategoryProps {
@@ -89,7 +90,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-row justify-start items-start">
+      <PageContainer className="flex flex-row justify-start items-start">
 
         <div className="w-18 md:min-w-64 h-full border-r pt-6">
           <Large className="mb-4">{currentCategory.title}</Large>
@@ -158,7 +159,7 @@ const Category = async ({ params, searchParams }: CategoryProps) => {
           }
         </div>
 
-      </main>
+      </PageContainer>
     </div>
   );
 }

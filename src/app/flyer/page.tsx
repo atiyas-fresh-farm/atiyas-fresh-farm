@@ -1,5 +1,6 @@
 import { H2 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
+import { PageContainer } from "@/components/page-container";
 import Image from 'next/image';
 
 const Flyer = () => {
@@ -27,19 +28,19 @@ const Flyer = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container min-h-screen flex flex-col justify-start items-start pt-10 px-4 xl:px-0">
+      <PageContainer className=" min-h-screen flex flex-col justify-start items-start pt-10 px-4 xl:px-0">
         <div className="w-full flex flex-col md:flex-row flex-wrap justify-between">
           <H2>Flyer page</H2>
           <Button>Download the latest flyer</Button>
         </div>
-        <div className="w-full flex flex-row flex-wrap justify-around lg:justify-between items-start my-8 md:my-4">
+        <div className="w-full flex flex-row flex-wrap justify-around xl:justify-between items-start my-8 md:my-4">
           {
             flyers.map((flyer) => (
               <FlyerCard key={flyer.title} {...flyer} />
             ))
           }
         </div>
-      </main>
+      </PageContainer>
     </div>
   );
 }

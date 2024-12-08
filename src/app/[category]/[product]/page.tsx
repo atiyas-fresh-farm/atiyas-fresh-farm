@@ -3,6 +3,7 @@ import { ProductCard } from "@/components/product-card";
 import { AddToCart } from '@/components/product-button';
 import { Product } from "@/lib/shopify/types";
 import { getProduct, getProductRecommendations } from "@/lib/shopify";
+import { PageContainer } from "@/components/page-container";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,7 +28,7 @@ const ProductPage = async ({ params }: { params: ParamsType }) => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-col justify-start items-start pt-10 px-2 xl:px-0">
+      <PageContainer className="flex flex-col justify-start items-start pt-10 px-2 xl:px-0">
 
         <div className="w-full flex flex-col md:flex-row justify-center md:space-x-4 items-start">
 
@@ -84,7 +85,7 @@ const ProductPage = async ({ params }: { params: ParamsType }) => {
           </div>
         </div>
 
-      </main>
+      </PageContainer>
     </div>
   );
 }

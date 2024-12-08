@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { PageContainer } from "@/components/page-container";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { getUserDetails } from "@/components/customer/actions";
@@ -62,7 +63,7 @@ const Settings = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <main className="container flex flex-row justify-start items-start">
+      <PageContainer className="flex flex-row justify-start items-start">
 
         <div className="w-18 md:min-w-64 h-full border-r pt-6">
           {
@@ -174,7 +175,7 @@ const Settings = () => {
           </section>
 
         </div>
-      </main>
+      </PageContainer>
     </div>
   );
 }
